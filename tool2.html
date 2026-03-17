@@ -716,7 +716,7 @@
             const seatDensity = diningArea / seats;
 
             // الطاقة والإيرادات
-            const maxCustomersDaily = seats * turnoverRate * peakHours;
+            const maxCustomersDaily = seats * turnoverRate;
             const actualCustomersDaily = maxCustomersDaily * occupancyRate;
             const monthlyRevenue = actualCustomersDaily * avgMealPrice * 26;
             const monthlyFoodCost = monthlyRevenue * foodCostPercent;
@@ -764,31 +764,45 @@
             if (totalInvestment / seats > 5000) warnings.push("💡 استثمار مرتفع لكل كرسي، تأكد من جدوى ذلك");
 
             // التقييم الفني
-            let technicalScore = 0;
-            const requiredAmps = (totalPower * 1000) / 220;
-            if (electricalCapacity >= requiredAmps * 1.2) technicalScore += 30;
-            else if (electricalCapacity >= requiredAmps) technicalScore += 25;
-            else if (electricalCapacity >= requiredAmps * 0.8) technicalScore += 15;
-            else technicalScore += 5;
+let technicalScore = 0;
+const requiredAmps = (totalPower * 1000) / 220;
 
-            if (waterAvailabilityText.includes('مناسب')) technicalScore += 10;
-            else if (waterAvailabilityText.includes('تطوير')) technicalScore += 5;
-            if (ventilationText.includes('مناسب')) technicalScore += 10;
-            else if (ventilationText.includes('تطوير')) technicalScore += 5;
+// 1. الكهرباء (40 نقطة بدلاً من 30 - لأنها الأهم فنياً)
+if (electricalCapacity >= requiredAmps * 1.2) technicalScore += 40;
+else if (electricalCapacity >= requiredAmps) technicalScore += 30;
+else if (electricalCapacity >= requiredAmps * 0.8) technicalScore += 15;
+else technicalScore += 5;
 
-            if (seatDensity >= 1.2 && seatDensity <= 1.8) technicalScore += 10;
-            else if (seatDensity >= 1.0 && seatDensity < 1.2) technicalScore += 5;
-            else if (seatDensity > 1.8 && seatDensity <= 2.2) technicalScore += 5;
+// 2. المياه (15 نقطة)
+if (waterAvailabilityText.includes('مناسب')) technicalScore += 15;
+else if (waterAvailabilityText.includes('تطوير')) technicalScore += 5;
 
-            if (totalSpace <= kitchenArea * 0.5) technicalScore += 10;
-            else if (totalSpace <= kitchenArea * 0.7) technicalScore += 5;
+// 3. التهوية (15 نقطة)
+if (ventilationText.includes('مناسب')) technicalScore += 15;
+else if (ventilationText.includes('تطوير')) technicalScore += 5;
 
-            technicalScore = Math.min(technicalScore, 100);
-            let technicalRating = '', technicalColor = '';
-            if (technicalScore >= 85) { technicalRating = '🟢 ممتاز'; technicalColor = 'alert-success'; }
-            else if (technicalScore >= 70) { technicalRating = '🟡 جيد'; technicalColor = 'alert-warning'; }
-            else if (technicalScore >= 50) { technicalRating = '🟠 متوسط'; technicalColor = 'alert-warning'; }
-            else { technicalRating = '🔴 ضعيف'; technicalColor = 'alert-danger'; }
+// 4. كثافة الجلوس (15 نقطة)
+if (seatDensity >= 1.2 && seatDensity <= 1.8) technicalScore += 15;
+else if (seatDensity >= 1.0 && seatDensity < 1.2) technicalScore += 8;
+else if (seatDensity > 1.8 && seatDensity <= 2.2) technicalScore += 8;
+
+// 5. مساحة المعدات مقارنة بالمطبخ (15 نقطة)
+if (totalSpace <= kitchenArea * 0.5) technicalScore += 15;
+else if (totalSpace <= kitchenArea * 0.7) technicalScore += 8;
+
+// التأكد من أن النتيجة لا تتجاوز 100
+technicalScore = Math.min(technicalScore, 100);
+
+let technicalRating = '', technicalColor = '';
+if (technicalScore >= 85) { technicalRating = '🟢 ممتاز';
+    technicalColor = 'alert-success'; }
+else if (technicalScore >= 70) { technicalRating = '🟡 جيد';
+    technicalColor = 'alert-warning'; }
+else if (technicalScore >= 50) { technicalRating = '🟠 متوسط';
+    technicalColor = 'alert-warning'; }
+else { technicalRating = '🔴 ضعيف';
+    technicalColor = 'alert-danger'; }
+
 
             // التقييم المالي
             let financialScore = 0;
