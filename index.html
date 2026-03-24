@@ -266,8 +266,7 @@
     <script>
         AOS.init({ duration: 800, once: true });
 
-        // المفتاح السري الخاص بمنصة المطاعم
-        const RESTAURANT_SECRET_KEY = "R3st@ur4nt_F@rouk_S3cur3_K3y_2026!";
+        // رابط الخادم (Worker أو Apps Script)
         const GOOGLE_SCRIPT_URL = "https://restaurant-api-proxy.faroukgrup.workers.dev/";
 
         const loginOverlay = document.getElementById('loginOverlay');
@@ -278,45 +277,25 @@
         const errorMsg = document.getElementById('errorMsg');
         const logoutBtn = document.getElementById('logoutBtn');
 
-        // دالة للتحقق من صحة التوكن
-        function isValidToken(token, userName) {
-            if (!token || !userName) return false;
-            try {
-                const decoded = atob(token);
-                const parts = decoded.split('|');
-                // يجب أن يتكون التوكن من 3 أجزاء: المفتاح + اسم المستخدم + تاريخ الانتهاء
-                return (parts.length === 3 && parts[0] === RESTAURANT_SECRET_KEY && parts[1] === userName);
-            } catch(e) {
-                console.error("Error decoding token:", e);
-                return false;
-            }
-        }
-
+        // دالة التحقق من الجلسة (بدون توكن)
         function checkSession() {
-            const token = localStorage.getItem('userToken');
+            const loggedIn = localStorage.getItem('restaurantLoggedIn') === 'true';
             const userName = localStorage.getItem('userName');
-            
-            if (token && userName && isValidToken(token, userName)) {
-                // جلسة صالحة
+            if (loggedIn && userName) {
                 loginOverlay.style.display = 'none';
                 dashboard.style.display = 'block';
-                const savedName = localStorage.getItem('userName');
                 const savedDays = localStorage.getItem('daysLeft');
-                if(savedName) {
-                    document.querySelector('.user-name').innerHTML = `<i class="fas fa-user-tie"></i> ${savedName} (متبقي ${savedDays} يوم)`;
-                }
+                document.querySelector('.user-name').innerHTML = `<i class="fas fa-user-tie"></i> ${userName} (متبقي ${savedDays || 'غير محدد'} يوم)`;
                 loadAllData();
             } else {
-                // جلسة غير صالحة: مسح البيانات وعرض شاشة الدخول
-                console.warn("Invalid or missing token, clearing storage.");
-                localStorage.removeItem('userToken');
+                // تنظيف أي بيانات قديمة
+                localStorage.removeItem('restaurantLoggedIn');
                 localStorage.removeItem('userName');
                 localStorage.removeItem('daysLeft');
+                localStorage.removeItem('userToken');
                 loginOverlay.style.display = 'flex';
                 dashboard.style.display = 'none';
-                if (usernameInput) usernameInput.focus();
-                // مسح أي رسائل خطأ سابقة
-                if (errorMsg) errorMsg.textContent = '';
+                usernameInput?.focus();
             }
         }
 
@@ -353,20 +332,17 @@
                 const result = await response.json();
 
                 if (result.status === 'success') {
-                    // قبل تخزين البيانات، تأكد من أن التوكن صالح
-                    if (result.token && isValidToken(result.token, result.name)) {
-                        localStorage.setItem('userToken', result.token);
-                        localStorage.setItem('userName', result.name);
-                        localStorage.setItem('daysLeft', result.daysLeft);
-                        
-                        document.querySelector('.user-name').innerHTML = `<i class="fas fa-user-tie"></i> ${result.name} (متبقي ${result.daysLeft} يوم)`;
-                        
-                        loginOverlay.style.display = 'none';
-                        dashboard.style.display = 'block';
-                        loadAllData();
-                    } else {
-                        errorMsg.textContent = '❌ خطأ في التوكن المقدم من الخادم. يرجى المحاولة مرة أخرى.';
-                    }
+                    // تخزين بيانات الجلسة
+                    localStorage.setItem('restaurantLoggedIn', 'true');
+                    localStorage.setItem('userName', result.name);
+                    localStorage.setItem('daysLeft', result.daysLeft);
+                    if (result.token) localStorage.setItem('userToken', result.token); // اختياري
+
+                    document.querySelector('.user-name').innerHTML = `<i class="fas fa-user-tie"></i> ${result.name} (متبقي ${result.daysLeft} يوم)`;
+                    
+                    loginOverlay.style.display = 'none';
+                    dashboard.style.display = 'block';
+                    loadAllData();
                 } else if (result.status === 'expired') {
                     errorMsg.textContent = '❌ انتهى اشتراكك. يرجى التواصل مع الدعم.';
                 } else {
@@ -386,9 +362,10 @@
         usernameInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') passwordInput.focus(); });
 
         logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('userToken');
+            localStorage.removeItem('restaurantLoggedIn');
             localStorage.removeItem('userName');
             localStorage.removeItem('daysLeft');
+            localStorage.removeItem('userToken');
             loginOverlay.style.display = 'flex';
             dashboard.style.display = 'none';
             passwordInput.value = '';
@@ -401,6 +378,7 @@
             setInterval(updateDateTime, 1000);
         });
 
+        // قائمة الأدوات (كما هي)
         const tools = [
             { name: "حساب التكاليف للمطاعم", icon: "fa-utensils", file: "tool2.html" },
             { name: "دراسة الجدوى الفنية المتقدمة للمطاعم", icon: "fa-gear", file: "tool3.html" },
@@ -414,7 +392,7 @@
             { name: "آلة حاسبة", icon: "fa-calculator", file: "tool16.html" }
         ];
 
-        // قائمة المهام
+        // دوال المهام، الآلة الحاسبة، الملاحظات، المواعيد (كما هي دون تغيير)
         const todoInput = document.getElementById('todoInput');
         const addTodoBtn = document.getElementById('addTodoBtn');
         const todoList = document.getElementById('todoList');
