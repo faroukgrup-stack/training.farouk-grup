@@ -1,43 +1,28 @@
-// ملف auth.js للمنصة المخصصة للمطاعم
+// auth.js
 (function() {
-    // 1. جلب البيانات من localStorage
     const token = localStorage.getItem('userToken');
-    const user = localStorage.getItem('userName');
-    // المفتاح السري الخاص بمنصة المطاعم (يجب أن يطابق المفتاح المستخدم في Google Apps Script)
+    const userName = localStorage.getItem('userName');
     const SECRET_KEY = "R3st@ur4nt_F@rouk_S3cur3_K3y_2026!";
 
-    let isValid = false;
-
-    try {
-        if (token && user) {
-            // فك تشفير التوكن
-            const decoded = atob(token);
-            const parts = decoded.split('|');
-            
-            // التأكد من المفتاح السري واسم المستخدم
-            if (parts.length === 3 && parts[0] === SECRET_KEY && parts[1] === user) {
-                isValid = true;
-            } else {
-                console.warn("Token validation failed. Parts:", parts.length, "Secret match:", parts[0] === SECRET_KEY);
-            }
-        } else {
-            console.warn("Missing token or user name.");
-        }
-    } catch (e) {
-        console.error("Error decoding token:", e);
-        isValid = false;
-    }
-
-    // 2. إذا كان غير صالح، اطرده لصفحة الدخول
-    if (!isValid) {
-        console.warn("Access denied: Invalid or missing token.");
+    if (!token || !userName) {
+        alert("يرجى تسجيل الدخول أولاً للوصول إلى هذه الأداة.");
         window.location.href = "index.html";
         return;
     }
 
-    // 3. إذا كان صالحاً، اعرض الاسم عند تحميل الصفحة
-    window.addEventListener('DOMContentLoaded', () => {
-        const nameElement = document.getElementById('displayUserName');
-        if (nameElement) nameElement.innerText = user;
-    });
+    try {
+        const decoded = atob(token);
+        const parts = decoded.split('|');
+        if (parts.length !== 3 || parts[0] !== SECRET_KEY || parts[1] !== userName) {
+            throw new Error("تنسيق غير صحيح");
+        }
+        console.log("✅ Access granted to tool");
+    } catch(e) {
+        console.warn("Token validation failed:", e);
+        alert("جلسة غير صالحة، يرجى تسجيل الدخول مجدداً.");
+        localStorage.removeItem('userToken');
+        localStorage.removeItem('userName');
+        localStorage.removeItem('daysLeft');
+        window.location.href = "index.html";
+    }
 })();
