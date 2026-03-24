@@ -1,28 +1,16 @@
-// auth.js
+// auth.js للتحقق من الجلسة (بدون توكن)
 (function() {
-    const token = localStorage.getItem('userToken');
+    const loggedIn = localStorage.getItem('restaurantLoggedIn') === 'true';
     const userName = localStorage.getItem('userName');
-    const SECRET_KEY = "R3st@ur4nt_F@rouk_S3cur3_K3y_2026!";
 
-    if (!token || !userName) {
+    if (!loggedIn || !userName) {
         alert("يرجى تسجيل الدخول أولاً للوصول إلى هذه الأداة.");
         window.location.href = "index.html";
         return;
     }
 
-    try {
-        const decoded = atob(token);
-        const parts = decoded.split('|');
-        if (parts.length !== 3 || parts[0] !== SECRET_KEY || parts[1] !== userName) {
-            throw new Error("تنسيق غير صحيح");
-        }
-        console.log("✅ Access granted to tool");
-    } catch(e) {
-        console.warn("Token validation failed:", e);
-        alert("جلسة غير صالحة، يرجى تسجيل الدخول مجدداً.");
-        localStorage.removeItem('userToken');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('daysLeft');
-        window.location.href = "index.html";
-    }
+    window.addEventListener('DOMContentLoaded', () => {
+        const nameElement = document.getElementById('displayUserName');
+        if (nameElement) nameElement.innerText = userName;
+    });
 })();
