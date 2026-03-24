@@ -1,40 +1,13 @@
-// ملف auth.js للتحقق من صحة الجلسة في أدوات المطاعم
+// ملف auth-check.js للتحقق من الجلسة في أدوات المطاعم (بدون توكن)
 (function() {
-    const token = localStorage.getItem('userToken');
+    const loggedIn = localStorage.getItem('restaurantLoggedIn') === 'true';
     const userName = localStorage.getItem('userName');
-    const SECRET_KEY = "R3st@ur4nt_F@rouk_S3cur3_K3y_2026!"; // نفس المفتاح المستخدم في Google Apps Script
 
-    // التحقق من وجود البيانات الأساسية
-    if (!token || !userName) {
+    if (!loggedIn || !userName) {
         alert("يرجى تسجيل الدخول أولاً للوصول إلى هذه الأداة.");
         window.location.href = "index.html";
         return;
     }
 
-    try {
-        // فك تشفير التوكن
-        const decoded = atob(token);
-        const parts = decoded.split('|');
-        
-        // التحقق من عدد الأجزاء
-        if (parts.length !== 3) {
-            throw new Error("تنسيق غير صحيح");
-        }
-        
-        // التحقق من المفتاح السري واسم المستخدم
-        if (parts[0] !== SECRET_KEY || parts[1] !== userName) {
-            throw new Error("بيانات غير صحيحة");
-        }
-        
-        // إذا نجح التحقق، نستمر
-        console.log("✅ Access granted to tool");
-    } catch(e) {
-        console.warn("Token validation failed:", e);
-        alert("جلسة غير صالحة، يرجى تسجيل الدخول مجدداً.");
-        localStorage.removeItem('userToken');
-        localStorage.removeItem('userName');
-        localStorage.removeItem('daysLeft');
-        window.location.href = "index.html";
-        return;
-    }
+    console.log("✅ Access granted to tool");
 })();
