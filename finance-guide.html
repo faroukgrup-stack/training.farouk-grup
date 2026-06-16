@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدليل المالي لغير الماليين | فاروق العظم</title>
+    <meta name="description" content="الدليل الشامل لفهم وتفكيك رموز منظومة الإدارة المالية بكل بساطة ووضوح - لرواد الأعمال والمدراء غير الماليين">
+    <!-- الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --gold: #b8860b;
+            --gold-light: #d4b15a;
+            --finance-green: #0d5c3b;
+            --finance-dark: #1a3a2a;
+            --finance-bg: #f5f7f5;
+            --dark: #1e1e1e;
+            --light: #ffffff;
+            --text-dark: #2c3e2f;
+            --text-muted: #546e5d;
+            --shadow-sm: 0 10px 30px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 50px rgba(13,92,59,0.12);
+            --border-light: rgba(13,92,59,0.1);
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--finance-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-title {
+            font-size: 2rem; font-weight: 900; text-align: center; margin-bottom: 50px;
+            color: var(--finance-dark); position: relative;
+        }
+        .section-title:after {
+            content: ''; display: block; width: 60px; height: 3px;
+            background: var(--gold); margin: 15px auto 0; border-radius: 3px;
+        }
+        /* هيدر */
+        .landing-header {
+            text-align: center; padding: 30px 20px 20px; background: var(--light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .landing-header .logo-container {
+            display: inline-flex; align-items: center; justify-content: center; gap: 15px;
+            background: var(--finance-dark); padding: 10px 30px; border-radius: 50px;
+        }
+        .landing-header h1 {
+            font-family: 'Cairo', sans-serif; font-size: 1.4rem; font-weight: 900;
+            color: var(--gold); letter-spacing: 1px;
+        }
+        /* Hero */
+        .hero {
+            padding: 60px 0; background: linear-gradient(135deg, var(--finance-bg) 0%, #e8f0ea 100%);
+        }
+        .hero-grid {
+            display: flex; align-items: center; gap: 50px; flex-wrap: wrap;
+        }
+        .hero-content { flex: 1; min-width: 300px; }
+        .hero-badge {
+            display: inline-block; background: var(--gold); color: var(--light);
+            padding: 6px 25px; border-radius: 30px; font-weight: 700; font-size: 0.9rem;
+            margin-bottom: 20px; letter-spacing: 1px;
+        }
+        .hero-content h2 {
+            font-size: 3rem; font-weight: 900; line-height: 1.3; color: var(--finance-dark);
+            margin-bottom: 20px;
+        }
+        .hero-content h2 span { color: var(--finance-green); }
+        .hero-content p {
+            font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px;
+        }
+        .hero-image { flex: 0.8; min-width: 280px; text-align: center; }
+        .hero-image img {
+            max-width: 100%; height: auto; border-radius: 12px;
+            box-shadow: 20px 20px 40px rgba(0,0,0,0.15); border: 4px solid var(--light);
+            transform: rotate(2deg); transition: transform 0.3s;
+        }
+        .hero-image img:hover { transform: rotate(0deg); }
+        .btn-gold {
+            background: var(--gold); border: none; border-radius: 50px;
+            padding: 16px 40px; font-size: 1.2rem; font-weight: 700;
+            color: var(--finance-dark); cursor: pointer; transition: 0.3s;
+            display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 8px 20px rgba(184,134,11,0.3);
+        }
+        .btn-gold:hover {
+            background: var(--gold-light); color: var(--finance-dark);
+            transform: translateY(-3px); box-shadow: 0 12px 30px rgba(184,134,11,0.4);
+        }
+        .trust-badges {
+            display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap;
+        }
+        .trust-badges span {
+            display: flex; align-items: center; gap: 8px; font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .trust-badges i { color: var(--finance-green); }
+        /* المشكلة */
+        .problem-section { padding: 80px 0; background: var(--light); }
+        .problem-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+            gap: 25px; margin-top: 30px;
+        }
+        .problem-card {
+            background: #fafbfa; padding: 30px; border-radius: 20px;
+            border: 1px solid var(--border-light); transition: 0.3s;
+        }
+        .problem-card:hover { border-color: var(--gold); box-shadow: var(--shadow-sm); }
+        .problem-card i { font-size: 2rem; color: #c0392b; margin-bottom: 15px; }
+        .problem-card h4 { font-size: 1.3rem; margin-bottom: 12px; color: var(--finance-dark); }
+        /* الفوائد / ماذا ستتعلم */
+        .benefits-section { padding: 80px 0; background: var(--finance-bg); }
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+            gap: 30px; margin-top: 30px;
+        }
+        .benefit-card {
+            background: var(--light); padding: 35px 25px; border-radius: 30px;
+            box-shadow: var(--shadow-sm); border-bottom: 4px solid var(--finance-green);
+            transition: 0.3s; text-align: center;
+        }
+        .benefit-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .benefit-icon {
+            width: 70px; height: 70px; background: rgba(13,92,59,0.1);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 2rem; color: var(--finance-green);
+        }
+        .benefit-card h4 { font-size: 1.4rem; margin-bottom: 15px; }
+        .benefit-card p { color: var(--text-muted); }
+        /* اقتباس من الكتاب */
+        .quote-section { padding: 60px 0; background: var(--finance-dark); color: var(--light); text-align: center; }
+        .quote-text {
+            font-size: 1.4rem; max-width: 800px; margin: 0 auto; font-style: italic;
+            line-height: 1.8;
+        }
+        .quote-author { margin-top: 20px; color: var(--gold); font-weight: 700; }
+        /* عن الكتاب */
+        .book-features { padding: 80px 0; background: var(--light); }
+        .feature-row {
+            display: flex; align-items: center; gap: 50px; flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .feature-content { flex: 1; min-width: 300px; }
+        .feature-list { list-style: none; }
+        .feature-list li {
+            display: flex; gap: 15px; margin-bottom: 25px;
+        }
+        .feature-list i { color: var(--finance-green); font-size: 1.5rem; width: 30px; }
+        .feature-list h5 { font-size: 1.2rem; margin-bottom: 5px; color: var(--finance-dark); }
+        .feature-gallery {
+            flex: 1; min-width: 300px; display: flex; gap: 15px; justify-content: center;
+        }
+        .feature-gallery img {
+            width: 45%; height: auto; border-radius: 12px; box-shadow: var(--shadow-sm);
+            object-fit: cover; transition: transform 0.3s;
+        }
+        .feature-gallery img:hover { transform: scale(1.02); }
+        /* جدول المحتويات */
+        .toc-section { padding: 60px 0; background: var(--finance-bg); }
+        .toc-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 15px; margin-top: 30px;
+        }
+        .toc-item {
+            background: var(--light); padding: 15px 20px; border-radius: 50px;
+            display: flex; align-items: center; gap: 12px; border: 1px solid var(--border-light);
+        }
+        .toc-item i { color: var(--gold); }
+        /* عن المؤلف */
+        .author-section { padding: 80px 0; background: var(--light); }
+        .author-grid {
+            display: flex; align-items: center; gap: 50px; flex-wrap: wrap;
+        }
+        .author-image { flex: 0.5; min-width: 250px; text-align: center; }
+        .author-image img {
+            max-width: 100%; height: auto; border-radius: 20px;
+            box-shadow: var(--shadow-lg); border: 3px solid var(--gold-light);
+        }
+        .author-content { flex: 1; min-width: 300px; }
+        .author-content h4 { font-size: 1.8rem; margin-bottom: 10px; }
+        .author-title { color: var(--gold); font-weight: 700; margin-bottom: 20px; }
+        .author-stats { display: flex; gap: 30px; margin: 25px 0; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 900; color: var(--finance-green); }
+        /* الأسئلة الشائعة */
+        .faq-section { padding: 60px 0; background: var(--finance-bg); }
+        .faq-grid { max-width: 800px; margin: 30px auto 0; }
+        .faq-item {
+            background: var(--light); padding: 20px 25px; border-radius: 16px;
+            margin-bottom: 15px; border: 1px solid var(--border-light);
+        }
+        .faq-question {
+            font-weight: 700; font-size: 1.1rem; display: flex; justify-content: space-between;
+            cursor: pointer; color: var(--finance-dark);
+        }
+        .faq-answer {
+            margin-top: 15px; color: var(--text-muted); display: none; padding-top: 10px;
+            border-top: 1px solid var(--border-light);
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        /* CTA */
+        .cta-section {
+            padding: 80px 0; background: linear-gradient(135deg, var(--finance-dark) 0%, #0d3b28 100%);
+            color: var(--light); text-align: center;
+        }
+        .cta-section h3 { font-size: 2.2rem; margin-bottom: 20px; }
+        .cta-section p { max-width: 600px; margin: 0 auto 30px; opacity: 0.9; }
+        .cta-section .btn-gold { background: var(--gold); color: var(--finance-dark); }
+        /* الفوتر */
+        footer {
+            background: var(--dark); color: #aaa; padding: 40px 20px;
+            text-align: center; font-size: 0.9rem;
+        }
+        footer span { color: var(--gold); }
+        /* نافذة الدفع */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;
+            z-index: 2000; visibility: hidden; opacity: 0; transition: 0.3s;
+        }
+        .modal-overlay.active { visibility: visible; opacity: 1; }
+        .modal-card {
+            background: var(--light); padding: 30px; border-radius: 30px;
+            width: 90%; max-width: 850px; max-height: 90vh; position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; font-size: 30px;
+            cursor: pointer; color: var(--text-muted); transition: 0.3s;
+        }
+        .modal-close:hover { color: var(--finance-dark); }
+        .modal-card h2 { text-align: center; margin-bottom: 25px; color: var(--finance-dark); }
+        #paymentIframe { width: 100%; height: 600px; border: none; border-radius: 20px; }
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2.2rem; }
+            .hero-image img { transform: none; }
+            .section-title { font-size: 1.8rem; }
+            .feature-gallery { flex-direction: column; align-items: center; }
+            .feature-gallery img { width: 80%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- هيدر -->
+<div class="landing-header">
+    <div class="logo-container">
+        <h1>📘 الدليل المالي لغير الماليين</h1>
+    </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <span class="hero-badge">النسخة الأولى</span>
+            <h2>حوّل <span>الأرقام</span> من مصدر قلق إلى أداة فهم</h2>
+            <p>الدليل الشامل لرواد الأعمال والمدراء غير الماليين لفهم وتفكيك رموز منظومة الإدارة المالية بكل بساطة ووضوح</p>
+            <button class="btn-gold" id="openModalBtn"><i class="fas fa-book-open"></i> احصل على نسختك الآن (19.99$)</button>
+            <p></p>
+            <div class="card-meta">
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+                <span><i class="fas fa-file"></i> ePub</span>
+                <span><i class="fas fa-book-open"></i> 198 صفحة</span>
+           <span class="device-icons">
+                <i class="fab fa-apple"></i>
+                <i class="fab fa-android"></i>
+                <span>متوافق مع أبل وأندرويد</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://lh3.googleusercontent.com/d/1i7p9pKUIrjM6lcv60ULm0JR7RGxDMSeN" alt="غلاف الدليل المالي">
+        </div>
+    </div>
+</section>
+
+<!-- المشكلة - هل تعاني من؟ -->
+<section class="problem-section">
+    <div class="container">
+        <h3 class="section-title">هل تعاني من هذه المشاكل؟</h3>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h4>أرباح ورقية.. وخزينة فارغة</h4>
+                <p>شركات كثيرة تحقق أرباحاً محاسبية لكنها تفلس بسبب نقص السيولة. هل تفهم الفرق بين الربح والتدفق النقدي؟</p>
+            </div>
+            <div class="problem-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>المصطلحات المالية تخيفك</h4>
+                <p>"الاستهلاك"، "الإطفاء"، "رأس المال العامل"... مصطلحات تبدو معقدة لكنها في الواقع بسيطة إذا فهمتها بلغة الإدارة.</p>
+            </div>
+            <div class="problem-card">
+                <i class="fas fa-balance-scale"></i>
+                <h4>قرارات مصيرية بدون أساس مالي</h4>
+                <p>هل تتخذ قرارات التوسع أو التوظيف أو التسعير بناءً على الحدس فقط؟ القرار بدون تحليل مالي مخاطرة كبيرة.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 30px; font-weight: 500;">"المدير الذي لا يفهم المال قد ينجح مؤقتاً لكنه يعرض مشروعه لمخاطر غير محسوبة" </p>
+    </div>
+</section>
+
+<!-- اقتباس رئيسي -->
+<section class="quote-section">
+    <div class="container">
+        <div class="quote-text">"المال ليس شأناً تقنياً يفوض بالكامل... بل هو لغة الإدارة ومرآة القرار وبوصلة الاستدامة."</div>
+        <div class="quote-author">– مقدمة الكتاب</div>
+    </div>
+</section>
+
+<!-- ماذا ستتعلم / الفوائد الأساسية -->
+<section class="benefits-section">
+    <div class="container">
+        <h3 class="section-title">ماذا ستتعلم في هذا الكتاب؟</h3>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-brain"></i></div>
+                <h4>العقلية المالية للمدير</h4>
+                <p>كيف تنمي عقلية المدير المالي وتتخلص من الخوف من الأرقام والمصطلحات</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-calculator"></i></div>
+                <h4>قراءة القوائم المالية</h4>
+                <p>فهم قائمة الدخل والميزانية العمومية والتدفقات النقدية بلغة بسيطة واتخاذ قرارات مبنية عليها</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-coins"></i></div>
+                <h4>إدارة التدفق النقدي</h4>
+                <p>اكتشف لماذا "النقد هو الملك" وكيف تتجنب فخ الإفلاس رغم وجود أرباح دفترية</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-chart-pie"></i></div>
+                <h4>التحليل المالي السريع</h4>
+                <p>إتقان أهم النسب المالية (السيولة، الربحية، المديونية) وتفسيرها لاتخاذ قرارات استباقية</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-chess-board"></i></div>
+                <h4>التخطيط والميزانيات</h4>
+                <p>كيف تبني ميزانية تقديرية وتخطط للمستقبل المالي لشركتك بدلاً من إدارة الأزمات</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-shield"></i></div>
+                <h4>تجنب الأخطاء القاتلة</h4>
+                <p>تعرّف على الأخطاء المالية الخمسة الأكثر شيوعاً التي تؤدي إلى فشل الشركات وكيفية تفاديها</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ماذا يحتوي الكتاب؟ -->
+<section class="book-features">
+    <div class="container">
+        <h3 class="section-title">رحلة متكاملة من الأساسيات إلى القيادة المالية</h3>
+        <div class="feature-row">
+            <div class="feature-content">
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> <div><h5>الفكر المالي لغير الماليين</h5><p>تغلب على الخوف من الأرقام وابنِ العقلية المالية الصحيحة</p></div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><h5>أساسيات المحاسبة بلغة بسيطة</h5><p>افهم المعادلة الأساسية: الأصول = الخصوم + حقوق الملكية</p></div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><h5>القوائم المالية الثلاث</h5><p>قراءة تحليلية إدارية لقائمة الدخل، الميزانية، والتدفقات النقدية</p></div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><h5>إدارة التكاليف والربحية</h5><p>تعرف على نقطة التعادل وكيف تؤثر التكاليف الثابتة والمتغيرة على أرباحك</p></div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><h5>إدارة السيولة والتدفقات النقدية</h5><p>الباب الأهم: كيف تنجو شركتك وتحافظ على سيولتها</p></div></li>
+                    <li><i class="fas fa-check-circle"></i> <div><h5>الميزانيات والتخطيط المالي</h5><p>خطط للمستقبل بثقة واجعل الميزانية أداة توجيه لا قيداً</p></div></li>
+                </ul>
+            </div>
+            <div class="feature-gallery">
+                <img src="https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct" alt="غلاف خلفي">
+                <img src="https://lh3.googleusercontent.com/d/1rfJHhtFGlhkcKUvhLgBXY51sFa3xjcy4" alt="لقطة من الداخل">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- جدول المحتويات -->
+<section class="toc-section">
+    <div class="container">
+        <h3 class="section-title">فصول الكتاب</h3>
+        <div class="toc-grid">
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الأول: الفكر المالي لغير الماليين</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الثاني: أساسيات المحاسبة بلغة غير محاسبية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الثالث: الحسابات المالية داخل الشركة</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الرابع: النشاط المالي داخل الشركة</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الخامس: القوائم المالية الأساسية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب السادس: قراءة القوائم المالية لاتخاذ القرار</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب السابع: التحليل المالي للإدارة</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الثامن: إدارة التكاليف والربحية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب التاسع: التدفقات النقدية وإدارة السيولة</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب العاشر: الميزانيات والتخطيط المالي</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الباب الحادي عشر: المصطلحات المالية</div>
+        </div>
+    </div>
+</section>
+
+<!-- عن المؤلف -->
+<section class="author-section">
+    <div class="container">
+        <h3 class="section-title">عن المؤلف</h3>
+        <div class="author-grid">
+            <div class="author-image">
+                <img src="https://lh3.googleusercontent.com/d/1WPc3zB8JQ_CctYERjApb3EPRLUdMP6Pw=w800-h1000" alt="فاروق العظم">
+            </div>
+            <div class="author-content">
+                <h4>فاروق العظم</h4>
+                <div class="author-title">مستشار تطوير الأعمال والمالية لقطاع الأغذية والمشروبات | خبير الامتياز التجاري وضبط التكاليف</div>
+                <p>خبرة تزيد عن 15 عاماً في تطوير الأنظمة التشغيلية والمالية، متخصص في ضبط التكاليف وتطوير فرق العمل. أسس مجموعة فاروق للأعمال لتقديم الاستشارات التي تدعم رواد الأعمال في بناء مشاريع منظمة وقابلة للنمو.</p>
+                <div class="author-stats">
+                    <div class="stat-item"><span class="stat-number">15+</span><p>عام خبرة</p></div>
+                    <div class="stat-item"><span class="stat-number">50+</span><p>مشروع تم إنجازه</p></div>
+                    <div class="stat-item"><span class="stat-number">150+</span><p>شخص تم تدريبهم</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- الأسئلة الشائعة -->
+<section class="faq-section">
+    <div class="container">
+        <h3 class="section-title">أسئلة شائعة</h3>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question"><span>هل هذا الكتاب مناسب لي إذا لم تكن لدي أي خلفية محاسبية؟</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">نعم، هذا الكتاب صُمم خصيصاً لغير الماليين. يبدأ من الأساسيات ويشرح المفاهيم بلغة إدارية واضحة بعيداً عن التعقيد المحاسبي.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>ما الفرق بين هذا الكتاب وكتب المحاسبة التقليدية؟</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">الكتاب لا يهدف لتحويلك إلى محاسب، بل إلى مدير يفهم لغة المال. يركز على التطبيق العملي واتخاذ القرار، وليس على القيود المحاسبية النظرية.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>كيف سأستلم الكتاب بعد الشراء؟</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">بعد إتمام الدفع بنجاح، سيتم تحويلك لصفحة التحميل مباشرة ويمكنك تنزيل الكتاب بصيغة PDF أو ePub.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h3>لا تترك مستقبل شركتك للصدفة</h3>
+        <p>انضم إلى مئات المدراء ورواد الأعمال الذين غيروا نظرتهم للمال واتخذوا قرارات أكثر ذكاءً</p>
+        <button class="btn-gold" id="openModalBtn2"><i class="fas fa-shopping-cart"></i> احصل على نسختك الآن بـ 19.99$ فقط</button>
+        <p style="margin-top:20px; font-size:0.9rem;"><i class="fas fa-lock"></i> دفع آمن - تحميل فوري</p>
+    </div>
+</section>
+
+<!-- الفوتر -->
+<footer>
+    <div class="container">
+        <p>© 2026 مجموعة فاروق للاستشارات والأعمال. جميع الحقوق محفوظة.</p>
+        <p style="margin-top:10px;"><span>الدليل المالي لغير الماليين</span> – النسخة الأولى</p>
+    </div>
+</footer>
+
+<!-- نافذة الدفع -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-card">
+        <span class="modal-close" id="closeModalBtn">&times;</span>
+        <h2><i class="fas fa-lock" style="margin-left:8px;"></i> إتمام عملية الشراء</h2>
+        <iframe id="paymentIframe" src="" allow="payment" allowfullscreen></iframe>
+        <p style="text-align:center; margin-top:15px; color:var(--text-muted); font-size:0.9rem;">
+            بعد الدفع بنجاح، ستتلقى رابط تحميل الكتاب على بريدك الإلكتروني.
+        </p>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const PAYMENT_LINK = "https://alfan.link/faroukazem?digital=kpkpR6";
+        const modal = document.getElementById('paymentModal');
+        const iframe = document.getElementById('paymentIframe');
+        const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        function openModal() {
+            iframe.src = PAYMENT_LINK;
+            modal.classList.add('active');
+        }
+
+        openBtns.forEach(btn => btn.addEventListener('click', openModal));
+
+        function closeModal() {
+            modal.classList.remove('active');
+            iframe.src = '';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.closest('.faq-item');
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    if (faq !== item) faq.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>
