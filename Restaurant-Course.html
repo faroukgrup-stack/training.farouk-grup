@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+<title>دورة إدارة المطاعم والقراءات المالية | FAROUK GRUP TRAINING</title>
+<meta name="description" content="دورة متكاملة في إدارة المطاعم والتحليل المالي - مجموعة فاروق للتدريب">
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root{
+    --gold:#b8860b;
+    --gold-light:#d4a017;
+    --gold-soft:rgba(184,134,11,0.1);
+    --dark:#1e2a2f;
+    --dark-light:#2c3e4a;
+    --grey:#5a6b7a;
+    --light:#f8f6f2;
+    --white:#ffffff;
+    --bg-soft:#f5f0e6;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Tajawal',sans-serif;
+    background:var(--light);
+    color:#2c3e4a;
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+/* ===== الهيدر المتكامل مع خلفية المطعم ===== */
+.hero-header{
+    background:linear-gradient(rgba(20,30,40,0.7), rgba(20,30,40,0.5)),
+                url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1600') center/cover;
+    background-attachment:fixed;
+    color:white;
+    padding:30px 20px 20px;
+    border-bottom:4px solid var(--gold);
+    position:relative;
+}
+.hero-header::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background:radial-gradient(circle at 30% 50%, rgba(184,134,11,0.2), transparent 60%);
+    animation:pulseGlow 4s infinite alternate;
+    pointer-events:none;
+}
+@keyframes pulseGlow{
+    0%{opacity:0.3;}
+    100%{opacity:0.8;}
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+    position:relative;
+    z-index:2;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:nowrap;
+}
+.logo-area img{
+    height:60px;
+    width:auto;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.logo-area h1{
+    font-family:'Alexandria',sans-serif;
+    font-size:1.6rem;
+    font-weight:900;
+    color:var(--gold-light);
+    text-shadow:2px 2px 6px rgba(0,0,0,0.5);
+    white-space:nowrap;
+}
+
+/* زر اسألنا مع نبض خفيف */
+.ask-btn{
+    background-color:var(--gold);
+    color:#111;
+    padding:12px 28px;
+    border-radius:50px;
+    font-weight:900;
+    text-decoration:none;
+    font-size:1.2rem;
+    box-shadow:0 8px 18px rgba(0,0,0,0.3);
+    transition:0.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid transparent;
+    animation: gentlePulse 2s infinite;
+}
+@keyframes gentlePulse {
+    0% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
+    50% { box-shadow: 0 12px 25px rgba(184,134,11,0.6); transform:scale(1.02); }
+    100% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
+}
+.ask-btn:hover{
+    background-color:var(--gold-light);
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 12px 25px rgba(0,0,0,0.4);
+    border-color:white;
+    animation: none;
+}
+
+/* القائمة الأفقية داخل الهيدر */
+.nav-in-header{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px 20px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    padding:12px 25px;
+    border-radius:60px;
+    margin-top:15px;
+    border:1px solid rgba(255,255,255,0.25);
+    position:relative;
+    z-index:2;
+}
+.nav-in-header a{
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    padding:5px 10px;
+    transition:0.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+}
+.nav-in-header a i{font-size:0.9rem;}
+.nav-in-header a:hover{
+    color:var(--gold-light);
+    transform:translateY(-2px);
+}
+
+/* ===== قسم البطل الخاص بالدورة (داخل الهيدر) ===== */
+.course-hero{
+    position:relative;
+    padding:80px 20px 100px;
+    text-align:center;
+    color:white;
+    border-bottom:4px solid var(--gold);
+    background:transparent;
+}
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:900px;
+    margin:0 auto;
+}
+.course-hero h1{
+    font-size:3.5rem;
+    font-weight:900;
+    color:var(--gold-light);
+    margin-bottom:20px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.5);
+    animation:slideInDown 1s ease;
+}
+.course-hero p{
+    font-size:1.4rem;
+    max-width:700px;
+    margin:0 auto 35px;
+    opacity:0.95;
+    animation:slideInUp 1s ease 0.2s both;
+}
+.course-hero .hero-btn{
+    background:linear-gradient(135deg, var(--gold), var(--gold-light));
+    color:#111;
+    padding:16px 45px;
+    font-size:1.4rem;
+    font-weight:900;
+    border-radius:60px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    box-shadow:0 10px 30px rgba(184,134,11,0.5);
+    transition:0.3s;
+    border:2px solid transparent;
+    animation:zoomIn 1s ease 0.4s both;
+}
+.course-hero .hero-btn:hover{
+    background:linear-gradient(135deg, var(--dark), #333);
+    color:var(--gold);
+    transform:translateY(-3px);
+    border-color:var(--gold);
+}
+@keyframes slideInDown{
+    from{opacity:0; transform:translateY(-50px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes slideInUp{
+    from{opacity:0; transform:translateY(50px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes zoomIn{
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* ===== المحتوى الرئيسي ===== */
+.course-container{
+    max-width:1200px;
+    margin:0 auto 60px;
+    padding:0 20px;
+}
+
+/* شبكة من عمودين متساويين */
+.two-col-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin:40px 0;
+}
+@media (max-width:768px){
+    .two-col-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+/* البطاقات الأساسية */
+.info-card{
+    background:var(--white);
+    border-radius:30px;
+    padding:30px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.05);
+    border:1px solid rgba(184,134,11,0.15);
+    transition:0.3s;
+    height:fit-content;
+}
+.info-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--gold);
+    box-shadow:0 20px 40px rgba(184,134,11,0.15);
+}
+.info-card h3{
+    color:var(--gold);
+    font-size:1.8rem;
+    font-weight:900;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-bottom:2px solid var(--gold-soft);
+    padding-bottom:10px;
+}
+.info-card h3 i{
+    font-size:2rem;
+}
+.info-card ul{
+    list-style:none;
+}
+.info-card ul li{
+    margin-bottom:15px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    font-size:1.1rem;
+}
+.info-card ul li i{
+    color:var(--gold);
+    font-size:1.2rem;
+    min-width:25px;
+    text-align:center;
+    margin-top:3px;
+}
+.info-card p{
+    font-size:1.1rem;
+    color:var(--grey);
+    line-height:1.8;
+}
+
+/* بطاقة المميزات (مصغرة ومنسقة مع نظرة عامة) */
+.features-compact{
+    background:linear-gradient(145deg, #fff9f0, #fef5e6);
+    border-radius:30px;
+    padding:25px;
+    border:1px solid var(--gold-light);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:100%;
+}
+.features-compact h4{
+    color:var(--gold);
+    font-size:1.4rem;
+    font-weight:900;
+    margin-bottom:20px;
+    text-align:center;
+}
+.feature-row{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:18px;
+    background:rgba(255,255,255,0.6);
+    padding:12px 15px;
+    border-radius:50px;
+    backdrop-filter:blur(5px);
+    border:1px solid var(--gold-soft);
+}
+.feature-row i{
+    font-size:1.5rem;
+    color:var(--gold);
+    width:30px;
+    text-align:center;
+}
+.feature-row .text{
+    flex:1;
+    font-weight:600;
+}
+.feature-row .badge{
+    background:var(--gold);
+    color:#111;
+    padding:4px 12px;
+    border-radius:40px;
+    font-weight:800;
+    font-size:0.85rem;
+}
+
+/* عدّاد الوقت */
+.countdown-wrapper{
+    background:linear-gradient(135deg, #fef7e6, #fff2d7);
+    border-radius:60px;
+    padding:40px;
+    text-align:center;
+    margin:50px 0;
+    border:2px dashed var(--gold-light);
+}
+.countdown-wrapper h3{
+    font-size:2rem;
+    font-weight:900;
+    color:var(--dark);
+    margin-bottom:15px;
+}
+.countdown-wrapper h3 i{
+    color:var(--gold);
+    margin-left:10px;
+}
+#countdown{
+    font-size:2.5rem;
+    font-weight:900;
+    color:var(--gold);
+    background:rgba(255,255,255,0.6);
+    display:inline-block;
+    padding:15px 40px;
+    border-radius:60px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    border:1px solid var(--gold);
+}
+
+/* وسائل الدفع */
+.payment-section{
+    background:var(--white);
+    border-radius:30px;
+    padding:30px;
+    margin:40px 0;
+    border:1px solid var(--gold-light);
+    text-align:center;
+}
+.payment-section p{
+    font-size:1.3rem;
+    font-weight:700;
+    color:var(--dark);
+    margin-bottom:20px;
+}
+.payment-icons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    align-items:center;
+    justify-content:center;
+    direction:ltr;
+    background:var(--bg-soft);
+    padding:20px;
+    border-radius:50px;
+}
+.payment-icons img{
+    height:35px;
+    width:auto;
+    transition:0.2s;
+}
+.payment-icons img:hover{
+    transform:scale(1.1);
+}
+
+/* زر التسجيل الثابت */
+.register-fixed{
+    text-align:center;
+    margin:40px 0;
+}
+.register-fixed a{
+    background:linear-gradient(135deg, var(--gold), var(--gold-light));
+    color:var(--dark);
+    padding:18px 50px;
+    font-size:1.5rem;
+    font-weight:900;
+    border-radius:60px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:15px;
+    box-shadow:0 10px 25px rgba(184,134,11,0.4);
+    transition:0.3s;
+}
+.register-fixed a:hover{
+    background:linear-gradient(135deg, var(--dark), #333);
+    color:var(--gold);
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(184,134,11,0.6);
+}
+
+/* ===== الفوتر ===== */
+footer{
+    background:linear-gradient(145deg, #f5ebd2, #fcf5e6);
+    color:#3a4a55;
+    padding:50px 20px 30px;
+    border-top:4px solid var(--gold);
+    margin-top:60px;
+    box-shadow:0 -5px 15px rgba(184,134,11,0.1);
+}
+
+.flex-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.social-links a{
+    color:var(--gold);
+    font-size:28px;
+    margin:0 10px;
+    transition:0.3s;
+    display:inline-block;
+}
+.social-links a:hover{
+    color:var(--dark);
+    transform:translateY(-5px) rotate(5deg);
+}
+
+.footer-logo h2{
+    color:var(--gold);
+    font-size:22px;
+    font-weight:800;
+    font-family:'Alexandria',sans-serif;
+    white-space:nowrap;
+}
+.footer-logo div{
+    width:70px;
+    height:3px;
+    background:var(--gold);
+    margin:8px auto 0;
+}
+
+.trust-badges{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+.payment-methods div{
+    background:rgba(255,255,255,0.7);
+    padding:12px 20px;
+    border-radius:40px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    border:1px solid var(--gold-light);
+    backdrop-filter:blur(5px);
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.payment-methods img{height:26px;width:auto;transition:0.2s;}
+.payment-methods img:hover{transform:scale(1.15);}
+
+.security-badges{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:10px;
+}
+.badge-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(184,134,11,0.1);
+    padding:6px 15px;
+    border-radius:40px;
+    font-size:0.9rem;
+    color:var(--dark);
+    border:1px dashed var(--gold-light);
+}
+.badge-item i{
+    color:var(--gold);
+    font-size:1.1rem;
+}
+
+hr{
+    border:0;
+    border-top:2px solid rgba(184,134,11,0.2);
+    margin:30px 0 20px;
+}
+
+.footer-legal{
+    text-align:center;
+    margin:20px 0 15px;
+}
+.footer-legal a{
+    color:var(--gold);
+    text-decoration:none;
+    font-weight:bold;
+    border:1px solid var(--gold);
+    padding:6px 20px;
+    border-radius:40px;
+    transition:0.3s;
+    display:inline-block;
+    font-size:0.9rem;
+}
+.footer-legal a:hover{
+    background:var(--gold);
+    color:#111;
+}
+
+.copyright{
+    text-align:center;
+    font-size:14px;
+    color:#5a6b7a;
+}
+.copyright span{color:var(--gold);font-weight:bold;}
+
+/* ===== تحسين محاذاة عمود المحاور ===== */
+.align-top{
+    margin-top: -10px; /* لرفع المحاور قليلاً */
+}
+@media (max-width:768px){
+    .align-top{
+        margin-top:0;
+    }
+}
+
+/* ===== تجاوب ===== */
+@media (max-width:768px){
+    .header-top{
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .logo-area{
+        justify-content:center;
+    }
+    .logo-area h1{
+        font-size:1.3rem;
+    }
+    .ask-btn{
+        align-self:center;
+        width:fit-content;
+    }
+    .course-hero h1{
+        font-size:2.2rem;
+    }
+    .course-hero p{
+        font-size:1.1rem;
+    }
+    #countdown{
+        font-size:1.5rem;
+        padding:10px 20px;
+    }
+    .countdown-wrapper h3{
+        font-size:1.5rem;
+    }
+    .register-fixed a{
+        font-size:1.2rem;
+        padding:15px 30px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== الهيدر مع القائمة المدمجة (خلفية المطعم) ===== -->
+<header class="hero-header">
+    <div class="header-top">
+        <div class="logo-area">
+            <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP TRAINING">
+            <h1>مجموعة فاروق للتدريب</h1>
+        </div>
+        <a href="https://training.farouk-grup.com/home/inquiries" class="ask-btn">
+            <i class="fas fa-question-circle"></i> اسألنا
+        </a>
+    </div>
+
+    <!-- القائمة الأفقية داخل الهيدر -->
+    <nav class="nav-in-header">
+        <a href="https://training.farouk-grup.com/home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="https://training.farouk-grup.com/home/about"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="https://training.farouk-grup.com/home/Our-store"><i class="fa-solid fa-bag-shopping"></i> متجرنا</a>
+    </nav>
+
+    <!-- قسم البطل الخاص بالدورة -->
+    <div class="course-hero">
+        <div class="hero-content">
+            <h1>دورة إدارة المطاعم والقراءات المالية بإحترافية</h1>
+            <p>حول مطعمك إلى نموذج تشغيلي ومالي ناجح نقدم 15 محوراً تدريبياً مع شهادة إتمام دورة</p>
+            <a href="https://training.farouk-grup.com/home/register" class="hero-btn"><i class="fas fa-pen"></i> سجل الآن</a>
+        </div>
+    </div>
+</header>
+
+<!-- ===== المحتوى الرئيسي ===== -->
+<div class="course-container">
+
+    <!-- نظرة عامة + مميزات مصغرة (بدون تكرار) -->
+    <div class="two-col-grid" data-aos="fade-up">
+        <!-- نظرة عامة -->
+        <div class="info-card">
+            <h3><i class="fas fa-info-circle"></i> نظرة عامة</h3>
+            <p>نقدم لك الدورة الأكثر شمولية في قطاع الضيافة حيث ندمج بين أسرار الإدارة التشغيلية الميدانية وبين أدوات التحليل المالي الدقيق.</p>
+            <p>من خلال 15 محوراً مكثفاً سنرسم لك خارطة الطريق للسيطرة على التكاليف وتعظيم الأرباح واتخاذ قرارات مبنية على الحقائق لا التوقعات.</p>
+            <p>تهدف الدورة إلى تزويد القادة بالأدوات اللازمة لمواجهة تحديات السوق.</p>
+            <div style="margin-top:20px; display:flex; gap:15px; flex-wrap:wrap;">
+                <span style="background:var(--gold-soft); padding:8px 20px; border-radius:40px;"><i class="fas fa-book-open" style="color:var(--gold);"></i> محتوى متخصص</span>
+                <span style="background:var(--gold-soft); padding:8px 20px; border-radius:40px;"><i class="fas fa-chart-line" style="color:var(--gold);"></i> نتائج حقيقية</span>
+                <span style="background:var(--gold-soft); padding:8px 20px; border-radius:40px;"><i class="fas fa-certificate" style="color:var(--gold);"></i> شهادة إتمام</span>
+            </div>
+        </div>
+
+        <!-- مميزات الدورة بشكل مضغوط -->
+        <div class="features-compact">
+            <h4><i class="fas fa-gem"></i> مميزات الدورة</h4>
+            <div class="feature-row">
+                <i class="fas fa-video"></i>
+                <span class="text">مدة التدريب</span>
+                <span class="badge">7 ساعات</span>
+            </div>
+            <div class="feature-row">
+                <i class="fas fa-file-pdf"></i>
+                <span class="text">كتيب PDF مرفق</span>
+                <span class="badge">شامل</span>
+            </div>
+            
+            <div class="feature-row">
+                <i class="fas fa-headset"></i>
+                <span class="text">دعم فني</span>
+                <span class="badge">واتساب</span>
+            </div>
+        
+        </div>
+    </div>
+
+    <!-- محاور الدورة والفئة المستهدفة في عمودين -->
+    <div class="two-col-grid" data-aos="fade-up">
+        <!-- المحاور (تمت إضافة class align-top لرفعه قليلاً) -->
+        <div class="info-card align-top">
+            <h3><i class="fas fa-list-ul"></i> محاور الدورة</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> مدخل إلى إدارة المطاعم كمنظومة تشغيلية ومالية</li>
+                <li><i class="fas fa-check-circle"></i> المهارات الإدارية لمدير المطعم</li>
+                <li><i class="fas fa-check-circle"></i> المهارات الفنية والتشغيلية في المطاعم</li>
+                <li><i class="fas fa-check-circle"></i> عقلية رجل الأعمال في إدارة المطاعم</li>
+                <li><i class="fas fa-check-circle"></i> الجودة في المطاعم (المفهوم – التطبيق – القياس)</li>
+                <li><i class="fas fa-check-circle"></i> تجربة العميل وإدارة الخدمة</li>
+                <li><i class="fas fa-check-circle"></i> إدارة الموارد البشرية في المطاعم</li>
+                <li><i class="fas fa-check-circle"></i> التخطيط والتنبؤ بالمبيعات</li>
+                <li><i class="fas fa-check-circle"></i> إدارة التكاليف الغذائية (Food Cost)</li>
+                <li><i class="fas fa-check-circle"></i> إدارة المشروبات (Beverage Control)</li>
+                <li><i class="fas fa-check-circle"></i> إدارة المشتريات والمخازن</li>
+                <li><i class="fas fa-check-circle"></i> القوائم، التسعير، والهندسة الربحية للمنيو</li>
+                <li><i class="fas fa-check-circle"></i> التقارير التشغيلية والمالية في المطاعم</li>
+                <li><i class="fas fa-check-circle"></i> قراءة الأرباح والخسائر واتخاذ القرار</li>
+                <li><i class="fas fa-check-circle"></i> الأخطاء الشائعة، الرقابة، والاستدامة التشغيلية</li>
+            </ul>
+        </div>
+        <!-- الفئة المستهدفة + فوائد -->
+        <div>
+            <div class="info-card" style="margin-bottom:30px;">
+                <h3><i class="fas fa-users"></i> الفئة المستهدفة</h3>
+                <ul>
+                    <li><i class="fas fa-user-tie"></i> مدراء المطاعم والمشاريع الغذائية</li>
+                    <li><i class="fas fa-user-tie"></i> أصحاب المطاعم والكافيهات</li>
+                    <li><i class="fas fa-user-tie"></i> المشرفون على العمليات التشغيلية</li>
+                    <li><i class="fas fa-user-tie"></i> مساعدو المدراء والطهاة التنفيذيون</li>
+                    <li><i class="fas fa-user-tie"></i> خريجو كليات السياحة والفندقة</li>
+                    <li><i class="fas fa-user-tie"></i> المستشارون في قطاع الأغذية</li>
+
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-gem"></i> ماذا يستفيد المتدرب؟</h3>
+                <ul>
+                    <li><i class="fas fa-chart-line"></i> فهم شامل لإدارة المطاعم بالأرقام</li>
+                    <li><i class="fas fa-chart-pie"></i> القدرة على اتخاذ قرارات مالية دقيقة</li>
+                    <li><i class="fas fa-wallet"></i> تحسين الربحية وتقليل الهدر</li>
+                    <li><i class="fas fa-rocket"></i> جاهزية لتوسيع المشروع بثقة واستدامة</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- عدّاد الوقت -->
+    <div class="countdown-wrapper" data-aos="fade-up">
+        <h3><i class="fas fa-hourglass-half"></i> يبدأ التسجيل في</h3>
+        <div id="countdown"></div>
+    </div>
+
+    <!-- وسائل الدفع -->
+    <div class="payment-section" data-aos="fade-up">
+        <p><i class="fas fa-credit-card"></i> وسائل الدفع المتاحة</p>
+        <div class="payment-icons">
+            <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+            <img src="https://img.icons8.com/color/48/000000/mastercard.png" alt="Mastercard">
+            <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay">
+            <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+        </div>
+    </div>
+
+    <!-- زر التسجيل -->
+    <div class="register-fixed" data-aos="fade-up">
+        <a href="https://training.farouk-grup.com/home/register"><i class="fas fa-pen"></i> سجل الآن</a>
+    </div>
+
+</div>
+
+<!-- ===== الفوتر ===== -->
+<footer>
+    <div style="max-width:1200px; margin:auto;">
+        <div class="flex-container">
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/faroukazem/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/905550196682" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            <div class="footer-logo">
+                <h2>مجموعة فاروق للتدريب</h2>
+                <div></div>
+            </div>
+
+            <div class="trust-badges">
+                <div class="payment-methods">
+                    <div>
+                        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:18px;">
+                        <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay" style="height:24px;">
+                        <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+                    </div>
+                </div>
+                <div class="security-badges">
+                    <span class="badge-item"><i class="fas fa-lock"></i> SSL</span>
+                    <span class="badge-item"><i class="fas fa-shield-alt"></i> ضمان</span>
+                    <span class="badge-item"><i class="fas fa-headset"></i> دعم 24/7</span>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="footer-legal">
+            <a href="https://training.farouk-grup.com/home/privacy-policy">اتفاقية الاستخدام | Legal Agreements | Mesafeli Satış Sözleşmesi</a>
+        </div>
+
+        <div class="copyright">
+            جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP TRAINING</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== السكريبتات ===== -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({duration:800,once:true,offset:100});
+
+    // عدّاد الوقت
+    function updateCountdown() {
+        const targetDate = new Date("2026-08-01T00:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+            document.getElementById("countdown").innerHTML = "📢 بدأ التسجيل!";
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+            `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
+</body>
+</html>
