@@ -1,662 +1,999 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة إدارة المطاعم - مجموعة فاروق</title>
-    <link rel="manifest" href="manifest.json">
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js');
-        }
-    </script>
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        /* جميع الأنماط كما هي ولكن مع تغييرات بصرية للتمييز */
-        * { margin:0; padding:0; box-sizing:border-box; }
-        :root { 
-            --bg-dark:#0b0e17; 
-            --bg-panel:rgba(18,24,36,0.75); 
-            --bg-card:rgba(22,30,46,0.7); 
-            --border-light:rgba(200,150,80,0.25); /* تغيير لون الحدود إلى نحاسي */ 
-            --accent-glow:#c47e3a; /* نحاسي غامق */ 
-            --accent-soft:#d9a066; /* نحاسي فاتح */ 
-            --text-light:#f0f4fa; 
-            --text-muted:#aab7d4; 
-            --shadow-soft:0 15px 35px -10px rgba(0,0,0,0.6),0 0 0 1px rgba(200,150,80,0.15); 
-            --shadow-glow:0 15px 35px -10px rgba(0,0,0,0.8),0 0 20px rgba(200,150,80,0.3); 
-            --radius-md:20px; 
-            --radius-lg:30px; 
-            --transition:all 0.3s ease; 
-        }
-        body { 
-            font-family:'Tajawal',sans-serif; 
-            background: radial-gradient(circle at 30% 20%, #1e2a3a, #0a0e16); /* تغيير تدرج الخلفية */ 
-            color:var(--text-light); 
-            line-height:1.6; 
-            min-height:100vh; 
-            display:flex; 
-            flex-direction:column; 
-            position:relative; 
-        }
-        .glow-bg { position:fixed; width:100%; height:100%; top:0; left:0; pointer-events:none; z-index:0; }
-        .glow-bg span { 
-            position:absolute; 
-            width:400px; 
-            height:400px; 
-            background:radial-gradient(circle, rgba(200,150,80,0.15) 0%,transparent 70%); 
-            border-radius:50%; 
-            filter:blur(80px); 
-            animation:glowMove 20s infinite alternate ease-in-out; 
-        }
-        .glow-bg span:nth-child(1) { top:-100px; right:-100px; width:500px; height:500px; background:radial-gradient(circle, rgba(200,150,80,0.12) 0%,transparent 70%); }
-        .glow-bg span:nth-child(2) { bottom:-150px; left:-150px; width:600px; height:600px; background:radial-gradient(circle, rgba(100,150,200,0.1) 0%,transparent 70%); }
-        .glow-bg span:nth-child(3) { top:30%; left:30%; width:300px; height:300px; background:radial-gradient(circle, rgba(200,150,80,0.1) 0%,transparent 70%); animation-delay:-5s; }
-        @keyframes glowMove { 0%{transform:translate(0,0) scale(1);opacity:0.5;} 100%{transform:translate(40px,-30px) scale(1.2);opacity:0.8;} }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAROUK GRUP TRAINING | مجموعة فاروق للتدريب</title>
 
-        /* شاشة الدخول - تغيير لون الحدود */
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 12, 18, 0.85);
-            backdrop-filter: blur(15px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-        .login-card {
-            background: rgba(20, 25, 45, 0.9);
-            border: 1px solid rgba(200, 150, 80, 0.5);
-            border-radius: 25px;
-            padding: 2rem;
-            max-width: 350px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-        .login-icon {
-            font-size: 2.5rem;
-            color: #d9a066;
-            margin-bottom: 10px;
-        }
-        .login-card h2 {
-            color: white;
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-        .login-card p {
-            color: #ccc;
-            font-size: 0.9rem;
-            margin-bottom: 1.2rem;
-        }
-        .password-field {
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #d9a066;
-            border-radius: 12px;
-            color: white;
-            text-align: center;
-            font-size: 1.1rem;
-            direction: ltr;
-            letter-spacing: normal;
-        }
-        .password-field:focus {
-            outline: none;
-            border-color: #c47e3a;
-            box-shadow: 0 0 0 2px rgba(200,150,80,0.3);
-        }
-        .login-btn {
-            width: 100%;
-            padding: 0.8rem;
-            background: #c47e3a;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 1rem;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        .login-btn:hover {
-            background: #d9a066;
-        }
-        .login-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        .error-msg {
-            color: #ff4d4d;
-            font-size: 0.85rem;
-            margin-top: 10px;
-        }
-        .whatsapp-link {
-            display: block;
-            margin-top: 15px;
-            color: #25d366;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: 0.3s;
-        }
-        .whatsapp-link:hover {
-            text-decoration: underline;
-            opacity: 0.9;
-        }
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* باقي أنماط لوحة التحكم - معدلة قليلاً */
-        .dashboard { max-width:1500px; width:100%; margin:2rem auto; padding:0 2rem; position:relative; z-index:10; display:none; }
-        .header-bar { 
-            display:flex; justify-content:space-between; align-items:center; 
-            background:var(--bg-panel); backdrop-filter:blur(18px); 
-            border:1px solid rgba(200,150,80,0.3); 
-            border-radius:80px; padding:0.8rem 2rem; margin-bottom:2rem; 
-            flex-wrap:wrap; gap:1.5rem; box-shadow:var(--shadow-soft); 
-        }
-        .datetime { display:flex; gap:2rem; color:var(--text-muted); font-family:'Inter',sans-serif; font-size:0.95rem; }
-        .datetime i { color:var(--accent-soft); margin-left:0.4rem; }
-        .header-title { 
-            text-align:center; font-weight:800; font-size:1.3rem; 
-            background:linear-gradient(135deg,#f0e6d2,#e6c8a0); 
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent; 
-        }
-        .user-profile { display:flex; align-items:center; gap:1.5rem; }
-        .user-name { font-weight:700; color:var(--text-light); display:flex; align-items:center; gap:0.5rem; }
-        .user-name i { color:var(--accent-soft); }
-        .logout-btn { background:rgba(255,255,255,0.03); border:1px solid rgba(200,150,80,0.3); border-radius:50px; padding:0.5rem 1.2rem; color:var(--text-muted); font-weight:600; cursor:pointer; transition:var(--transition); display:flex; align-items:center; gap:0.5rem; }
-        .logout-btn:hover { background:rgba(200,150,80,0.2); color:#fca5a5; border-color:#f87171; }
-        .main-dashboard { display:grid; grid-template-columns:1.2fr 2.3fr 1.2fr; gap:1.8rem; margin-bottom:2.5rem; align-items:start; }
-        .dashboard-panel { background:var(--bg-card); backdrop-filter:blur(15px); border:1px solid rgba(200,150,80,0.25); border-radius:var(--radius-lg); padding:2rem 1.8rem; box-shadow:var(--shadow-soft); transition:var(--transition); }
-        .dashboard-panel:hover { box-shadow:var(--shadow-glow); border-color:rgba(200,150,80,0.4); background:rgba(25,33,50,0.8); }
-        .panel-header { display:flex; align-items:center; gap:0.7rem; font-size:1.3rem; font-weight:800; margin-bottom:1.8rem; background:linear-gradient(135deg,#f0e6d2,#e6c8a0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; border-bottom:1px solid rgba(200,150,80,0.3); padding-bottom:0.8rem; }
-        .panel-header i { color:var(--accent-soft); font-size:1.4rem; }
-        .input-group { display:flex; gap:0.7rem; margin-bottom:1.5rem; }
-        input, textarea, select { width:100%; padding:0.9rem 1.2rem; background:rgba(10,14,23,0.7); border:1px solid rgba(200,150,80,0.2); border-radius:40px; font-family:'Tajawal',sans-serif; color:var(--text-light); transition:var(--transition); }
-        input:focus, textarea:focus { outline:none; border-color:var(--accent-glow); box-shadow:0 0 0 3px rgba(200,150,80,0.2); background:rgba(15,20,30,0.9); }
-        .btn-primary { background:rgba(200,150,80,0.2); border:1px solid rgba(200,150,80,0.3); border-radius:40px; padding:0.9rem 1.8rem; color:var(--accent-soft); font-weight:700; cursor:pointer; transition:var(--transition); display:inline-flex; align-items:center; gap:0.5rem; font-family:'Tajawal',sans-serif; backdrop-filter:blur(5px); }
-        .btn-primary:hover { background:rgba(200,150,80,0.4); color:#fff; border-color:var(--accent-glow); box-shadow:0 0 20px rgba(200,150,80,0.3); transform:translateY(-2px); }
-        .btn-outline { background:transparent; border:1px solid rgba(200,150,80,0.3); border-radius:40px; padding:0.6rem 1.2rem; color:var(--text-muted); font-weight:600; cursor:pointer; transition:var(--transition); display:inline-flex; align-items:center; gap:0.4rem; }
-        .btn-outline:hover { background:rgba(200,150,80,0.15); color:var(--accent-soft); border-color:var(--accent-glow); }
-        .todo-list { max-height:240px; overflow-y:auto; margin-bottom:1rem; padding-left:0.3rem; }
-        .todo-list::-webkit-scrollbar { width:5px; }
-        .todo-list::-webkit-scrollbar-thumb { background:rgba(200,150,80,0.3); border-radius:10px; }
-        .todo-item { background:rgba(10,14,23,0.6); border:1px solid rgba(200,150,80,0.15); border-radius:50px; padding:0.8rem 1.2rem; margin-bottom:0.6rem; display:flex; align-items:center; justify-content:space-between; transition:var(--transition); }
-        .todo-item:hover { border-color:var(--accent-glow); background:rgba(20,26,38,0.9); }
-        .todo-text { display:flex; align-items:center; gap:0.8rem; }
-        .todo-text input[type="checkbox"] { width:18px; height:18px; accent-color:var(--accent-glow); }
-        .completed { text-decoration:line-through; color:var(--text-muted); }
-        .delete-btn { color:var(--text-muted); cursor:pointer; transition:var(--transition); }
-        .delete-btn:hover { color:#f87171; }
-        .stats-bar { display:flex; justify-content:space-between; color:var(--text-muted); font-size:0.9rem; padding-top:0.8rem; border-top:1px solid rgba(200,150,80,0.2); }
-        .calculator-section { margin-top:2rem; }
-        #calcDisplay { width:100%; padding:1.2rem; background:rgba(10,14,23,0.7); border:1px solid rgba(200,150,80,0.2); border-radius:50px; font-size:1.8rem; text-align:left; direction:ltr; color:var(--accent-soft); margin-bottom:1.2rem; font-family:'Inter',monospace; box-shadow:inset 0 2px 8px rgba(0,0,0,0.6); }
-        .calc-buttons { display:grid; grid-template-columns:repeat(4,1fr); gap:0.7rem; }
-        .calc-btn { background:rgba(15,20,30,0.8); border:1px solid rgba(200,150,80,0.2); border-radius:40px; padding:1.2rem 0; font-size:1.2rem; font-weight:600; cursor:pointer; transition:var(--transition); color:var(--text-light); }
-        .calc-btn:hover { background:rgba(200,150,80,0.2); border-color:var(--accent-glow); box-shadow:0 0 15px rgba(200,150,80,0.2); }
-        .calc-btn.operator { color:var(--accent-soft); font-weight:800; }
-        .calc-btn.equals { background:rgba(200,150,80,0.25); color:white; grid-column:span 4; border-color:var(--accent-glow); font-size:1.6rem; }
-        .calc-btn.equals:hover { background:rgba(200,150,80,0.4); }
-        .tools-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(170px,1fr)); gap:1.2rem; }
-        .tool-card { background:rgba(15,20,30,0.6); border:1px solid rgba(200,150,80,0.15); border-radius:28px; padding:1.8rem 0.8rem; text-align:center; transition:var(--transition); cursor:pointer; backdrop-filter:blur(8px); }
-        .tool-card:hover { transform:translateY(-8px); border-color:var(--accent-glow); box-shadow:0 15px 25px -10px rgba(0,0,0,0.7),0 0 20px rgba(200,150,80,0.3); background:rgba(25,33,50,0.8); }
-        .tool-card i { font-size:2.5rem; background:linear-gradient(145deg,#d9a066,#e6c8a0); -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:1rem; filter:drop-shadow(0 0 10px rgba(200,150,80,0.5)); }
-        .tool-card h4 { font-size:0.95rem; font-weight:700; color:var(--text-light); }
-        #notesArea { min-height:120px; resize:vertical; margin-bottom:1rem; }
-        .action-bar { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:2rem; }
-        .appointment-form { display:flex; flex-direction:column; gap:0.8rem; margin-bottom:1.2rem; }
-        .appointments-list { max-height:200px; overflow-y:auto; margin-bottom:1rem; }
-        .appointment-item { background:rgba(10,14,23,0.6); border-right:4px solid var(--accent-glow); border-radius:0 30px 30px 0; padding:0.9rem 1.2rem; margin-bottom:0.7rem; display:flex; justify-content:space-between; align-items:center; }
-        .appointment-info { display:flex; flex-direction:column; gap:0.3rem; flex:1; }
-        .appointment-date { font-weight:800; color:var(--accent-soft); font-size:0.8rem; }
-        .appointment-title { font-weight:700; color:var(--text-light); }
-        .appointment-desc { font-size:0.85rem; color:var(--text-muted); margin-top:0.2rem; line-height:1.4; }
-        .quick-links-panel { background:rgba(12,16,24,0.8); backdrop-filter:blur(15px); border:1px solid rgba(200,150,80,0.25); border-radius:var(--radius-lg); padding:2.5rem; margin-top:2rem; display:flex; flex-direction:column; align-items:center; gap:1.8rem; box-shadow:var(--shadow-soft); }
-        .quick-links-title { font-weight:800; font-size:1.3rem; background:linear-gradient(135deg,#f0e6d2,#e6c8a0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:flex; align-items:center; gap:0.7rem; }
-        .links-row { display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
-        .link-btn { background:rgba(255,255,255,0.02); border:1px solid rgba(200,150,80,0.3); border-radius:50px; padding:0.7rem 2rem; color:var(--text-muted); text-decoration:none; font-weight:600; transition:var(--transition); }
-        .link-btn:hover { background:rgba(200,150,80,0.2); color:var(--accent-soft); border-color:var(--accent-glow); box-shadow:0 0 15px rgba(200,150,80,0.2); transform:translateY(-3px); }
-        footer { text-align:center; padding:2rem; color:var(--text-muted); font-size:0.9rem; }
-        @media (max-width:1200px) { .main-dashboard { grid-template-columns:1fr 2fr; } .dashboard-panel:nth-child(3) { grid-column:span 2; } }
-        @media (max-width:900px) { .main-dashboard { grid-template-columns:1fr; } .dashboard-panel:nth-child(3) { grid-column:span 1; } .header-bar { flex-direction:column; text-align:center; } .user-profile { justify-content:center; width:100%; } }
-    </style>
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root{
+    --gold:#b8860b;
+    --gold-light:#d4a017;
+    --gold-soft:rgba(184,134,11,0.1);
+    --dark:#1e2a2f;
+    --dark-light:#2c3e4a;
+    --grey:#5a6b7a;
+    --light:#f8f6f2;
+    --white:#ffffff;
+    --bg-soft:#f5f0e6;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Tajawal',sans-serif;
+    background:var(--light);
+    color:#2c3e4a;
+    line-height:1.9;
+    overflow-x:hidden;
+}
+
+/* ===== الهيدر المتكامل (مع القائمة) ===== */
+.hero-header{
+    background:linear-gradient(rgba(20,30,40,0.7), rgba(20,30,40,0.5)),
+                url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600') center/cover;
+    color:white;
+    padding:30px 20px 20px;
+    border-bottom:4px solid var(--gold);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:nowrap;
+}
+.logo-area img{
+    height:60px;
+    width:auto;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.logo-area h1{
+    font-family:'Alexandria',sans-serif;
+    font-size:1.6rem;
+    font-weight:900;
+    color:var(--gold-light);
+    text-shadow:2px 2px 6px rgba(0,0,0,0.5);
+    white-space:nowrap;
+}
+
+/* زر اسألنا مع نبض خفيف */
+.ask-btn{
+    background-color:var(--gold);
+    color:#111;
+    padding:12px 28px;
+    border-radius:50px;
+    font-weight:900;
+    text-decoration:none;
+    font-size:1.2rem;
+    box-shadow:0 8px 18px rgba(0,0,0,0.3);
+    transition:0.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid transparent;
+    animation: gentlePulse 2s infinite;
+}
+@keyframes gentlePulse {
+    0% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
+    50% { box-shadow: 0 12px 25px rgba(184,134,11,0.6); transform:scale(1.02); }
+    100% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
+}
+.ask-btn:hover{
+    background-color:var(--gold-light);
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 12px 25px rgba(0,0,0,0.4);
+    border-color:white;
+    animation: none;
+}
+
+/* القائمة الأفقية داخل الهيدر */
+.nav-in-header{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px 20px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    padding:12px 25px;
+    border-radius:60px;
+    margin-top:15px;
+    border:1px solid rgba(255,255,255,0.25);
+}
+.nav-in-header a{
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    padding:5px 10px;
+    transition:0.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+}
+.nav-in-header a i{font-size:0.9rem;}
+.nav-in-header a:hover{
+    color:var(--gold-light);
+    transform:translateY(-2px);
+}
+.nav-in-header .lang-switch{
+    background:rgba(184,134,11,0.3);
+    border:1px solid var(--gold);
+    border-radius:40px;
+    padding:5px 15px;
+}
+
+/* ===== شريط الإحصائيات ===== */
+.stats-strip{
+    background:rgba(184,134,11,0.15);
+    backdrop-filter:blur(4px);
+    padding:20px;
+    display:flex;
+    justify-content:center;
+    gap:50px;
+    flex-wrap:wrap;
+    margin:30px auto 20px;
+    border-radius:60px;
+    max-width:1000px;
+    border:1px solid var(--gold-light);
+}
+.stat-item{
+    text-align:center;
+}
+.stat-number{
+    font-size:2.2rem;
+    font-weight:900;
+    color:var(--gold);
+    line-height:1.2;
+}
+.stat-label{
+    font-size:1.1rem;
+    color:#3a4a55;
+    font-weight:600;
+}
+
+/* ===== قسم المميزات (سيتم وضعه بعد الدورات) ===== */
+.features-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:25px;
+    max-width:1100px;
+    margin:40px auto;
+    padding:0 20px;
+}
+.feature-card{
+    background:var(--white);
+    padding:30px 20px;
+    border-radius:20px;
+    text-align:center;
+    border:1px solid var(--gold-light);
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(184,134,11,0.1);
+}
+.feature-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--gold);
+    box-shadow:0 15px 30px rgba(184,134,11,0.2);
+}
+.feature-card i{
+    font-size:2.8rem;
+    color:var(--gold);
+    margin-bottom:15px;
+}
+.feature-card h4{
+    font-size:1.3rem;
+    font-weight:800;
+    color:var(--dark);
+    margin-bottom:10px;
+}
+.feature-card p{
+    color:var(--grey);
+    font-size:0.95rem;
+}
+
+/* ===== الأقسام الداخلية ===== */
+.intro{
+    text-align:center;
+    margin:40px auto 30px;
+}
+.intro h2{
+    color:var(--dark);
+    font-size:28px;
+    font-weight:800;
+}
+.intro p{
+    font-size:18px;
+    color:var(--grey);
+}
+
+.courses{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+    gap:25px;
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px 50px;
+}
+
+.course{
+    background:linear-gradient(145deg, #ffffff, #fdf9f1);
+    border-radius:20px;
+    padding:25px 20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+    transition:transform 0.3s, box-shadow 0.3s;
+    overflow:hidden;
+    border:1px solid rgba(184,134,11,0.2);
+}
+.course:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(184,134,11,0.2);
+    border-color:var(--gold);
+}
+.course h3{
+    color:var(--dark);
+    font-size:20px;
+    margin-bottom:12px;
+}
+.course h3 a{
+    color:var(--dark);
+    text-decoration:none;
+    transition:color 0.3s;
+}
+.course h3 a:hover{color:var(--gold);}
+.course p{color:var(--grey);font-size:15px;line-height:1.6;}
+.course-image{
+    width:100%;height:200px;object-fit:cover;border-radius:15px;margin-bottom:15px;
+    transition:transform 0.5s ease;
+}
+.course:hover .course-image{transform:scale(1.05);}
+.countdown-box{
+    background:linear-gradient(135deg, #fef7e6, #fff2d7);
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+    color:var(--gold);
+    box-shadow:0 6px 20px rgba(184,134,11,0.1);
+    border:1px solid var(--gold-light);
+}
+#countdown{font-size:22px;color:#c06040;margin-top:8px;}
+.soon{color:#c06040; font-weight:bold; font-size:20px; margin-left:8px; animation:blink 1s infinite;}
+@keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
+
+/* ===== التقييمات (مطورة) ===== */
+.reviews{
+    max-width:1200px;
+    margin:60px auto;
+    padding:0 20px;
+}
+.reviews-header{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+    margin-bottom:30px;
+    flex-wrap:wrap;
+}
+.reviews-header h2{
+    color:var(--dark);
+    font-size:28px;
+    font-weight:800;
+}
+.rating-summary{
+    background:var(--white);
+    padding:10px 25px;
+    border-radius:60px;
+    border:1px solid var(--gold);
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.rating-summary .stars{
+    color:#f4c150;
+    font-size:1.3rem;
+}
+.rating-summary span{
+    font-weight:800;
+    color:var(--gold);
+    font-size:1.3rem;
+}
+.review-container{
+    overflow:hidden;
+    position:relative;
+    border-radius:20px;
+    background:var(--white);
+    padding:16px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    border:1px solid #f0e0c0;
+}
+.review-track{
+    display:flex;
+    gap:20px;
+    will-change:transform;
+}
+.review{
+    flex:0 0 300px;
+    background:#fefcf7;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.03);
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    border:1px solid #f0e0c0;
+    transition:0.3s;
+    cursor:pointer;
+}
+.review:hover{
+    transform:scale(1.02);
+    border-color:var(--gold);
+    box-shadow:0 10px 25px rgba(184,134,11,0.15);
+}
+.review-header{
+    display:flex;
+    align-items:center;
+    width:100%;
+    margin-bottom:15px;
+}
+.review-avatar{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    margin-left:15px;
+    border:3px solid var(--gold);
+    background:linear-gradient(145deg, #b8860b20, #d4a01730);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    color:var(--gold);
+    font-weight:bold;
+}
+.review-info{flex:1;}
+.stars{color:#f4c150;font-size:18px;margin-bottom:5px;}
+.reviewer-name{font-weight:bold;color:var(--dark);font-size:16px;}
+.review p{
+    color:var(--grey);
+    font-size:15px;
+    line-height:1.6;
+    margin:0 0 10px;
+    text-align:right;
+    width:100%;
+}
+.course-name{
+    font-weight:bold;
+    color:var(--gold);
+    margin-top:10px;
+    text-align:right;
+    width:100%;
+    font-size:14px;
+}
+.control-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(184,134,11,0.8);
+    color:#fff;
+    border:none;
+    border-radius:50%;
+    width:45px;
+    height:45px;
+    cursor:pointer;
+    font-size:20px;
+    z-index:10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.2s;
+}
+.control-btn:hover{
+    background:var(--gold);
+    transform:translateY(-50%) scale(1.1);
+}
+#leftBtn{left:10px;}
+#rightBtn{right:10px;}
+
+/* ===== الفوتر (مع شارات الثقة) ===== */
+footer{
+    background:linear-gradient(145deg, #f5ebd2, #fcf5e6);
+    color:#3a4a55;
+    padding:50px 20px 30px;
+    border-top:4px solid var(--gold);
+    margin-top:60px;
+    box-shadow:0 -5px 15px rgba(184,134,11,0.1);
+}
+
+.flex-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.social-links a{
+    color:var(--gold);
+    font-size:28px;
+    margin:0 10px;
+    transition:0.3s;
+    display:inline-block;
+}
+.social-links a:hover{
+    color:var(--dark);
+    transform:translateY(-5px) rotate(5deg);
+}
+
+.footer-logo h2{
+    color:var(--gold);
+    font-size:22px;
+    font-weight:800;
+    font-family:'Alexandria',sans-serif;
+    white-space:nowrap;
+}
+.footer-logo div{
+    width:70px;
+    height:3px;
+    background:var(--gold);
+    margin:8px auto 0;
+}
+
+/* شارات الثقة + وسائل الدفع */
+.trust-badges{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+.payment-methods div{
+    background:rgba(255,255,255,0.7);
+    padding:12px 20px;
+    border-radius:40px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    border:1px solid var(--gold-light);
+    backdrop-filter:blur(5px);
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.payment-methods img{height:26px;width:auto;transition:0.2s;}
+.payment-methods img:hover{transform:scale(1.15);}
+
+.security-badges{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:10px;
+}
+.badge-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(184,134,11,0.1);
+    padding:6px 15px;
+    border-radius:40px;
+    font-size:0.9rem;
+    color:var(--dark);
+    border:1px dashed var(--gold-light);
+}
+.badge-item i{
+    color:var(--gold);
+    font-size:1.1rem;
+}
+
+hr{
+    border:0;
+    border-top:2px solid rgba(184,134,11,0.2);
+    margin:30px 0 20px;
+}
+
+.footer-legal{
+    text-align:center;
+    margin:20px 0 15px;
+}
+.footer-legal a{
+    color:var(--gold);
+    text-decoration:none;
+    font-weight:bold;
+    border:1px solid var(--gold);
+    padding:6px 20px;
+    border-radius:40px;
+    transition:0.3s;
+    display:inline-block;
+    font-size:0.9rem;
+}
+.footer-legal a:hover{
+    background:var(--gold);
+    color:#111;
+}
+
+.copyright{
+    text-align:center;
+    font-size:14px;
+    color:#5a6b7a;
+}
+.copyright span{color:var(--gold);font-weight:bold;}
+
+/* ===== تجاوب ===== */
+@media (max-width: 768px){
+    .header-top{
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .logo-area{
+        justify-content:center;
+    }
+    .logo-area h1{
+        font-size:1.3rem;
+    }
+    .ask-btn{
+        align-self:center;
+        width:fit-content;
+        margin-top:5px;
+    }
+    .nav-in-header{
+        flex-direction:row;
+        justify-content:center;
+        flex-wrap:wrap;
+        border-radius:40px;
+    }
+    .stats-strip{
+        gap:20px;
+        padding:15px;
+    }
+    .stat-number{
+        font-size:1.8rem;
+    }
+    .flex-container{
+        flex-direction:column;
+        text-align:center;
+    }
+    .security-badges{
+        gap:15px;
+    }
+    .badge-item{
+        padding:4px 12px;
+        font-size:0.8rem;
+    }
+}
+
+@media (max-width: 480px){
+    .logo-area img{
+        height:45px;
+    }
+    .logo-area h1{
+        font-size:1.1rem;
+    }
+    .ask-btn{
+        font-size:1rem;
+        padding:10px 20px;
+    }
+    .stat-number{
+        font-size:1.5rem;
+    }
+    .stat-label{
+        font-size:0.9rem;
+    }
+}
+</style>
 </head>
 <body>
-    <div class="glow-bg"><span></span><span></span><span></span></div>
 
-    <!-- شاشة الدخول -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-card" data-aos="zoom-in">
-            <div class="login-icon"><i class="fas fa-utensils"></i></div>
-            <h2>منصة إدارة المطاعم</h2>
-            <p>مجموعة فاروق للاستشارات والأعمال</p>
-            <input type="text" id="usernameInput" class="password-field" placeholder="اسم المستخدم" autofocus>
-            <input type="password" id="passwordInput" class="password-field" placeholder="كلمة المرور">
-            <button class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> دخول آمن</button>
-            <a href="https://wa.me/905550196682" target="_blank" class="whatsapp-link">
-                <i class="fab fa-whatsapp"></i> نسيت كلمة المرور؟ اضغط هنا
-            </a>
-            <div class="error-msg" id="errorMsg"></div>
+<!-- ===== الهيدر مع القائمة المدمجة ===== -->
+<header class="hero-header">
+    <div class="header-top">
+        <div class="logo-area">
+            <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP TRAINING">
+            <h1>مجموعة فاروق للتدريب</h1>
         </div>
+        <a href="https://training.farouk-grup.com/home/inquiries" class="ask-btn">
+            <i class="fas fa-question-circle"></i> اسألنا
+        </a>
     </div>
 
-    <!-- المحتوى الرئيسي (لوحة التحكم) -->
-    <div class="dashboard" id="dashboard">
-        <div class="header-bar">
-            <div class="datetime"><div><i class="fas fa-calendar-alt"></i> <span id="currentDate"></span></div><div><i class="fas fa-clock"></i> <span id="currentTime"></span></div></div>
-            <div class="header-title">مجموعة فاروق للاستشارات والأعمال | منصة المطاعم</div>
-            <div class="user-profile"><span class="user-name"><i class="fas fa-user-tie"></i> مدير العمليات</span><button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> خروج</button></div>
-        </div>
+    <!-- القائمة الأفقية داخل الهيدر -->
+    <nav class="nav-in-header">
+        <a href="https://training.farouk-grup.com/home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="https://training.farouk-grup.com/home/about"><i class="fas fa-info-circle"></i> من نحن</a>
+        <a href="https://training.farouk-grup.com/home/Our-store"><i class="fa-solid fa-bag-shopping"></i> متجرنا</a>
+    </nav>
+</header>
 
-        <div class="main-dashboard">
-            <!-- العمود الأيمن: المهام والحاسبة -->
-            <div class="dashboard-panel">
-                <h3 class="panel-header"><i class="fas fa-tasks"></i> إدارة المهام</h3>
-                <div class="input-group"><input type="text" id="todoInput" placeholder="أضف مهمة جديدة..."><button class="btn-primary" id="addTodoBtn"><i class="fas fa-plus"></i></button></div>
-                <div class="todo-list" id="todoList"></div>
-                <div class="stats-bar"><span>قيد الانتظار: <span id="pendingCount">0</span></span><span>الإجمالي: <span id="totalCount">0</span></span></div>
-                <div class="calculator-section">
-                    <h3 class="panel-header"><i class="fas fa-calculator"></i> الحاسبة المالية</h3>
-                    <input type="text" id="calcDisplay" readonly value="0">
-                    <div class="calc-buttons">
-                        <button class="calc-btn" onclick="appendCalc('9')">9</button><button class="calc-btn" onclick="appendCalc('8')">8</button><button class="calc-btn" onclick="appendCalc('7')">7</button><button class="calc-btn operator" onclick="setCalcOperator('/')">÷</button>
-                        <button class="calc-btn" onclick="appendCalc('6')">6</button><button class="calc-btn" onclick="appendCalc('5')">5</button><button class="calc-btn" onclick="appendCalc('4')">4</button><button class="calc-btn operator" onclick="setCalcOperator('*')">×</button>
-                        <button class="calc-btn" onclick="appendCalc('3')">3</button><button class="calc-btn" onclick="appendCalc('2')">2</button><button class="calc-btn" onclick="appendCalc('1')">1</button><button class="calc-btn operator" onclick="setCalcOperator('-')">-</button>
-                        <button class="calc-btn" onclick="clearCalc()">C</button><button class="calc-btn" onclick="appendCalc('.')">.</button><button class="calc-btn" onclick="appendCalc('0')">0</button><button class="calc-btn operator" onclick="setCalcOperator('+')">+</button>
-                        <button class="calc-btn equals" onclick="calculateCalc()">=</button>
+<!-- ===== شريط الإحصائيات (مع أرقام متحركة) ===== -->
+<div class="stats-strip" data-aos="fade-up">
+    <div class="stat-item">
+        <div class="stat-number" data-target="15">0+</div>
+        <div class="stat-label">سنة خبرة</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="1000">0+</div>
+        <div class="stat-label">متدرب</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="50">0+</div>
+        <div class="stat-label">مشروع ناجح</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-number" data-target="30">0+</div>
+        <div class="stat-label">دورة مكتملة</div>
+    </div>
+</div>
+
+<!-- ===== الدورات ===== -->
+<section class="intro" data-aos="fade-up">
+    <h2>دورات تدريبية متخصصة لتطوير مهاراتك</h2>
+    <p>نقدم مجموعة من الدورات في مجالات متعددة لتعزيز خبراتك العملية والمهنية</p>
+</section>
+
+<section class="courses">
+    <!-- بطاقة الدورة الأولى (إدارة المطاعم) -->
+    <div class="course" data-aos="zoom-in">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+             alt="دورة إدارة المطاعم" class="course-image">
+        <h3>
+            <a href="https://training.farouk-grup.com/home/Restaurant-Course">
+                دورة إدارة المطاعم والقراءات المالية باحترافية
+                <span class="soon">(الدورة الثانية)</span>
+            </a>
+        </h3>
+        <p>إعداد مدراء مطاعم وأصحاب المشاريع الغذائية الذين سيفهمون الإدارة التشغيلية والمالية بعمق، بحيث يديرون العمل بالأرقام لا بالعشوائية</p>
+        <div class="countdown-box">
+            ⏳ يبدأ التسجيل في:
+            <div id="countdown"></div>
+        </div>
+    </div>
+    <!-- بطاقة الدورة الثانية (الماليات) -->
+    <div class="course" data-aos="zoom-in" data-aos-delay="100">
+        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+             alt="دورة الماليات" class="course-image">
+        <h3><span class="soon">قريبًا</span> دورة الماليات لغير الماليين</h3>
+        <p>تمكين أي شخص يتخذ قرارات مالية أو يحتاج لفهم التقارير دون أن تكون وظيفته الأساسية هي المالية أو المحاسبة</p>
+    </div>
+    <!-- بطاقة الدورة الثالثة (الموارد البشرية) -->
+    <div class="course" data-aos="zoom-in" data-aos-delay="200">
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+             alt="دورة الموارد البشرية" class="course-image">
+        <h3><span class="soon">قريبًا</span> دورة إدارة الموارد البشرية لغير المتخصصين</h3>
+        <p>تزويد أي شخص لديه مسؤولية إشرافية أو تفاعل مباشر مع الموظفين بالأساسيات لتطوير قيادته وإدارة الفريق بفعالية</p>
+    </div>
+</section>
+
+<!-- ===== قسم المميزات الأربعة (بعد الدورات) ===== -->
+<section class="features-grid" data-aos="fade-up">
+    <div class="feature-card">
+        <i class="fas fa-certificate"></i>
+        <h4>شهادة</h4>
+        <p>شهادات إتمام الدورة</p>
+    </div>
+    <div class="feature-card">
+        <i class="fab fa-whatsapp"></i>
+        <h4>دعم فني مباشر</h4>
+        <p>فريق دعم متاح عبر واتساب للإجابة عن استفساراتك</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-sync-alt"></i>
+        <h4>محتوى محدث</h4>
+        <p>يتم تحديث المواد التدريبية باستمرار وفق أحدث المعايير</p>
+    </div>
+    <div class="feature-card">
+        <i class="fas fa-headset"></i>
+        <h4>استشارات مجانية</h4>
+        <p>استشارات مبدئية مجانية للمتدربين المسجلين</p>
+    </div>
+</section>
+
+<!-- ===== قسم آراء المتدربين (مطور) ===== -->
+<section class="reviews">
+    <div class="reviews-header">
+        <h2>آراء المتدربين</h2>
+        <div class="rating-summary">
+            <span>4.8</span>
+            <div class="stars">★★★★★</div>
+        </div>
+    </div>
+    <div class="review-container">
+        <button id="leftBtn" class="control-btn">&#8250;</button>
+        <button id="rightBtn" class="control-btn">&#8249;</button>
+        <div class="review-track" id="reviewTrack">
+            <!-- التقييم 1 - ذكر -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">أ</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★★</div>
+                        <div class="reviewer-name">أحمد</div>
                     </div>
                 </div>
+                <p>"الدورة ممتازة جدًا. المحتوى عملي وساعدني في تطوير مهاراتي الإدارية."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
             </div>
-
-            <!-- العمود الأوسط: الأدوات -->
-            <div class="dashboard-panel">
-                <h3 class="panel-header"><i class="fas fa-briefcase"></i> مجموعة الأدوات والنماذج</h3>
-                <div class="tools-grid" id="toolsGrid"></div>
+            <!-- التقييم 2 - أنثى -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">س</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★☆</div>
+                        <div class="reviewer-name">سارة</div>
+                    </div>
+                </div>
+                <p>"مفيدة وسهلة التطبيق. تعلمت كيف أتحكم في التكاليف وأزيد الأرباح."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
             </div>
-
-            <!-- العمود الأيسر: الملاحظات والمواعيد -->
-            <div class="dashboard-panel">
-                <h3 class="panel-header"><i class="fas fa-sticky-note"></i> مسودة الملاحظات</h3>
-                <textarea id="notesArea" placeholder="اكتب ملاحظاتك وتوجيهاتك هنا..."></textarea>
-                <div class="action-bar"><button class="btn-primary" id="saveLocal"><i class="fas fa-save"></i> حفظ</button><button class="btn-outline" id="exportNotes"><i class="fas fa-download"></i> تصدير</button><button class="btn-outline" id="importNotes"><i class="fas fa-upload"></i> استيراد</button></div>
-                <h3 class="panel-header" style="margin-top:2rem;"><i class="fas fa-calendar-check"></i> جدول المواعيد</h3>
-                <div class="appointment-form"><input type="text" id="appTitle" placeholder="عنوان الموعد أو الاجتماع"><input type="date" id="appDate"><textarea id="appDesc" placeholder="تفاصيل الموعد..." rows="2"></textarea><button class="btn-primary" id="addAppBtn" style="width:100%;"><i class="fas fa-calendar-plus"></i> إضافة للجدول</button></div>
-                <div class="appointments-list" id="appointmentsList"></div>
-                <div class="action-bar" style="margin-bottom:0;"><button class="btn-outline" id="exportApps"><i class="fas fa-file-csv"></i> تصدير CSV</button><button class="btn-outline" onclick="window.open('https://calendar.google.com/calendar/u/0/r','_blank')"><i class="fab fa-google"></i> تقويم جوجل</button></div>
+            <!-- التقييم 3 - ذكر -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">م</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★★</div>
+                        <div class="reviewer-name">محمد</div>
+                    </div>
+                </div>
+                <p>"محتوى منظم وواضح. المدرب محترف والخبرة العملية كانت قيمة."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 4 - أنثى -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">ل</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★☆</div>
+                        <div class="reviewer-name">ليلى</div>
+                    </div>
+                </div>
+                <p>"تعلمت ضبط التكاليف وتحليل التقارير المالية بشكل عملي."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 5 - ذكر -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">خ</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★★</div>
+                        <div class="reviewer-name">خالد</div>
+                    </div>
+                </div>
+                <p>"تجربة رائعة. الدورة غيرت طريقة إدارتي للمشروع بالكامل."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 6 - أنثى -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">ه</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★☆</div>
+                        <div class="reviewer-name">هالة</div>
+                    </div>
+                </div>
+                <p>"أنصح بها للجميع، خاصة لأصحاب المطاعم الجدد."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 7 - ذكر -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">ي</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★★</div>
+                        <div class="reviewer-name">يوسف</div>
+                    </div>
+                </div>
+                <p>"ممتازة جدًا. الدورة توفر أدوات عملية يمكن تطبيقها فورًا."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 8 - أنثى -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">ل</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★☆</div>
+                        <div class="reviewer-name">ليان</div>
+                    </div>
+                </div>
+                <p>"تعلمت كثيرًا عن إدارة المخزون والتحكم في الجودة."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 9 - ذكر -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">ر</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★★</div>
+                        <div class="reviewer-name">رامي</div>
+                    </div>
+                </div>
+                <p>"الدورة عملية جدًا. الحالات الدراسية كانت واقعية ومفيدة."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
+            </div>
+            <!-- التقييم 10 - أنثى -->
+            <div class="review" onclick="window.open('https://training.farouk-grup.com/home/testimonials', '_blank')">
+                <div class="review-header">
+                    <div class="review-avatar">م</div>
+                    <div class="review-info">
+                        <div class="stars">★★★★☆</div>
+                        <div class="reviewer-name">منى</div>
+                    </div>
+                </div>
+                <p>"شاملة وممتعة. تغطي جميع جوانب إدارة المطعم بنجاح."</p>
+                <div class="course-name">دورة إدارة المطاعم</div>
             </div>
         </div>
-
-        <div class="quick-links-panel">
-            <div class="quick-links-title"><i class="fas fa-link"></i> الوصول السريع لمنصات المجموعة</div>
-            <div class="links-row"><a href="https://www.farouk-grup.com/" target="_blank" class="link-btn">الموقع الرسمي</a><a href="https://training.farouk-grup.com/home/Our-store" class="link-btn">تجديد الإشتراك</a><a href="https://wa.me/905550196682" target="_blank" class="link-btn"><i class="fab fa-whatsapp"></i> واتساب</a><a href="mailto:faroukgrup@gmail.com" class="link-btn"><i class="fas fa-envelope"></i> البريد</a></div>
-        </div>
-        <footer><p>© 2026 FAROUK GRUP · جميع الحقوق محفوظة</p></footer>
     </div>
+</section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 800, once: true });
+<!-- ===== الفوتر المتطور (مع شارات الثقة) ===== -->
+<footer>
+    <div style="max-width:1200px; margin:auto;">
+        <div class="flex-container">
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/faroukazem/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/905550196682" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
 
-        // رابط الخادم (Worker أو Apps Script)
-        const GOOGLE_SCRIPT_URL = "https://restaurant-api-proxy.faroukgrup.workers.dev/";
+            <div class="footer-logo">
+                <h2>مجموعة فاروق للتدريب</h2>
+                <div></div>
+            </div>
 
-        const loginOverlay = document.getElementById('loginOverlay');
-        const dashboard = document.getElementById('dashboard');
-        const usernameInput = document.getElementById('usernameInput');
-        const passwordInput = document.getElementById('passwordInput');
-        const loginBtn = document.getElementById('loginBtn');
-        const errorMsg = document.getElementById('errorMsg');
-        const logoutBtn = document.getElementById('logoutBtn');
+            <div class="trust-badges">
+                <div class="payment-methods">
+                    <div>
+                        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:18px;">
+                        <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay" style="height:24px;">
+                        <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+                    </div>
+                </div>
+                <div class="security-badges">
+                    <span class="badge-item"><i class="fas fa-lock"></i> SSL</span>
+                    <span class="badge-item"><i class="fas fa-shield-alt"></i> ضمان </span>
+                    <span class="badge-item"><i class="fas fa-headset"></i> دعم 24/7</span>
+                </div>
+            </div>
+        </div>
 
-        // دالة التحقق من الجلسة (بدون توكن)
-        function checkSession() {
-            const loggedIn = localStorage.getItem('restaurantLoggedIn') === 'true';
-            const userName = localStorage.getItem('userName');
-            if (loggedIn && userName) {
-                loginOverlay.style.display = 'none';
-                dashboard.style.display = 'block';
-                const savedDays = localStorage.getItem('daysLeft');
-                document.querySelector('.user-name').innerHTML = `<i class="fas fa-user-tie"></i> ${userName} (متبقي ${savedDays || 'غير محدد'} يوم)`;
-                loadAllData();
+        <hr>
+
+        <div class="footer-legal">
+            <a href="https://training.farouk-grup.com/home/privacy-policy">اتفاقية الاستخدام | Legal Agreements | Mesafeli Satış Sözleşmesi</a>
+        </div>
+
+        <div class="copyright">
+            جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP TRAINING</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== السكريبتات ===== -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({duration:800,once:true,offset:100});</script>
+
+<!-- سكريبت العدّاد (للوقت) -->
+<script>
+function updateCountdown() {
+  const targetDate = new Date("2026-08-01T00:00:00").getTime();
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+  if(distance<=0){ document.getElementById("countdown").innerHTML="📢 بدأ التسجيل!"; return; }
+  const days = Math.floor(distance/(1000*60*60*24));
+  const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+  const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+  const seconds = Math.floor((distance%(1000*60))/1000);
+  document.getElementById("countdown").innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+</script>
+
+<!-- سكريبت العداد المتحرك للإحصائيات -->
+<script>
+(function() {
+    // عداد متحرك للإحصائيات
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 350; // كلما زاد الرقم كانت الحركة أبطأ
+
+    const startCounting = (counter) => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        let current = 0;
+        const increment = target / speed;
+        
+        const updateCount = () => {
+            if (current < target) {
+                current = Math.ceil(current + increment);
+                counter.innerText = current + '+';
+                setTimeout(updateCount, 10);
             } else {
-                // تنظيف أي بيانات قديمة
-                localStorage.removeItem('restaurantLoggedIn');
-                localStorage.removeItem('userName');
-                localStorage.removeItem('daysLeft');
-                localStorage.removeItem('userToken');
-                loginOverlay.style.display = 'flex';
-                dashboard.style.display = 'none';
-                usernameInput?.focus();
+                counter.innerText = target + '+';
             }
-        }
-
-        function loadAllData() {
-            loadTodos();
-            loadNotes();
-            loadAppointments();
-            renderTools();
-        }
-
-        async function attemptLogin() {
-            const user = usernameInput.value.trim();
-            const pass = passwordInput.value.trim();
-
-            if (!user || !pass) {
-                errorMsg.textContent = '❌ يرجى إدخال اسم المستخدم وكلمة المرور';
-                return;
-            }
-
-            loginBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> جاري التحقق...';
-            loginBtn.disabled = true;
-            errorMsg.textContent = '';
-
-            try {
-                const formData = new FormData();
-                formData.append('username', user);
-                formData.append('password', pass);
-
-                const response = await fetch(GOOGLE_SCRIPT_URL, {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    // تخزين بيانات الجلسة
-                    localStorage.setItem('restaurantLoggedIn', 'true');
-                    localStorage.setItem('userName', result.name);
-                    localStorage.setItem('daysLeft', result.daysLeft);
-                    if (result.token) localStorage.setItem('userToken', result.token); // اختياري
-
-                    document.querySelector('.user-name').innerHTML = `<i class="fas fa-user-tie"></i> ${result.name} (متبقي ${result.daysLeft} يوم)`;
-                    
-                    loginOverlay.style.display = 'none';
-                    dashboard.style.display = 'block';
-                    loadAllData();
-                } else if (result.status === 'expired') {
-                    errorMsg.textContent = '❌ انتهى اشتراكك. يرجى التواصل مع الدعم.';
-                } else {
-                    errorMsg.textContent = '❌ ' + (result.message || 'بيانات الدخول غير صحيحة');
-                }
-            } catch (error) {
-                console.error('Login error:', error);
-                errorMsg.textContent = '❌ حدث خطأ في الاتصال بالسيرفر. تأكد من اتصالك بالإنترنت.';
-            } finally {
-                loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> دخول آمن';
-                loginBtn.disabled = false;
-            }
-        }
-
-        loginBtn.addEventListener('click', attemptLogin);
-        passwordInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') attemptLogin(); });
-        usernameInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') passwordInput.focus(); });
-
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('restaurantLoggedIn');
-            localStorage.removeItem('userName');
-            localStorage.removeItem('daysLeft');
-            localStorage.removeItem('userToken');
-            loginOverlay.style.display = 'flex';
-            dashboard.style.display = 'none';
-            passwordInput.value = '';
-            errorMsg.textContent = '';
-        });
-
-        window.addEventListener('load', () => {
-            checkSession();
-            updateDateTime();
-            setInterval(updateDateTime, 1000);
-        });
-
-        // قائمة الأدوات (كما هي)
-        const tools = [
-            { name: "حساب التكاليف للمطاعم", icon: "fa-utensils", file: "tool2.html" },
-            { name: "دراسة الجدوى الفنية المتقدمة للمطاعم", icon: "fa-gear", file: "tool3.html" },
-            { name: "دراسة الجدوى التسويقية الشاملة", icon: "fa-chart-simple", file: "tool4.html" },
-            { name: "حاسبة نقطة التعادل", icon: "fa-chart-line", file: "tool7.html" },
-            { name: "حاسبة التدفق النقدي", icon: "fa-coins", file: "tool8.html" },
-            { name: "حاسبة الإهلاك", icon: "fa-chart-simple", file: "tool9.html" },
-            { name: "حاسبة تكلفة العمالة المثالية", icon: "fa-users", file: "tool13.html" },
-            { name: "نظام تحليل المخاطر ونقاط التحكم الحرجة", icon: "fa-exclamation-triangle", file: "tool14.html" },
-            { name: "إجراءات التشغيل القياسية", icon: "fa-clipboard-list", file: "tool15.html" },
-            { name: "آلة حاسبة", icon: "fa-calculator", file: "tool16.html" }
-        ];
-
-        // دوال المهام، الآلة الحاسبة، الملاحظات، المواعيد (كما هي دون تغيير)
-        const todoInput = document.getElementById('todoInput');
-        const addTodoBtn = document.getElementById('addTodoBtn');
-        const todoList = document.getElementById('todoList');
-        const pendingSpan = document.getElementById('pendingCount');
-        const totalSpan = document.getElementById('totalCount');
-        let todos = [];
-
-        function loadTodos() {
-            todos = JSON.parse(localStorage.getItem('employeeTodos') || '[]');
-            renderTodos();
-        }
-        function saveTodos() {
-            localStorage.setItem('employeeTodos', JSON.stringify(todos));
-            renderTodos();
-        }
-
-        function renderTodos() {
-            todoList.innerHTML = '';
-            const pending = todos.filter(t => !t.completed).length;
-            pendingSpan.textContent = pending;
-            totalSpan.textContent = todos.length;
-            todos.forEach((todo, idx) => {
-                const div = document.createElement('div');
-                div.className = 'todo-item';
-                div.innerHTML = `
-                    <div class="todo-text">
-                        <input type="checkbox" ${todo.completed ? 'checked' : ''} data-index="${idx}">
-                        <span class="${todo.completed ? 'completed' : ''}">${todo.text}</span>
-                    </div>
-                    <span class="delete-btn delete-todo" data-index="${idx}"><i class="fas fa-trash-alt"></i></span>
-                `;
-                todoList.appendChild(div);
-            });
-            document.querySelectorAll('.todo-text input[type=checkbox]').forEach(cb => {
-                cb.addEventListener('change', e => {
-                    const idx = e.target.dataset.index;
-                    todos[idx].completed = e.target.checked;
-                    saveTodos();
-                });
-            });
-            document.querySelectorAll('.delete-todo').forEach(btn => {
-                btn.addEventListener('click', e => {
-                    const idx = btn.dataset.index;
-                    if (confirm("هل أنت متأكد من حذف هذه المهمة؟")) {
-                        todos.splice(idx, 1);
-                        saveTodos();
-                    }
-                });
-            });
-        }
-
-        function addTodo() {
-            const text = todoInput.value.trim();
-            if (!text) return;
-            todos.push({ text, completed: false });
-            saveTodos();
-            todoInput.value = '';
-        }
-        addTodoBtn.addEventListener('click', addTodo);
-        todoInput.addEventListener('keypress', e => { if (e.key === 'Enter') addTodo(); });
-
-        // الآلة الحاسبة
-        let calcInput = '0', calcPrev = '', calcOp = null;
-        const display = document.getElementById('calcDisplay');
-        function updateDisplay() { display.value = calcInput; }
-        window.appendCalc = (n) => {
-            if (calcInput === '0' && n !== '.') calcInput = n;
-            else {
-                if (n === '.' && calcInput.includes('.')) return;
-                calcInput += n;
-            }
-            updateDisplay();
         };
-        window.setCalcOperator = (op) => {
-            if (calcOp !== null) calculateCalc();
-            calcPrev = calcInput;
-            calcInput = '0';
-            calcOp = op;
-        };
-        window.calculateCalc = () => {
-            if (!calcOp || calcPrev === '') return;
-            const a = parseFloat(calcPrev), b = parseFloat(calcInput);
-            let res;
-            switch (calcOp) {
-                case '+': res = a + b; break;
-                case '-': res = a - b; break;
-                case '*': res = a * b; break;
-                case '/': if (b === 0) { alert('خطأ'); return; } res = a / b; break;
-                default: return;
-            }
-            calcInput = res.toString();
-            calcOp = null; calcPrev = '';
-            updateDisplay();
-        };
-        window.clearCalc = () => { calcInput = '0'; calcPrev = ''; calcOp = null; updateDisplay(); };
+        updateCount();
+    };
 
-        document.addEventListener('keydown', (e) => {
-            if (loginOverlay.style.display !== 'none' || !dashboard.style.display) return;
-            const active = document.activeElement;
-            if (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA') return;
-            const k = e.key;
-            if (k >= '0' && k <= '9') { e.preventDefault(); appendCalc(k); }
-            else if (k === '.') { e.preventDefault(); appendCalc('.'); }
-            else if (k === '+' || k === '-' || k === '*' || k === '/') { e.preventDefault(); setCalcOperator(k); }
-            else if (k === 'Enter' || k === '=') { e.preventDefault(); calculateCalc(); }
-            else if (k === 'Escape') { e.preventDefault(); clearCalc(); }
-            else if (k === 'Backspace') {
-                e.preventDefault();
-                if (calcInput.length > 1) calcInput = calcInput.slice(0, -1);
-                else calcInput = '0';
-                updateDisplay();
+    // استخدام IntersectionObserver لتشغيل العداد عند الظهور
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                startCounting(counter);
+                observer.unobserve(counter); // تشغيل مرة واحدة فقط
             }
         });
+    }, { threshold: 0.5 });
 
-        // الملاحظات
-        const notes = document.getElementById('notesArea');
-        document.getElementById('saveLocal').addEventListener('click', () => {
-            localStorage.setItem('employeeNotes', notes.value);
-            alert('تم حفظ الملاحظات بنجاح.');
-        });
-        document.getElementById('exportNotes').addEventListener('click', () => {
-            const blob = new Blob([notes.value], { type: 'text/plain' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `notes_faroukgrup_${new Date().toISOString().slice(0,10)}.txt`;
-            a.click();
-        });
-        document.getElementById('importNotes').addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.txt';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                const reader = new FileReader();
-                reader.onload = (ev) => notes.value = ev.target.result;
-                reader.readAsText(file);
-            };
-            input.click();
-        });
+    counters.forEach(counter => observer.observe(counter));
+})();
+</script>
 
-        // المواعيد
-        let apps = JSON.parse(localStorage.getItem('employeeAppointments') || '[]');
-        const appTitle = document.getElementById('appTitle');
-        const appDate = document.getElementById('appDate');
-        const appDesc = document.getElementById('appDesc');
-        const appList = document.getElementById('appointmentsList');
+<!-- سكريبت التقييمات المتحركة -->
+<script>
+(function(){
+  const track = document.getElementById('reviewTrack');
+  const leftBtn = document.getElementById('leftBtn');
+  const rightBtn = document.getElementById('rightBtn');
 
-        function renderApps() {
-            appList.innerHTML = '';
-            apps.slice().sort((a,b) => a.date.localeCompare(b.date)).forEach((a, idx) => {
-                const d = new Date(a.date).toLocaleDateString('ar-EG', { day:'numeric', month:'short' });
-                const div = document.createElement('div');
-                div.className = 'appointment-item';
-                let detailsHtml = '';
-                if (a.desc && a.desc.trim() !== '') {
-                    detailsHtml = `<div class="appointment-desc">📝 ${a.desc}</div>`;
-                }
-                div.innerHTML = `
-                    <div class="appointment-info">
-                        <span class="appointment-date">${d}</span> 
-                        <span class="appointment-title">${a.title}</span>
-                        ${detailsHtml}
-                    </div>
-                    <span class="delete-btn delete-app" data-idx="${apps.indexOf(a)}"><i class="fas fa-trash-alt"></i></span>
-                `;
-                appList.appendChild(div);
-            });
-            document.querySelectorAll('.delete-app').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const idx = btn.dataset.idx;
-                    if (confirm("هل أنت متأكد من حذف هذا الموعد؟")) {
-                        apps.splice(idx, 1);
-                        localStorage.setItem('employeeAppointments', JSON.stringify(apps));
-                        renderApps();
-                    }
-                });
-            });
-        }
+  track.innerHTML += track.innerHTML; // مضاعفة المحتوى للحركة المستمرة
 
-        document.getElementById('addAppBtn').addEventListener('click', () => {
-            if (!appTitle.value || !appDate.value) return alert('يرجى إدخال العنوان والتاريخ');
-            apps.push({ title: appTitle.value, date: appDate.value, desc: appDesc.value });
-            localStorage.setItem('employeeAppointments', JSON.stringify(apps));
-            renderApps();
-            appTitle.value = ''; appDate.value = ''; appDesc.value = '';
-        });
-        document.getElementById('exportApps').addEventListener('click', () => {
-            const lines = apps.map(a => `${a.date},${a.title},${a.desc}`).join('\n');
-            const blob = new Blob(['التاريخ,العنوان,الوصف\n' + lines], { type: 'text/csv' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = `appointments_faroukgrup_${new Date().toISOString().slice(0,10)}.csv`;
-            a.click();
-        });
+  let halfWidth = 0;
+  function computeHalfWidth(){
+    const children = track.children;
+    const count = children.length / 2;
+    halfWidth = 0;
+    for(let i=0;i<count;i++){
+      halfWidth += children[i].offsetWidth; 
+      if(i<count-1) halfWidth+=20;
+    }
+  }
 
-        function loadNotes() {
-            const saved = localStorage.getItem('employeeNotes');
-            if (saved) notes.value = saved;
-        }
-        function loadAppointments() {
-            apps = JSON.parse(localStorage.getItem('employeeAppointments') || '[]');
-            renderApps();
-        }
+  let baseSpeed = 0.8; 
+  let speed = baseSpeed;
+  let pos = 0;
+  let rafId = null;
 
-        function renderTools() {
-            const grid = document.getElementById('toolsGrid');
-            grid.innerHTML = '';
-            tools.forEach(t => {
-                const card = document.createElement('div');
-                card.className = 'tool-card';
-                card.onclick = () => location.href = t.file;
-                card.innerHTML = `<i class="fas ${t.icon}"></i><h4>${t.name}</h4>`;
-                grid.appendChild(card);
-            });
-        }
+  function animate(){
+    pos += speed;
+    if(pos >= halfWidth) pos = 0;
+    track.style.transform = `translateX(${pos}px)`;
+    rafId = requestAnimationFrame(animate);
+  }
 
-        const dateSpan = document.getElementById('currentDate');
-        const timeSpan = document.getElementById('currentTime');
-        function updateDateTime() {
-            const now = new Date();
-            dateSpan.textContent = now.toLocaleDateString('ar-EG', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-            timeSpan.textContent = now.toLocaleTimeString('ar-EG', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
-        }
-    </script>
+  function start(){
+    cancelAnimationFrame(rafId);
+    computeHalfWidth();
+    rafId = requestAnimationFrame(animate);
+  }
+
+  leftBtn.addEventListener('mousedown',()=>{ speed = -Math.abs(baseSpeed)*2; });
+  leftBtn.addEventListener('mouseup',()=>{ speed = baseSpeed; });
+  leftBtn.addEventListener('mouseleave',()=>{ speed = baseSpeed; });
+
+  rightBtn.addEventListener('mousedown',()=>{ speed = Math.abs(baseSpeed)*2; });
+  rightBtn.addEventListener('mouseup',()=>{ speed = baseSpeed; });
+  rightBtn.addEventListener('mouseleave',()=>{ speed = baseSpeed; });
+
+  window.addEventListener('resize',computeHalfWidth);
+  start();
+})();
+</script>
+
 </body>
 </html>
