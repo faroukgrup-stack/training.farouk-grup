@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
+<title>الاتفاقيات القانونية | Legal Agreements - FAROUK GRUP TRAINING</title>
+
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root{
+    --gold:#b8860b;
+    --gold-light:#d4a017;
+    --gold-soft:rgba(184,134,11,0.1);
+    --dark:#1e2a2f;
+    --dark-light:#2c3e4a;
+    --grey:#5a6b7a;
+    --light:#f8f6f2;
+    --white:#ffffff;
+    --bg-soft:#f5f0e6;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Tajawal',sans-serif;
+    background:var(--light);
+    color:#2c3e4a;
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+/* ===== الهيدر المتكامل مع خلفية ===== */
+.hero-header{
+    background:linear-gradient(rgba(20,30,40,0.7), rgba(20,30,40,0.5)),
+                url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600') center/cover;
+    background-attachment:fixed;
+    color:white;
+    padding:30px 20px 20px;
+    border-bottom:4px solid var(--gold);
+    position:relative;
+}
+.hero-header::before{
+    content:'';
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background:radial-gradient(circle at 30% 50%, rgba(184,134,11,0.2), transparent 60%);
+    animation:pulseGlow 4s infinite alternate;
+    pointer-events:none;
+}
+@keyframes pulseGlow{
+    0%{opacity:0.3;}
+    100%{opacity:0.8;}
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:20px;
+    position:relative;
+    z-index:2;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    flex-wrap:nowrap;
+}
+.logo-area img{
+    height:60px;
+    width:auto;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+.logo-area h1{
+    font-family:'Alexandria',sans-serif;
+    font-size:1.6rem;
+    font-weight:900;
+    color:var(--gold-light);
+    text-shadow:2px 2px 6px rgba(0,0,0,0.5);
+    white-space:nowrap;
+}
+
+/* زر اسألنا مع نبض خفيف */
+.ask-btn{
+    background-color:var(--gold);
+    color:#111;
+    padding:12px 28px;
+    border-radius:50px;
+    font-weight:900;
+    text-decoration:none;
+    font-size:1.2rem;
+    box-shadow:0 8px 18px rgba(0,0,0,0.3);
+    transition:0.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid transparent;
+    animation: gentlePulse 2s infinite;
+}
+@keyframes gentlePulse {
+    0% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
+    50% { box-shadow: 0 12px 25px rgba(184,134,11,0.6); transform:scale(1.02); }
+    100% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
+}
+.ask-btn:hover{
+    background-color:var(--gold-light);
+    transform:translateY(-2px) scale(1.02);
+    box-shadow:0 12px 25px rgba(0,0,0,0.4);
+    border-color:white;
+    animation: none;
+}
+
+/* القائمة الأفقية داخل الهيدر */
+.nav-in-header{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px 20px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    padding:12px 25px;
+    border-radius:60px;
+    margin-top:15px;
+    border:1px solid rgba(255,255,255,0.25);
+    position:relative;
+    z-index:2;
+}
+.nav-in-header a{
+    color:white;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1rem;
+    padding:5px 10px;
+    transition:0.3s;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+}
+.nav-in-header a i{font-size:0.9rem;}
+.nav-in-header a:hover{
+    color:var(--gold-light);
+    transform:translateY(-2px);
+}
+.nav-in-header .active{
+    background:var(--gold);
+    color:#111;
+    border-radius:40px;
+    padding:5px 20px;
+}
+.nav-in-header .active i{color:#111;}
+
+/* ===== عنوان الصفحة (مطوّر) ===== */
+.page-header{
+    text-align:center;
+    margin:50px auto 30px;
+    position:relative;
+    padding:20px;
+    background:linear-gradient(145deg, #fff9f0, #fef5e6);
+    border-radius:60px;
+    max-width:700px;
+    border:2px solid var(--gold-light);
+    box-shadow:0 10px 25px rgba(184,134,11,0.2);
+}
+.page-header h2{
+    color:var(--dark);
+    font-size:36px;
+    font-weight:900;
+    margin-bottom:5px;
+}
+.page-header .underline{
+    width:100px;
+    height:4px;
+    background:var(--gold);
+    margin:10px auto;
+    border-radius:2px;
+}
+.page-header .sub{
+    color:var(--gold);
+    font-size:1.2rem;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* ===== الحاوية الرئيسية ===== */
+.legal-container{
+    max-width:1000px;
+    margin:0 auto 60px;
+    padding:0 20px;
+}
+
+/* بطاقة معلومات الشركة */
+.company-card{
+    background:linear-gradient(145deg, #fff9f0, #fef5e6);
+    border-radius:30px;
+    padding:30px;
+    margin-bottom:40px;
+    border:1px solid var(--gold-light);
+    text-align:center;
+}
+.company-card p{
+    margin:10px 0;
+    font-size:1.1rem;
+}
+.company-card strong{
+    color:var(--gold);
+}
+
+/* بطاقة القسم */
+.section-card{
+    background:var(--white);
+    border-radius:30px;
+    padding:30px;
+    margin-bottom:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.05);
+    border:1px solid rgba(184,134,11,0.15);
+    transition:0.3s;
+}
+.section-card:hover{
+    transform:translateY(-3px);
+    border-color:var(--gold);
+    box-shadow:0 20px 40px rgba(184,134,11,0.15);
+}
+.section-card h3{
+    color:var(--gold);
+    font-size:1.8rem;
+    font-weight:900;
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    border-bottom:2px solid var(--gold-soft);
+    padding-bottom:10px;
+}
+.section-card h3 i{
+    font-size:2rem;
+}
+
+/* تبويب اللغات داخل البطاقة */
+.lang-tabs{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+.lang-item{
+    background:var(--bg-soft);
+    border-radius:20px;
+    padding:20px;
+    border:1px solid var(--gold-light);
+}
+.lang-item h4{
+    color:var(--gold);
+    font-size:1.3rem;
+    margin-bottom:10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.lang-item p{
+    font-size:1rem;
+    line-height:1.8;
+    color:var(--grey);
+    text-align:justify;
+}
+.lang-item.tr-en{
+    direction:ltr;
+    text-align:left;
+    font-family:Arial,sans-serif;
+}
+.lang-item.tr-en p{
+    text-align:left;
+}
+
+/* ===== الفوتر المتطور ===== */
+footer{
+    background:linear-gradient(145deg, #f5ebd2, #fcf5e6);
+    color:#3a4a55;
+    padding:50px 20px 30px;
+    border-top:4px solid var(--gold);
+    margin-top:60px;
+    box-shadow:0 -5px 15px rgba(184,134,11,0.1);
+}
+
+.flex-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    max-width:1200px;
+    margin:auto;
+}
+
+.social-links a{
+    color:var(--gold);
+    font-size:28px;
+    margin:0 10px;
+    transition:0.3s;
+    display:inline-block;
+}
+.social-links a:hover{
+    color:var(--dark);
+    transform:translateY(-5px) rotate(5deg);
+}
+
+.footer-logo h2{
+    color:var(--gold);
+    font-size:22px;
+    font-weight:800;
+    font-family:'Alexandria',sans-serif;
+    white-space:nowrap;
+}
+.footer-logo div{
+    width:70px;
+    height:3px;
+    background:var(--gold);
+    margin:8px auto 0;
+}
+
+.trust-badges{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:15px;
+}
+.payment-methods div{
+    background:rgba(255,255,255,0.7);
+    padding:12px 20px;
+    border-radius:40px;
+    display:flex;
+    gap:20px;
+    align-items:center;
+    border:1px solid var(--gold-light);
+    backdrop-filter:blur(5px);
+    flex-wrap:wrap;
+    justify-content:center;
+}
+.payment-methods img{height:26px;width:auto;transition:0.2s;}
+.payment-methods img:hover{transform:scale(1.15);}
+
+.security-badges{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top:10px;
+}
+.badge-item{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(184,134,11,0.1);
+    padding:6px 15px;
+    border-radius:40px;
+    font-size:0.9rem;
+    color:var(--dark);
+    border:1px dashed var(--gold-light);
+}
+.badge-item i{
+    color:var(--gold);
+    font-size:1.1rem;
+}
+
+hr{
+    border:0;
+    border-top:2px solid rgba(184,134,11,0.2);
+    margin:30px 0 20px;
+}
+
+.footer-legal{
+    text-align:center;
+    margin:20px 0 15px;
+}
+.footer-legal a{
+    color:var(--gold);
+    text-decoration:none;
+    font-weight:bold;
+    border:1px solid var(--gold);
+    padding:6px 20px;
+    border-radius:40px;
+    transition:0.3s;
+    display:inline-block;
+    font-size:0.9rem;
+}
+.footer-legal a:hover{
+    background:var(--gold);
+    color:#111;
+}
+
+.copyright{
+    text-align:center;
+    font-size:14px;
+    color:#5a6b7a;
+}
+.copyright span{color:var(--gold);font-weight:bold;}
+
+/* ===== تجاوب ===== */
+@media (max-width:768px){
+    .header-top{
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .logo-area{
+        justify-content:center;
+    }
+    .logo-area h1{
+        font-size:1.3rem;
+    }
+    .ask-btn{
+        align-self:center;
+        width:fit-content;
+    }
+    .nav-in-header{
+        flex-direction:row;
+        justify-content:center;
+        flex-wrap:wrap;
+        border-radius:40px;
+    }
+    .page-header h2{
+        font-size:28px;
+    }
+    .section-card{
+        padding:20px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== عنوان الصفحة المطور ===== -->
+<div class="page-header" data-aos="fade-up">
+    <h2>الاتفاقيات القانونية</h2>
+    <div class="underline"></div>
+    <div class="sub">Legal Agreements</div>
+</div>
+
+<!-- ===== المحتوى الرئيسي ===== -->
+<div class="legal-container">
+
+    <!-- معلومات الشركة -->
+    <div class="company-card" data-aos="fade-up">
+        <i class="fas fa-building" style="font-size:3rem; color:var(--gold); margin-bottom:15px;"></i>
+        <p><strong>الشركة:</strong> Faroukgrup Gıda Ve Ticaret Limited Şirketi</p>
+        <p><strong>العنوان:</strong> Adnan Kahveci, Kuştepe Cd., 34528 Beylikdüzü / İstanbul</p>
+        <p><strong>الرقم الضريبي:</strong> 3851013756</p>
+        <p><strong>السجل التجاري:</strong> 122484-5</p>
+        <p><strong>البريد الإلكتروني:</strong> faroukgrup@gmail.com</p>
+    </div>
+
+    <!-- قسم عقد البيع عن بعد -->
+    <div class="section-card" data-aos="fade-up">
+        <h3><i class="fas fa-file-signature"></i> عقد البيع عن بعد</h3>
+        <div class="lang-tabs">
+            <div class="lang-item">
+                <h4><i class="fas fa-globe"></i> العربية (AR)</h4>
+                <p>وفقًا لأحكام قانون حماية المستهلك التركي رقم 6502 ولائحة العقود عن بُعد (Mesafeli Sözleşmeler Yönetmeliği)، فإن جميع المنتجات المقدمة عبر هذا الموقع هي منتجات رقمية. وبمجرد إتمام عملية الشراء ومنح الوصول الفوري للمحتوى، يسقط حق المستهلك في الانسحاب أو طلب الاسترداد وفقًا للمادة 15/ğ من اللائحة. يتحمل المستخدم مسؤولية التأكد من ملاءمة الخدمة قبل الشراء، ولا يحق له المطالبة بأي تعويض بعد بدء استخدام المحتوى.</p>
+            </div>
+            <div class="lang-item tr-en">
+                <h4><i class="fas fa-globe"></i> Türkçe (TR)</h4>
+                <p>6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği’nin 15/ğ maddesi uyarınca, dijital içeriklerde cayma hakkı bulunmamaktadır. Ödeme sonrası erişim sağlanan ürünlerde iade yapılmaz.</p>
+            </div>
+            <div class="lang-item tr-en">
+                <h4><i class="fas fa-globe"></i> English (EN)</h4>
+                <p>Pursuant to Article 15/ğ of the Distance Contracts Regulation and Turkish Consumer Protection Law No. 6502, digital products are non-refundable once access is granted. By completing the purchase, the customer waives the right of withdrawal.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- قسم سياسة الخصوصية -->
+    <div class="section-card" data-aos="fade-up" data-aos-delay="100">
+        <h3><i class="fas fa-shield-alt"></i> سياسة الخصوصية</h3>
+        <div class="lang-tabs">
+            <div class="lang-item">
+                <h4><i class="fas fa-globe"></i> العربية (AR)</h4>
+                <p>نلتزم بحماية بيانات المستخدمين وفقًا لقانون حماية البيانات الشخصية التركي رقم 6698 (KVKK). يتم جمع البيانات فقط لغرض تقديم الخدمة، ولا يتم مشاركة البيانات مع أي طرف ثالث باستثناء مزودي خدمات الدفع. تتم جميع عمليات الدفع عبر بوابة iyzico المشفرة، ولا نقوم بتخزين أي معلومات تتعلق ببطاقات الائتمان.</p>
+            </div>
+            <div class="lang-item tr-en">
+                <h4><i class="fas fa-globe"></i> Türkçe (TR)</h4>
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında kişisel verileriniz korunmaktadır. Ödeme işlemleri iyzico altyapısı üzerinden güvenli şekilde yapılır ve kart bilgileri sistemlerimizde saklanmaz.</p>
+            </div>
+            <div class="lang-item tr-en">
+                <h4><i class="fas fa-globe"></i> English (EN)</h4>
+                <p>Personal data is processed in compliance with Turkish Data Protection Law No. 6698. Payments are securely handled via iyzico, and no credit card information is stored on our systems.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== الفوتر المتطور ===== -->
+<footer>
+    <div style="max-width:1200px; margin:auto;">
+        <div class="flex-container">
+            <div class="social-links">
+                <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/faroukazem/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://wa.me/905550196682" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+
+            
+        <div class="copyright">
+            جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP TRAINING</span>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== السكريبتات ===== -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({duration:800,once:true,offset:100});
+</script>
+
+</body>
+</html>
