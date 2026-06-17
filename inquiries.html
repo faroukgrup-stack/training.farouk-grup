@@ -356,6 +356,66 @@ textarea{
     color:var(--gold);
 }
 
+/* ===== Popup ===== */
+.popup-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content {
+    background: linear-gradient(145deg, var(--dark), var(--dark-light));
+    color: white;
+    padding: 2rem;
+    border-radius: 2rem;
+    text-align: center;
+    max-width: 400px;
+    border: 2px solid var(--gold);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    animation: popupFadeIn 0.3s ease;
+}
+.popup-content i {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+.popup-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--gold-light);
+}
+.popup-content p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+.popup-content button {
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid var(--gold-light);
+}
+.popup-content button:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+}
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
 /* ===== الفوتر المتطور (كما في الصفحة الرئيسية) ===== */
 footer{
     background:linear-gradient(145deg, #f5ebd2, #fcf5e6);
@@ -595,24 +655,24 @@ hr{
         </div>
 
         <!-- الجانب الأيسر: النموذج -->
-        <div class="form-container">
+        <div class="form-container" id="formContainer">
             <h2><i class="fas fa-pen-alt"></i> نموذج الاستفسار</h2>
-            <form onsubmit="sendToWhatsApp(); return false;">
+            <form id="consultForm">
                 <div class="form-group">
                     <label><i class="fas fa-user"></i> الاسم الكامل</label>
-                    <input type="text" id="name" placeholder="أدخل اسمك" required>
+                    <input type="text" name="name" placeholder="أدخل اسمك" required>
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-envelope"></i> البريد الإلكتروني</label>
-                    <input type="email" id="email" placeholder="example@domain.com" required>
+                    <input type="email" name="email" placeholder="example@domain.com" required>
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-phone"></i> رقم الهاتف</label>
-                    <input type="tel" id="phone" placeholder="+90 555 000 0000" required>
+                    <input type="tel" name="phone" placeholder="+90 555 000 0000" required>
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-tasks"></i> الدورة المراد الاستفسار عنها</label>
-                    <select id="course" required>
+                    <select name="course" required>
                         <option value="" disabled selected>-- اختر الدورة --</option>
                         <option value="دورة إدارة المطاعم والقراءات المالية باحترافية">دورة إدارة المطاعم والقراءات المالية باحترافية</option>
                         <option value="دورة الماليات لغير الماليين">دورة الماليات لغير الماليين</option>
@@ -622,16 +682,26 @@ hr{
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-comment"></i> تفاصيل الاستفسار</label>
-                    <textarea id="message" placeholder="اكتب استفسارك بالتفصيل..."></textarea>
+                    <textarea name="message" placeholder="اكتب استفسارك بالتفصيل..."></textarea>
                 </div>
-                <button type="submit" class="btn-submit">
-                    <i class="fab fa-whatsapp"></i> إرسال عبر واتساب
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i> إرسال الطلب
                 </button>
             </form>
             <div class="privacy-note">
                 <i class="fas fa-lock"></i> معلوماتك آمنة ولن تُستخدم لأغراض تسويقية.
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Popup -->
+<div id="popupMessage" class="popup-message">
+    <div class="popup-content">
+        <i class="fas fa-check-circle"></i>
+        <h3>شكراً لك!</h3>
+        <p>تم إرسال طلبك بنجاح. سنتواصل معك خلال 24 ساعة.</p>
+        <button onclick="closePopup()">حسناً</button>
     </div>
 </div>
 
@@ -684,32 +754,49 @@ hr{
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({duration:800,once:true,offset:100});</script>
 
-<!-- سكريبت إرسال واتساب -->
 <script>
-function sendToWhatsApp() {
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const course = document.getElementById("course").value;
-    const message = document.getElementById("message").value.trim();
+// ===== Google Apps Script URL (نفس الرابط المستخدم في صفحة الاستشارات) =====
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMg0e8XKzZUko4poRLsRSBTgk-s1ekeaWWqJIYDbXD7om6gAP4wKax8ow-W4B7hSgpJQ/exec";
 
-    if (!name || !email || !phone || !course) {
-        alert("يرجى ملء جميع الحقول المطلوبة");
-        return;
+const form = document.getElementById('consultForm');
+const submitBtn = document.getElementById('submitBtn');
+const formContainer = document.getElementById('formContainer');
+const popup = document.getElementById('popupMessage');
+
+async function submitForm(event) {
+    event.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> جاري الإرسال...';
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',  // ضروري لتجنب مشاكل CORS
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+        // بما أننا نستخدم no-cors، لا يمكن قراءة الرد، لكن نعتبر الإرسال ناجحاً
+        formContainer.style.display = 'none';
+        popup.style.display = 'flex';
+        form.reset();
+    } catch (error) {
+        console.error('Error:', error);
+        alert('حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى.');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> إرسال الطلب';
     }
-
-    const text = 
-`مرحباً، أرغب بالاستفسار عن دورة تدريبية:
-*الدورة:* ${course}
-*الاسم:* ${name}
-*البريد الإلكتروني:* ${email}
-*رقم الهاتف:* ${phone}
-*الاستفسار:* ${message || "(لم يضف تفاصيل)"}`;
-
-    const encodedText = encodeURIComponent(text);
-    const whatsappNumber = "905550196682";
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedText}`, "_blank");
 }
+
+function closePopup() {
+    popup.style.display = 'none';
+    formContainer.style.display = 'block';
+}
+
+form.addEventListener('submit', submitForm);
 </script>
 
 </body>
