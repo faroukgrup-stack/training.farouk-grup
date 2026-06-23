@@ -58,36 +58,43 @@
         <a href="https://training.farouk-grup.com" class="back-link">العودة للموقع الرئيسي</a>
     </div>
 
-    <script>
-        // استخراج الكود من الرابط ?code=XXXX
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get('code');
+<script>
+  const API_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // نفس الرابط
 
-        // قائمة الأكواد الصحيحة (قم بتحديثها حسب الشهادات التي تصدرها)
-        const validCodes = [
-            'PS-RM-2026-123',
-            'PS-RM-2026-345',
-            'PS-RM-2026-678'
-            // أضف هنا الأكواد التي تولدها
-        ];
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  const resultDiv = document.getElementById('result');
 
-        const resultDiv = document.getElementById('result');
+  async function verifyCode() {
+    if (!code) {
+      resultDiv.innerHTML = `<p class="error">❌ لم يتم توفير كود الشهادة</p>`;
+      return;
+    }
 
-        if (!code) {
-            resultDiv.innerHTML = `<p class="error">❌ لم يتم توفير كود الشهادة</p>`;
-        } else if (validCodes.includes(code)) {
-            resultDiv.innerHTML = `
-                <p class="success">✅ الشهادة صحيحة وسارية</p>
-                <p>كود الشهادة: <span class="code">${code}</span></p>
-                <p style="color:#555;">صادرة عن FAROUK GRUP Training – معتمدة.</p>
-            `;
-        } else {
-            resultDiv.innerHTML = `
-                <p class="error">❌ هذا الكود غير معروف أو الشهادة غير صالحة</p>
-                <p>كود الشهادة: <span class="code">${code}</span></p>
-                <p style="color:#555;">يرجى التأكد من الكود أو التواصل مع الدعم.</p>
-            `;
-        }
-    </script>
+    try {
+      const response = await fetch(API_URL + '?code=' + encodeURIComponent(code));
+      const data = await response.json();
+
+      if (data.status === 'valid') {
+        resultDiv.innerHTML = `
+          <p class="success">✅ الشهادة صحيحة وسارية</p>
+          <p>كود الشهادة: <span class="code">${code}</span></p>
+          <p style="color:#555;">صادرة عن FAROUK GRUP Training – معتمدة.</p>
+        `;
+      } else {
+        resultDiv.innerHTML = `
+          <p class="error">❌ هذا الكود غير معروف أو الشهادة غير صالحة</p>
+          <p>كود الشهادة: <span class="code">${code}</span></p>
+          <p style="color:#555;">يرجى التأكد من الكود أو التواصل مع الدعم.</p>
+        `;
+      }
+    } catch (error) {
+      resultDiv.innerHTML = `<p class="error">⚠️ حدث خطأ في الاتصال بقاعدة البيانات. حاول لاحقًا.</p>`;
+      console.error(error);
+    }
+  }
+
+  verifyCode();
+</script>
 </body>
 </html>
