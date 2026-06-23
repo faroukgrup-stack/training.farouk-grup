@@ -4,97 +4,492 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>التحقق من الشهادة | FAROUK GRUP Training</title>
+    <meta name="description" content="تحقق من صحة شهادتك التدريبية الصادرة عن FAROUK GRUP بسهولة وأمان.">
+    <meta name="robots" content="noindex, follow">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        :root {
+            --gold: #b8860b;
+            --gold-light: #d4b15a;
+            --gold-soft: rgba(184, 134, 11, 0.08);
+            --dark: #0f0f0f;
+            --dark-light: #1a1a1a;
+            --grey: #333;
+            --light: #f5f5f5;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #f4f4f4;
+            font-family: 'Tajawal', sans-serif;
+            background: radial-gradient(circle at 70% 30%, #1a1f2b, #0a0d14);
+            color: #f0f4fa;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
+            justify-content: center;
+            min-height: 100vh;
             margin: 0;
+            overflow-x: hidden;
+            position: relative;
         }
-        .result-box {
-            background: white;
-            border-radius: 12px;
-            padding: 40px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+
+        /* خلفية زخرفية */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -120px;
+            right: -120px;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(184, 134, 11, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatGlow 8s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 177, 90, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatGlow 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatGlow {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -25px) scale(1.08); }
+            66% { transform: translate(-20px, 20px) scale(0.94); }
+        }
+
+        /* شريط علوي مصغر */
+        .mini-nav {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mini-nav .logo-sm {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-family: 'Alexandria', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            background: rgba(18, 24, 36, 0.75);
+            backdrop-filter: blur(12px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(184, 134, 11, 0.25);
+            transition: all 0.35s ease;
+        }
+
+        .mini-nav .logo-sm img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .mini-nav .logo-sm:hover {
+            background: rgba(184, 134, 11, 0.2);
+            border-color: var(--gold);
+            color: #fff;
+            box-shadow: 0 4px 18px rgba(184, 134, 11, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* الحاوية الرئيسية */
+        .verify-container {
             text-align: center;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
+            padding: 3rem 2.5rem;
+            background: rgba(15, 20, 30, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(184, 134, 11, 0.22);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(184, 134, 11, 0.08) inset;
+            position: relative;
+            z-index: 2;
+            transition: all 0.4s ease;
         }
-        .logo {
-            width: 180px;
-            margin-bottom: 20px;
+
+        .verify-container:hover {
+            border-color: rgba(184, 134, 11, 0.45);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(184, 134, 11, 0.06), 0 0 0 1px rgba(184, 134, 11, 0.12) inset;
         }
-        .success { color: #2e7d32; font-size: 24px; margin: 15px 0; }
-        .error { color: #b22222; font-size: 24px; margin: 15px 0; }
-        .code {
-            background: #f0f0f0;
-            padding: 10px 15px;
-            border-radius: 6px;
+
+        .verify-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            right: 30px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+            border-radius: 0 0 3px 3px;
+            opacity: 0.8;
+        }
+
+        /* أيقونة */
+        .icon-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1.2rem;
+            background: rgba(184, 134, 11, 0.1);
+            border: 2px solid rgba(184, 134, 11, 0.35);
+            border-radius: 50%;
+            position: relative;
+            animation: pulseIcon 2.5s ease-in-out infinite;
+        }
+
+        .icon-wrapper i {
+            font-size: 2.6rem;
+            color: var(--gold-light);
+            z-index: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-wrapper:hover i { transform: scale(1.15) rotate(-5deg); }
+
+        @keyframes pulseIcon {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.25); }
+            50% { box-shadow: 0 0 0 20px rgba(184, 134, 11, 0); }
+        }
+
+        /* دوار التحميل */
+        .spinner {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(184, 134, 11, 0.2);
+            border-top-color: var(--gold-light);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 1.5rem auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.3rem;
+            color: #fff;
+            margin: 1rem 0;
+        }
+
+        /* العنوان */
+        .verify-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .verify-subtitle {
+            font-size: 1.1rem;
+            color: #bcc4d0;
+            margin-bottom: 2rem;
+        }
+
+        /* حقل الإدخال */
+        .input-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .input-group input {
+            padding: 12px 20px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(184, 134, 11, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+            outline: none;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .input-group input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.35s ease;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            white-space: nowrap;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #111;
+            box-shadow: 0 6px 20px rgba(184, 134, 11, 0.45);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #111, #1f1f1f);
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(184, 134, 11, 0.6);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid rgba(184, 134, 11, 0.4);
+            color: var(--gold-light);
+        }
+
+        .btn-outline:hover {
+            background: rgba(184, 134, 11, 0.12);
+            border-color: var(--gold);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px rgba(184, 134, 11, 0.25);
+        }
+
+        /* نتيجة */
+        .result-box {
+            margin: 1.5rem 0;
+        }
+
+        .result-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .result-code {
+            background: rgba(184, 134, 11, 0.15);
+            padding: 10px 20px;
+            border-radius: 8px;
             font-family: monospace;
-            margin: 10px 0;
             direction: ltr;
             display: inline-block;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+            margin: 0.5rem 0;
         }
-        .back-link {
-            margin-top: 20px;
-            display: inline-block;
-            color: #b8860b;
-            text-decoration: none;
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 1.5rem auto;
+            border-radius: 2px;
+        }
+
+        /* الفوتر المصغر */
+        .mini-footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #667080;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .mini-footer span { color: var(--gold); font-weight: 700; }
+
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .verify-container { padding: 2.2rem 1.4rem; border-radius: 24px; }
+            .verify-title { font-size: 1.6rem; }
+            .icon-wrapper { width: 70px; height: 70px; }
+            .icon-wrapper i { font-size: 2rem; }
+            .spinner { width: 40px; height: 40px; }
+            .btn { padding: 10px 20px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
-    <div class="result-box">
-        <!-- الشعار (يمكنك تغيير المسار إذا كان لديك شعار مرفوع على السيرفر) -->
-        <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" 
-             alt="Farouk Grup Logo" class="logo"
-             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%2260%22%3E%3Crect width=%22180%22 height=%2260%22 fill=%22%23f0e6d2%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-size=%2222%22 fill=%22%23b8860b%22%3EFAROUK GRUP%3C/text%3E%3C/svg%3E'">
 
-        <h2>التحقق من شهادة التدريب</h2>
-        <div id="result"></div>
-        <a href="https://training.farouk-grup.com" class="back-link">العودة للموقع الرئيسي</a>
+    <!-- شريط علوي مع اللوجو -->
+    <div class="mini-nav" data-aos="fade-down" data-aos-duration="700">
+        <a href="https://training.farouk-grup.com" class="logo-sm">
+            <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP LOGO">
+            <span>FAROUK GRUP</span>
+        </a>
     </div>
 
-<script>
-  const API_URL = 'https://script.google.com/macros/s/AKfycbz6pRT2w2UdosAKxStiUY8eCBXKTKtJdZVr8z1BKLNDG5ApuHm2KOFuhXe5DHNOAk8H/exec'; // نفس الرابط
+    <!-- حاوية التحقق -->
+    <div class="verify-container" data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="150" id="mainContainer">
+        <!-- المحتوى الديناميكي سيظهر هنا عبر JavaScript -->
+    </div>
 
-  const params = new URLSearchParams(window.location.search);
-  const code = params.get('code');
-  const resultDiv = document.getElementById('result');
+    <!-- فوتير مصغر -->
+    <div class="mini-footer">
+        جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP</span> — إسطنبول، تركيا
+    </div>
 
-  async function verifyCode() {
-    if (!code) {
-      resultDiv.innerHTML = `<p class="error">❌ لم يتم توفير كود الشهادة</p>`;
-      return;
-    }
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 700, once: true, offset: 50 });
 
-    try {
-      const response = await fetch(API_URL + '?code=' + encodeURIComponent(code));
-      const data = await response.json();
+        const API_URL = 'https://script.google.com/macros/s/AKfycbz6pRT2w2UdosAKxStiUY8eCBXKTKtJdZVr8z1BKLNDG5ApuHm2KOFuhXe5DHNOAk8H/exec';
+        const params = new URLSearchParams(window.location.search);
+        const codeFromUrl = params.get('code');
 
-      if (data.status === 'valid') {
-        resultDiv.innerHTML = `
-          <p class="success">✅ الشهادة صحيحة وسارية</p>
-          <p>كود الشهادة: <span class="code">${code}</span></p>
-          <p style="color:#555;">صادرة عن FAROUK GRUP Training – معتمدة.</p>
-        `;
-      } else {
-        resultDiv.innerHTML = `
-          <p class="error">❌ هذا الكود غير معروف أو الشهادة غير صالحة</p>
-          <p>كود الشهادة: <span class="code">${code}</span></p>
-          <p style="color:#555;">يرجى التأكد من الكود أو التواصل مع الدعم.</p>
-        `;
-      }
-    } catch (error) {
-      resultDiv.innerHTML = `<p class="error">⚠️ حدث خطأ في الاتصال بقاعدة البيانات. حاول لاحقًا.</p>`;
-      console.error(error);
-    }
-  }
+        const mainContainer = document.getElementById('mainContainer');
 
-  verifyCode();
-</script>
+        // عرض واجهة البداية (إما تحقق تلقائي أو إدخال يدوي)
+        function showInitialUI() {
+            if (codeFromUrl) {
+                // يوجد كود في الرابط -> بدء التحقق مباشرة
+                showLoading();
+                verifyCode(codeFromUrl);
+            } else {
+                // لا يوجد كود -> عرض نموذج الإدخال اليدوي
+                mainContainer.innerHTML = `
+                    <div class="icon-wrapper">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h1 class="verify-title">التحقق من الشهادة</h1>
+                    <p class="verify-subtitle">أدخل كود الشهادة للتحقق من صحتها</p>
+                    <div class="input-group">
+                        <input type="text" id="manualCode" placeholder="PS-RM-2026-XXX" dir="ltr">
+                        <button class="btn btn-primary" onclick="startManualVerification()">
+                            <i class="fas fa-search"></i> تحقق
+                        </button>
+                    </div>
+                    <div class="divider"></div>
+                    <a href="https://training.farouk-grup.com" class="btn btn-outline">
+                        <i class="fas fa-home"></i> العودة للموقع
+                    </a>
+                `;
+            }
+        }
+
+        function startManualVerification() {
+            const manualCode = document.getElementById('manualCode').value.trim();
+            if (!manualCode) {
+                alert('يرجى إدخال كود الشهادة');
+                return;
+            }
+            showLoading();
+            verifyCode(manualCode);
+        }
+
+        function showLoading() {
+            mainContainer.innerHTML = `
+                <div class="icon-wrapper">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <div class="spinner"></div>
+                <p class="loading-text">يتم التحقق من الشهادة...</p>
+                <p style="color:#8895a7; font-size:0.9rem;">يرجى الانتظار لحظة</p>
+            `;
+        }
+
+        async function verifyCode(code) {
+            try {
+                const response = await fetch(API_URL + '?code=' + encodeURIComponent(code));
+                const data = await response.json();
+
+                if (data.status === 'valid') {
+                    showResult('success', code);
+                } else {
+                    showResult('error', code);
+                }
+            } catch (error) {
+                showResult('network_error');
+                console.error(error);
+            }
+        }
+
+        function showResult(status, code = '') {
+            let html = '';
+            if (status === 'success') {
+                html = `
+                    <div class="icon-wrapper" style="border-color: #2e7d32;">
+                        <i class="fas fa-check-circle" style="color: #2e7d32;"></i>
+                    </div>
+                    <h1 class="verify-title" style="color: #2e7d32;">✅ الشهادة صحيحة وسارية</h1>
+                    <p style="color:#bcc4d0; margin-bottom:1rem;">تم التحقق بنجاح من هذه الشهادة</p>
+                    <div class="result-code">${code}</div>
+                    <p style="color:#8895a7; margin-top:0.8rem;">صادرة عن FAROUK GRUP Training – معتمدة.</p>
+                `;
+            } else if (status === 'error') {
+                html = `
+                    <div class="icon-wrapper" style="border-color: #b22222;">
+                        <i class="fas fa-times-circle" style="color: #b22222;"></i>
+                    </div>
+                    <h1 class="verify-title" style="color: #b22222;">❌ الشهادة غير صالحة</h1>
+                    <p style="color:#bcc4d0; margin-bottom:1rem;">لم نتمكن من العثور على هذا الكود في سجلاتنا</p>
+                    <div class="result-code" style="background: rgba(178,34,34,0.2);">${code}</div>
+                    <p style="color:#8895a7; margin-top:0.8rem;">يرجى التأكد من الكود أو التواصل مع الدعم.</p>
+                `;
+            } else {
+                html = `
+                    <div class="icon-wrapper" style="border-color: #d4b15a;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--gold-light);"></i>
+                    </div>
+                    <h1 class="verify-title" style="color: var(--gold-light);">⚠️ خطأ في الاتصال</h1>
+                    <p style="color:#bcc4d0; margin-bottom:1rem;">تعذر الوصول إلى قاعدة البيانات، حاول مرة أخرى لاحقاً.</p>
+                `;
+            }
+
+            html += `
+                <div class="divider"></div>
+                <button class="btn btn-outline" onclick="location.reload()">
+                    <i class="fas fa-redo-alt"></i> تحقق من كود آخر
+                </button>
+                <a href="https://training.farouk-grup.com" class="btn btn-primary" style="margin-right: 10px;">
+                    <i class="fas fa-home"></i> الموقع الرئيسي
+                </a>
+            `;
+
+            mainContainer.innerHTML = html;
+        }
+
+        // بدء الواجهة
+        showInitialUI();
+    </script>
 </body>
 </html>
