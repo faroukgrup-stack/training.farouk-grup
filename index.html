@@ -274,6 +274,24 @@ body{
     border:1px solid var(--gold-light);
 }
 #countdown{font-size:22px;color:#c06040;margin-top:8px;}
+.started-box{
+    background:linear-gradient(135deg, #e6f7e6, #d4f0d4);
+    border-radius:15px;
+    padding:18px;
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+    font-size:1.1rem;
+    color:#2d7a2d;
+    box-shadow:0 6px 20px rgba(45,122,45,0.15);
+    border:1px solid #5cb85c;
+    animation: gentleGlow 2s infinite;
+}
+@keyframes gentleGlow {
+    0% { box-shadow: 0 6px 15px rgba(45,122,45,0.15); }
+    50% { box-shadow: 0 10px 25px rgba(45,122,45,0.3); }
+    100% { box-shadow: 0 6px 15px rgba(45,122,45,0.15); }
+}
 .soon{color:#c06040; font-weight:bold; font-size:20px; margin-left:8px; animation:blink 1s infinite;}
 @keyframes blink{0%{opacity:1;}50%{opacity:0.3;}100%{opacity:1;}}
 
@@ -647,7 +665,7 @@ hr{
 </section>
 
 <section class="courses">
-    <!-- بطاقة الدورة الأولى (إدارة المطاعم) -->
+    <!-- بطاقة الدورة الأولى (إدارة المطاعم) - تم تغييرها إلى "بدأ التسجيل" -->
     <div class="course" data-aos="zoom-in">
         <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
              alt="دورة إدارة المطاعم" class="course-image">
@@ -658,17 +676,20 @@ hr{
             </a>
         </h3>
         <p>إعداد مدراء مطاعم وأصحاب المشاريع الغذائية الذين سيفهمون الإدارة التشغيلية والمالية بعمق، بحيث يديرون العمل بالأرقام لا بالعشوائية</p>
-        <div class="countdown-box">
-            ⏳ يبدأ التسجيل في:
-            <div id="countdown"></div>
+        <div class="started-box">
+            📢 بدأ التسجيل!
         </div>
     </div>
-    <!-- بطاقة الدورة الثانية (الماليات) -->
+    <!-- بطاقة الدورة الثانية (الماليات) - تم نقل المؤقت إليها -->
     <div class="course" data-aos="zoom-in" data-aos-delay="100">
         <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
              alt="دورة الماليات" class="course-image">
         <h3><span class="soon">قريبًا</span> دورة الماليات لغير الماليين</h3>
         <p>تمكين أي شخص يتخذ قرارات مالية أو يحتاج لفهم التقارير دون أن تكون وظيفته الأساسية هي المالية أو المحاسبة</p>
+        <div class="countdown-box">
+            ⏳ يبدأ التسجيل في:
+            <div id="countdown"></div>
+        </div>
     </div>
     <!-- بطاقة الدورة الثالثة (الموارد البشرية) -->
     <div class="course" data-aos="zoom-in" data-aos-delay="200">
@@ -889,10 +910,10 @@ hr{
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({duration:800,once:true,offset:100});</script>
 
-<!-- سكريبت العدّاد (للوقت) -->
+<!-- سكريبت العدّاد (للوقت) - الآن تحت دورة الماليات -->
 <script>
 function updateCountdown() {
-  const targetDate = new Date("2026-08-01T00:00:00").getTime();
+  const targetDate = new Date("2026-11-01T00:00:00").getTime();
   const now = new Date().getTime();
   const distance = targetDate - now;
   if(distance<=0){ document.getElementById("countdown").innerHTML="📢 بدأ التسجيل!"; return; }
