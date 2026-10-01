@@ -134,7 +134,7 @@ body {
 }
 
 /* ============================================================
-   HEADER & NAVIGATION (مع هامبرغر)
+   HEADER & NAVIGATION
    ============================================================ */
 .top-bar {
     background: var(--primary-dark);
@@ -488,58 +488,152 @@ body {
     font-weight: 600;
 }
 .card-body p { color: var(--text-muted); font-size: 0.95rem; flex: 1; margin-bottom: 16px; }
+
 .card-status {
     display: flex;
     align-items: center;
     gap: 12px;
-}
-.status-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    padding: 8px 20px;
-    border-radius: 50px;
-}
-.status-badge.open {
-    background: #E6F7E6;
-    color: #1A7A3A;
-    border: 1px solid #A8D5A8;
-    animation: pulse-green 2s infinite;
-}
-@keyframes pulse-green {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(26,122,58,0.15); }
-    50% { box-shadow: 0 0 0 8px rgba(26,122,58,0); }
+    margin-top: auto;
+    padding-top: 8px;
 }
 
 /* ============================================================
-   COUNTDOWN BOX (دورة الماليات)
+   STATUS BADGE — شارة "بدأ التسجيل" الأنيقة
+   ============================================================ */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 10px 22px;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.2px;
+    transition: var(--transition);
+}
+.status-badge.open {
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    border: 1px solid var(--accent);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.35);
+}
+.status-badge.open::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    inset-inline-start: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.35) 50%,
+        transparent 100%);
+    animation: shine-sweep 3s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+    0%   { inset-inline-start: -100%; }
+    60%  { inset-inline-start: 130%; }
+    100% { inset-inline-start: 130%; }
+}
+.status-badge.open .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    animation: dot-pulse 1.8s infinite;
+    flex-shrink: 0;
+}
+@keyframes dot-pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+    70%  { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+}
+.status-badge.open:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(212, 175, 55, 0.5);
+}
+
+/* ============================================================
+   COUNTDOWN BOX (دورة الماليات) - نسخة مطوّرة بأربع وحدات
    ============================================================ */
 .countdown-box {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.10), rgba(212, 175, 55, 0.22));
     border: 1px solid rgba(212, 175, 55, 0.35);
     border-radius: var(--radius-sm);
-    padding: 16px 18px;
+    padding: 18px 16px;
     text-align: center;
-    color: var(--accent-dark);
-    font-weight: 700;
-    font-size: 0.95rem;
     animation: cd-glow 2.5s infinite;
 }
 @keyframes cd-glow {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.0); }
-    50% { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.10); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    50%      { box-shadow: 0 0 0 8px rgba(212, 175, 55, 0.10); }
 }
-.countdown-box .cd-label { display: block; margin-bottom: 4px; }
-.countdown-box #countdown {
+
+.countdown-box .cd-label {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--accent-dark);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: var(--primary);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 12px;
+    padding: 12px 4px;
+    box-shadow: 0 6px 18px rgba(28, 27, 51, 0.18);
+    transition: var(--transition);
+}
+.countdown-unit:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 24px rgba(28, 27, 51, 0.25);
+}
+
+.countdown-value {
     font-family: 'Alexandria', sans-serif;
-    font-size: 1.05rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+}
+
+.countdown-unit-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.countdown-box.closed {
+    animation: none;
+    background: linear-gradient(135deg, rgba(26, 122, 58, 0.10), rgba(26, 122, 58, 0.20));
+    border-color: rgba(26, 122, 58, 0.35);
+}
+.countdown-box.closed .cd-label { color: #1A7A3A; }
+.countdown-box .countdown-message {
+    font-family: 'Alexandria', sans-serif;
+    font-size: 1.1rem;
     font-weight: 800;
-    color: var(--primary);
-    line-height: 1.6;
-    letter-spacing: 0.3px;
-    margin-top: 6px;
+    color: #1A7A3A;
 }
 
 /* ============================================================
@@ -809,7 +903,13 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
     .course-card .card-img { height: 160px; }
     .logo h1 { font-size: 1rem; }
     .logo img { height: 36px; }
-    .countdown-box #countdown { font-size: 0.95rem; }
+
+    .countdown-value { font-size: 1.25rem; }
+    .countdown-unit-label { font-size: 0.65rem; }
+    .countdown-unit { padding: 10px 2px; border-radius: 10px; }
+    .countdown-grid { gap: 6px; }
+
+    .status-badge { font-size: 0.78rem; padding: 9px 18px; }
 }
 </style>
 </head>
@@ -950,7 +1050,10 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
                     <h3><a href="Restaurant-Course.html">دورة إدارة المطاعم والقراءات المالية <span class="soon">(الثانية)</span></a></h3>
                     <p>إعداد مدراء مطاعم وأصحاب المشاريع الغذائية لفهم الإدارة التشغيلية والمالية بعمق.</p>
                     <div class="card-status">
-                        <span class="status-badge open"><i class="fas fa-check-circle"></i> بدأ التسجيل</span>
+                        <span class="status-badge open">
+                            <span class="dot" aria-hidden="true"></span>
+                            بدأ التسجيل
+                        </span>
                     </div>
                 </div>
             </div>
@@ -964,9 +1067,26 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
                 <div class="card-body">
                     <h3><a href="Finance-Course.html">دورة الماليات لغير الماليين <span class="soon">(الأولى)</span></a></h3>
                     <p>تمكين أي شخص يتخذ قرارات مالية أو يحتاج لفهم التقارير دون أن تكون وظيفته المحاسبة.</p>
-                    <div class="countdown-box">
-                        <span class="cd-label">⏳ يبدأ التسجيل في:</span>
-                        <div id="countdown">—</div>
+                    <div class="countdown-box" id="countdownBox">
+                        <span class="cd-label">⏳ يبدأ التسجيل في</span>
+                        <div class="countdown-grid" id="countdownGrid" role="timer" aria-label="الوقت المتبقي لبدء التسجيل">
+                            <div class="countdown-unit">
+                                <span class="countdown-value" dir="ltr" data-days>00</span>
+                                <span class="countdown-unit-label">يوم</span>
+                            </div>
+                            <div class="countdown-unit">
+                                <span class="countdown-value" dir="ltr" data-hours>00</span>
+                                <span class="countdown-unit-label">ساعة</span>
+                            </div>
+                            <div class="countdown-unit">
+                                <span class="countdown-value" dir="ltr" data-minutes>00</span>
+                                <span class="countdown-unit-label">دقيقة</span>
+                            </div>
+                            <div class="countdown-unit">
+                                <span class="countdown-value" dir="ltr" data-seconds>00</span>
+                                <span class="countdown-unit-label">ثانية</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1166,24 +1286,44 @@ document.querySelectorAll('.mobile-menu a').forEach(link => {
 
 // ===== Countdown for Finance Course =====
 (function() {
-    const el = document.getElementById('countdown');
-    if (!el) return;
+    const box  = document.getElementById('countdownBox');
+    const grid = document.getElementById('countdownGrid');
+    if (!box || !grid) return;
+
+    // ⏰ موعد فتح التسجيل
     const targetDate = new Date("2026-11-01T00:00:00").getTime();
 
+    const daysEl    = grid.querySelector('[data-days]');
+    const hoursEl   = grid.querySelector('[data-hours]');
+    const minutesEl = grid.querySelector('[data-minutes]');
+    const secondsEl = grid.querySelector('[data-seconds]');
+
+    const pad = (n) => String(n).padStart(2, '0');
+
     function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+        const distance = targetDate - Date.now();
+
         if (distance <= 0) {
-            el.innerHTML = "📢 بدأ التسجيل!";
+            box.classList.add('closed');
+            box.innerHTML =
+                '<span class="cd-label">📢</span>' +
+                '<div class="countdown-message">بدأ التسجيل الآن!</div>';
+            clearInterval(timer);
             return;
         }
+
         const days    = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        el.innerHTML = `${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+
+        daysEl.textContent    = pad(days);
+        hoursEl.textContent   = pad(hours);
+        minutesEl.textContent = pad(minutes);
+        secondsEl.textContent = pad(seconds);
     }
-    setInterval(updateCountdown, 1000);
+
+    const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 })();
 
