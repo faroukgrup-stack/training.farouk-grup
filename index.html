@@ -91,38 +91,15 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "هل الدورات مباشرة أم مسجلة؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "دوراتنا مباشرة عبر Zoom مع تسجيل كامل متاح مدى الحياة لكل متدرب مسجل، فيمكنك حضور الجلسات ومشاهدة التسجيلات في أي وقت."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "هل أحتاج خبرة سابقة للحضور؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "لا. دوراتنا مصممة لتناسب المبتدئين والمتقدمين. لكل مستوى تمارين مخصصة وأمثلة على مستواه."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "كيف أحصل على الشهادة؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "بعد إتمام كافة المحاضرات وتجاوز الاختبار النهائي، يمكنك تصدير شهادتك بصيغة PDF وطباعتها مباشرة من حسابك."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "هل توجد خصومات للمجموعات؟",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "نعم، خصومات خاصة للمجموعات من 3 أشخاص وأكثر، وللشركات الراغبة في تدريب فرقها. تواصل معنا عبر واتساب للتفاصيل."
-      }
-    }
+    {"@type":"Question","name":"هل الدورات مباشرة أم مسجلة؟","acceptedAnswer":{"@type":"Answer","text":"دوراتنا مباشرة عبر Zoom مع تسجيل كامل متاح مدى الحياة لكل متدرب مسجل."}},
+    {"@type":"Question","name":"هل أحتاج خبرة سابقة للحضور؟","acceptedAnswer":{"@type":"Answer","text":"لا. دوراتنا مصممة لتناسب المبتدئين والمتقدمين."}},
+    {"@type":"Question","name":"هل الدورة بالعربية فقط؟","acceptedAnswer":{"@type":"Answer","text":"نعم، جميع الدورات تُقدَّم باللغة العربية. الشهادة تُصدر بنسختين عربية وإنجليزية."}},
+    {"@type":"Question","name":"ماذا لو فاتتني جلسة؟","acceptedAnswer":{"@type":"Answer","text":"جميع الجلسات مسجّلة ويمكنك مشاهدتها في أي وقت. تحصل على وصول كامل للتسجيلات لمدة سنة من تاريخ التسجيل."}},
+    {"@type":"Question","name":"كيف أحصل على الشهادة؟","acceptedAnswer":{"@type":"Answer","text":"بعد إتمام المحاضرات وتجاوز الاختبار النهائي، يمكنك تصدير الشهادة بصيغة PDF من حسابك."}},
+    {"@type":"Question","name":"هل هناك اختبار نهائي؟","acceptedAnswer":{"@type":"Answer","text":"نعم، يوجد اختبار نهائي للحصول على الشهادة. الاختبار يغطي محتوى الدورة، ويجب اجتيازه لاستلام الشهادة الموثقة."}},
+    {"@type":"Question","name":"ماذا يعني شهادة موثقة؟","acceptedAnswer":{"@type":"Answer","text":"شهادة موثقة تعني أنها مسجّلة في نظام المجموعة برقم خاص لا يتكرر، تحمل اسم المتدرب، ويمكن التحقق منها عبر QR Code أو الرقم الفريد على الموقع الرسمي."}},
+    {"@type":"Question","name":"هل يمكنني الدفع بالتقسيط؟","acceptedAnswer":{"@type":"Answer","text":"حالياً لا يتوفر الدفع بالتقسيط. الدفع يتم دفعة واحدة عبر بوابات الدفع الآمنة."}},
+    {"@type":"Question","name":"هل توجد خصومات للمجموعات؟","acceptedAnswer":{"@type":"Answer","text":"نعم، خصومات خاصة للمجموعات من 3 أشخاص وأكثر، وللشركات. تواصل معنا عبر واتساب للتفاصيل."}}
   ]
 }
 </script>
@@ -1354,56 +1331,283 @@ body {
 .trust-row i { color: var(--accent); }
 
 /* ============================================================
-   FOOTER
+   FOOTER (4-column Premium)
    ============================================================ */
-footer {
+footer{
     background: var(--primary-dark);
-    color: rgba(255,255,255,0.5);
-    padding: 40px 0 24px;
+    color: rgba(255,255,255,.65);
+    padding: 60px 0 0;
+    margin-top: 0;
+    font-family: 'Tajawal', sans-serif;
+    line-height: 1.75;
 }
-footer .container { display: flex; flex-direction: column; gap: 24px; }
-.footer-top {
-    display: flex;
-    justify-content: space-between;
+footer .container{ width: min(1240px, 100% - 40px); margin-inline: auto; }
+
+footer .footer-grid{
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    padding-bottom: 46px;
+}
+
+/* Brand */
+footer .footer-brand{ display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+footer .footer-brand img{ height: 46px; width: auto; filter: drop-shadow(0 4px 10px rgba(212,175,55,.3)); }
+footer .footer-brand strong{ font-family: 'Alexandria', sans-serif; color: #fff; font-size: 1rem; display: block; }
+footer .footer-brand small{ font-size: .72rem; color: rgba(255,255,255,.5); }
+
+/* Headings */
+footer h4{
+    color: #fff;
+    font-size: .98rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+    position: relative;
+    padding-bottom: 10px;
+}
+footer h4::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 34px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* Links */
+footer .footer-links{ list-style: none; padding: 0; margin: 0; }
+footer .footer-links li{ margin-bottom: 11px; font-size: .89rem; }
+footer .footer-links a{
+    display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.footer-top .logo h2 {
-    font-family: 'Alexandria', sans-serif;
-    color: var(--accent);
-    font-size: 1.3rem;
-}
-.footer-top .logo p { font-size: 0.9rem; margin: 0; opacity: 0.6; }
-.footer-social a {
-    color: rgba(255,255,255,0.4);
-    font-size: 1.3rem;
-    margin-right: 16px;
-    transition: 0.3s;
-}
-.footer-social a:hover { color: var(--accent); transform: translateY(-3px); }
-.footer-mid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 16px 0;
-    border-top: 1px solid rgba(255,255,255,0.05);
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.footer-mid a {
-    color: rgba(255,255,255,0.4);
+    gap: 8px;
+    color: rgba(255,255,255,.65);
     text-decoration: none;
-    font-size: 0.85rem;
-    transition: 0.3s;
-    display: inline-block;
+    transition: .22s;
 }
-.footer-mid a:hover { color: var(--accent); }
-.footer-mid .payments { display: flex; gap: 14px; align-items: center; }
-.footer-mid .payments img { height: 20px; width: auto; opacity: 0.5; transition: 0.3s; }
-.footer-mid .payments img:hover { opacity: 1; }
-.copyright { text-align: center; font-size: 0.8rem; opacity: 0.4; }
-.copyright span { color: var(--accent); font-weight: 700; }
+footer .footer-links a:hover{ color: var(--accent); transform: translateX(-4px); }
+footer .footer-links i{ font-size: .66rem; color: var(--accent); }
+
+/* Contact */
+footer .footer-contact{ list-style: none; padding: 0; margin: 0; }
+footer .footer-contact li{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    font-size: .88rem;
+}
+footer .footer-contact i{ color: var(--accent); margin-top: 5px; font-size: .9rem; }
+footer .footer-contact a{ color: rgba(255,255,255,.65); text-decoration: none; transition: .22s; }
+footer .footer-contact a:hover{ color: var(--accent); }
+
+/* Social */
+footer .footer-social{ display: flex; gap: 10px; margin-top: 20px; }
+footer .footer-social a{
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: grid; place-items: center;
+    background: rgba(255,255,255,.07);
+    color: #fff;
+    font-size: .95rem;
+    transition: .25s;
+    border: 1px solid rgba(255,255,255,.08);
+    text-decoration: none;
+}
+footer .footer-social a:hover{
+    background: var(--accent);
+    color: var(--primary-dark);
+    transform: translateY(-4px);
+}
+
+/* Bottom bar */
+footer .footer-bottom{
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: .8rem;
+}
+footer .payment-row{ display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+footer .payment-row img{
+    height: 24px; width: auto;
+    opacity: .9; transition: .2s;
+    background: #fff; border-radius: 5px; padding: 2px 5px;
+}
+footer .payment-row img:hover{ opacity: 1; transform: scale(1.06); }
+
+footer .legal-link{ color: var(--accent); transition: .22s; text-decoration: none; }
+footer .legal-link:hover{ color: #fff; text-decoration: underline; }
+
+/* Button */
+footer .btn-footer{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: #fff;
+    font-weight: 700;
+    font-size: .85rem;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 6px;
+    transition: var(--transition);
+    box-shadow: 0 6px 18px rgba(212,175,55,.3);
+}
+footer .btn-footer:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(212,175,55,.45);
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1100px){
+    footer .footer-grid{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 760px){
+    footer .footer-grid{ grid-template-columns: 1fr; gap: 32px; }
+    footer .footer-bottom{ flex-direction: column; text-align: center; }
+}
+
+/* ============================================================
+   TRUST BAR (تحت الهيرو)
+   ============================================================ */
+.trust-bar{background:var(--white);border-bottom:1px solid #EDEBF0;padding:16px 0}
+.trust-bar .container{display:flex;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap}
+.trust-bar-item{display:flex;align-items:center;gap:8px;font-size:.88rem;font-weight:600;color:var(--text-muted);transition:var(--transition)}
+.trust-bar-item:hover{color:var(--text-dark)}
+.trust-bar-item i{color:var(--accent-dark);font-size:1.1rem}
+
+/* ============================================================
+   LIVE INDICATOR (داخل قسم الإحصائيات)
+   ============================================================ */
+.live-indicator{
+    display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;
+    margin:0 auto 28px;padding:10px 22px;
+    background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);
+    border-radius:50px;width:fit-content;
+    font-size:.85rem;font-weight:600;color:var(--text-dark);
+}
+.live-indicator .live-dot{
+    width:8px;height:8px;background:#22c55e;border-radius:50%;flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:liveDot 1.8s infinite;
+}
+@keyframes liveDot{
+    0%{box-shadow:0 0 0 0 rgba(34,197,94,.7)}
+    70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}
+    100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+}
+.live-indicator .live-label{color:#16a34a;font-weight:800;letter-spacing:.5px}
+.live-indicator .live-sep{color:rgba(0,0,0,.2)}
+.live-indicator strong{color:var(--text-dark);font-family:'Alexandria',sans-serif;font-weight:900}
+
+/* ============================================================
+   COURSE CARD FEATURES (strip داخل البطاقة)
+   ============================================================ */
+.course-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.course-feature{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:.72rem;font-weight:600;color:var(--text-muted);
+    background:var(--bg);padding:4px 10px;border-radius:6px;
+    border:1px solid #EDEBF0;
+}
+.course-feature i{color:var(--accent-dark);font-size:.7rem}
+
+/* ============================================================
+   CERTIFICATE SECTION (قسم الشهادة الموثقة)
+   ============================================================ */
+.certificate-section{
+    padding:80px 0;
+    background:linear-gradient(160deg,#FFFFFF 0%,#F8F6F2 100%);
+    position:relative;overflow:hidden;
+}
+.certificate-section::before{
+    content:'';position:absolute;top:-10%;left:-10%;
+    width:500px;height:500px;
+    background:radial-gradient(circle,rgba(212,175,55,.08) 0%,transparent 70%);
+    border-radius:50%;pointer-events:none;
+}
+.certificate-grid{
+    display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center;
+    position:relative;z-index:1;
+}
+.certificate-visual{position:relative;padding:20px 20px 40px}
+.certificate-frame{
+    position:relative;border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 30px 80px rgba(28,27,51,.18);border:1px solid #EDEBF0;
+    transition:var(--transition);background:#fff;transform:rotate(-1.5deg);
+}
+.certificate-frame img{width:100%;height:auto;display:block}
+.certificate-frame:hover{transform:rotate(0) translateY(-6px);box-shadow:0 40px 100px rgba(28,27,51,.25)}
+.cert-badge{
+    position:absolute;background:#fff;padding:12px 18px;border-radius:14px;
+    box-shadow:0 10px 30px rgba(28,27,51,.15);
+    display:flex;align-items:center;gap:10px;
+    font-weight:700;font-size:.82rem;color:var(--text-dark);
+    z-index:2;border:1px solid #EDEBF0;white-space:nowrap;
+}
+.cert-badge i{color:var(--accent-dark);font-size:1.1rem}
+.cert-badge.badge-top{top:0;right:0;animation:floatY 3s ease-in-out infinite}
+.cert-badge.badge-bottom{bottom:0;left:0;animation:floatY 3s ease-in-out infinite 1.5s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.certificate-content h2{
+    font-family:'Alexandria',sans-serif;font-size:2.2rem;font-weight:900;
+    line-height:1.3;color:var(--text-dark);margin-bottom:16px;
+}
+.certificate-content h2 .highlight{
+    background:linear-gradient(135deg,var(--accent-dark),var(--accent));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.certificate-content > p{
+    color:var(--text-muted);font-size:1.02rem;margin-bottom:28px;
+    max-width:500px;line-height:1.9;
+}
+.cert-features{list-style:none;padding:0;margin:0 0 32px;display:grid;gap:12px}
+.cert-features li{
+    display:flex;align-items:flex-start;gap:14px;padding:14px 18px;
+    background:#fff;border-radius:14px;border:1px solid #EDEBF0;
+    transition:var(--transition);
+}
+.cert-features li:hover{
+    border-color:var(--accent);transform:translateX(-6px);
+    box-shadow:0 8px 20px rgba(28,27,51,.06);
+}
+.cert-features .cert-icon{
+    width:42px;height:42px;border-radius:11px;
+    background:var(--accent-soft);color:var(--accent-dark);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;flex-shrink:0;margin-top:2px;
+}
+.cert-features .cert-text strong{
+    display:block;font-weight:800;font-size:.96rem;color:var(--text-dark);margin-bottom:3px;
+}
+.cert-features .cert-text small{color:var(--text-muted);font-size:.84rem;line-height:1.6;display:block}
+.cert-actions{display:flex;gap:14px;flex-wrap:wrap}
+
+@media (max-width:992px){
+    .certificate-grid{grid-template-columns:1fr;gap:40px}
+    .certificate-content h2{font-size:1.8rem}
+    .certificate-visual{max-width:520px;margin:0 auto}
+    .certificate-content{text-align:center}
+    .certificate-content > p{margin-left:auto;margin-right:auto}
+    .cert-actions{justify-content:center}
+    .cert-features{text-align:right}
+}
+@media (max-width:480px){
+    .cert-badge{font-size:.7rem;padding:8px 12px;gap:6px}
+    .cert-badge i{font-size:.9rem}
+    .cert-badge.badge-top{top:-10px;right:5px}
+    .cert-badge.badge-bottom{bottom:-10px;left:5px}
+    .certificate-visual{padding:15px 10px 30px}
+}
 
 /* ============================================================
    WHATSAPP FLOAT
@@ -1589,14 +1793,34 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
             </div>
         </div>
         <div class="hero-image" data-aos="fade-up" data-aos-delay="150">
-            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800" alt="FAROUK GRUP TRAINING">
+            <img src="https://lh3.googleusercontent.com/d/1AAJjZRu0b_YnEWwU4SPtrVeCzZE1s5HL" alt="FAROUK GRUP TRAINING">
         </div>
     </div>
 </section>
 
+<!-- ===== TRUST BAR ===== -->
+<div class="trust-bar" data-aos="fade-up">
+    <div class="container">
+        <div class="trust-bar-item"><i class="fas fa-certificate"></i> شهادة ثنائية اللغة</div>
+        <div class="trust-bar-item"><i class="fas fa-video"></i> تسجيلات متاحة سنة كاملة</div>
+        <div class="trust-bar-item"><i class="fas fa-shield-alt"></i> دفع آمن 100%</div>
+        <div class="trust-bar-item"><i class="fas fa-star"></i> 4.9/5 تقييم المتدربين</div>
+    </div>
+</div>
+
 <!-- ===== STATS ===== -->
 <section class="stats-section" data-aos="fade-up">
     <div class="container">
+        <div class="live-indicator">
+            <span class="live-dot"></span>
+            <span class="live-label">LIVE</span>
+            <span class="live-sep">•</span>
+            <span><strong>47</strong> سجّلوا هذا الشهر</span>
+            <span class="live-sep">•</span>
+            <span><strong>1,200+</strong> شهادة صادرة</span>
+            <span class="live-sep">•</span>
+            <span><strong>4.9</strong> ⭐ متوسط التقييم</span>
+        </div>
         <div class="stats-grid">
             <div><div class="stat-number" data-target="15">0+</div><div class="stat-label">سنة خبرة</div></div>
             <div><div class="stat-number" data-target="1000">0+</div><div class="stat-label">متدرب</div></div>
@@ -1714,6 +1938,12 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
                 <div class="card-body">
                     <h3><a href="Restaurant-Course.html">دورة إدارة المطاعم والقراءات المالية <span class="soon">(الثانية)</span></a></h3>
                     <p>إعداد مدراء مطاعم وأصحاب المشاريع الغذائية لفهم الإدارة التشغيلية والمالية بعمق.</p>
+                    <div class="course-features">
+                        <span class="course-feature"><i class="fas fa-clock"></i> ساعات تدريبية مسجلة</span>
+                        <span class="course-feature"><i class="fas fa-book-open"></i> 15 محور</span>
+                        <span class="course-feature"><i class="fas fa-certificate"></i> شهادة موثقة</span>
+                        <span class="course-feature"><i class="fas fa-video"></i> تسجيلات كاملة</span>
+                    </div>
                     <div class="card-status">
                         <span class="status-badge open">
                             <span class="dot" aria-hidden="true"></span>
@@ -1732,6 +1962,12 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
                 <div class="card-body">
                     <h3><a href="Finance-Course.html">دورة الماليات لغير الماليين <span class="soon">(الأولى)</span></a></h3>
                     <p>تمكين أي شخص يتخذ قرارات مالية أو يحتاج لفهم التقارير دون أن تكون وظيفته المحاسبة.</p>
+                    <div class="course-features">
+                        <span class="course-feature"><i class="fas fa-clock"></i> ساعات تدريبية مسجلة</span>
+                        <span class="course-feature"><i class="fas fa-book-open"></i> 10 محاور</span>
+                        <span class="course-feature"><i class="fas fa-certificate"></i> شهادة موثقة</span>
+                        <span class="course-feature"><i class="fas fa-video"></i> تسجيلات كاملة</span>
+                    </div>
                     <div class="countdown-box" id="countdownBox">
                         <span class="cd-label">⏳ يبدأ التسجيل في</span>
                         <div class="countdown-grid" id="countdownGrid" role="timer" aria-label="الوقت المتبقي لبدء التسجيل">
@@ -1787,6 +2023,83 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
                     <p class="notify-msg" id="notifyMsg"></p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CERTIFICATE SECTION ===== -->
+<section class="certificate-section" id="certificate">
+    <div class="container">
+        <div class="certificate-grid">
+
+            <!-- الشهادة -->
+            <div class="certificate-visual" data-aos="fade-up">
+                <div class="cert-badge badge-top">
+                    <i class="fas fa-check-circle"></i>
+                    موثقة وقابلة للتحقق
+                </div>
+                <div class="certificate-frame">
+                    <img src="https://lh3.googleusercontent.com/d/1tc4ktTh-YPBStToSIiyjRPdku95ERNs7"
+                         alt="نموذج الشهادة الموثقة — عربي وإنجليزي"
+                         loading="lazy">
+                </div>
+                <div class="cert-badge badge-bottom">
+                    <i class="fas fa-globe"></i>
+                    عربي + إنجليزي
+                </div>
+            </div>
+
+            <!-- المحتوى -->
+            <div class="certificate-content" data-aos="fade-up" data-aos-delay="100">
+                <span class="section-badge">🎓 شهادة موثقة</span>
+                <h2>شهادة موثقة <span class="highlight">بالعربية والإنجليزية</span></h2>
+                <p>
+                    كل متدرب يُكمل الدورة ويجتاز الاختبار النهائي يحصل على شهادة رسمية
+                    مسجّلة في نظام المجموعة، تحمل اسمه ورقم تحقق فريد، ويمكن التحقق
+                    منها في أي وقت عبر QR Code.
+                </p>
+
+                <ul class="cert-features">
+                    <li>
+                        <div class="cert-icon"><i class="fas fa-fingerprint"></i></div>
+                        <div class="cert-text">
+                            <strong>رقم تحقق فريد</strong>
+                            <small>لكل شهادة رقم خاص لا يتكرر، مرتبط باسم المتدرب وسجل الدورة.</small>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cert-icon"><i class="fas fa-qrcode"></i></div>
+                        <div class="cert-text">
+                            <strong>QR Code للتحقق الفوري</strong>
+                            <small>امسح الكود بأي هاتف للتأكد من صحة الشهادة مباشرة من نظامنا.</small>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cert-icon"><i class="fas fa-language"></i></div>
+                        <div class="cert-text">
+                            <strong>نسختان: عربية وإنجليزية</strong>
+                            <small>مناسبة للتقديم على الوظائف داخل تركيا وخارجها.</small>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="cert-icon"><i class="fas fa-user-check"></i></div>
+                        <div class="cert-text">
+                            <strong>مسجّلة في النظام باسم المتدرب</strong>
+                            <small>يمكن لأي جهة التحقق من الشهادة عبر الموقع الرسمي للمجموعة.</small>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="cert-actions">
+                    <a href="verify.html" class="btn-primary">
+                        <i class="fas fa-shield-alt"></i> تحقق من شهادة
+                    </a>
+                    <a href="#courses" class="btn-outline">
+                        <i class="fas fa-arrow-left"></i> استكشف الدورات
+                    </a>
+                </div>
+            </div>
+
         </div>
     </div>
 </section>
@@ -1912,43 +2225,48 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
 
         <div class="faq-list">
             <details class="faq-item" data-aos="fade-up">
-                <summary>
-                    <span>هل الدورات مباشرة أم مسجلة؟</span>
-                    <i class="fas fa-plus"></i>
-                </summary>
-                <div class="faq-answer">
-                    دوراتنا مباشرة عبر Zoom مع تسجيل كامل متاح مدى الحياة لكل متدرب مسجل، فيمكنك حضور الجلسات ومشاهدة التسجيلات في أي وقت.
-                </div>
+                <summary><span>هل الدورات مباشرة أم مسجلة؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">دوراتنا مسجلة بالكامل ومتاحة لمدة سنة لكل متدرب مسجل، فيمكنك حضور الجلسات ومشاهدة التسجيلات في أي وقت.</div>
             </details>
 
             <details class="faq-item" data-aos="fade-up">
-                <summary>
-                    <span>هل أحتاج خبرة سابقة للحضور؟</span>
-                    <i class="fas fa-plus"></i>
-                </summary>
-                <div class="faq-answer">
-                    لا. دوراتنا مصممة لتناسب المبتدئين والمتقدمين. لكل مستوى تمارين مخصصة وأمثلة على مستواه.
-                </div>
+                <summary><span>هل أحتاج خبرة سابقة للحضور؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">لا. دوراتنا مصممة لتناسب المبتدئين والمتقدمين. لكل مستوى تمارين مخصصة وأمثلة على مستواه.</div>
             </details>
 
             <details class="faq-item" data-aos="fade-up">
-                <summary>
-                    <span>كيف أحصل على الشهادة؟</span>
-                    <i class="fas fa-plus"></i>
-                </summary>
-                <div class="faq-answer">
-                    بعد إتمام كافة المحاضرات وتجاوز الاختبار النهائي، يمكنك تصدير شهادتك بصيغة PDF وطباعتها مباشرة من حسابك.
-                </div>
+                <summary><span>هل الدورة بالعربية فقط؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">نعم، جميع الدورات تُقدَّم باللغة العربية. الشهادة تُصدر بنسختين عربية وإنجليزية لتسهيل استخدامها محلياً ودولياً.</div>
             </details>
 
             <details class="faq-item" data-aos="fade-up">
-                <summary>
-                    <span>هل توجد خصومات للمجموعات؟</span>
-                    <i class="fas fa-plus"></i>
-                </summary>
-                <div class="faq-answer">
-                    نعم، خصومات خاصة للمجموعات من 3 أشخاص وأكثر، وللشركات الراغبة في تدريب فرقها. تواصل معنا عبر واتساب للتفاصيل.
-                </div>
+                <summary><span>ماذا لو فاتتني جلسة؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">جميع الجلسات مسجّلة ويمكنك مشاهدتها في أي وقت. تحصل على وصول كامل للتسجيلات لمدة سنة من تاريخ التسجيل.</div>
+            </details>
+
+            <details class="faq-item" data-aos="fade-up">
+                <summary><span>كيف أحصل على الشهادة؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">بعد إتمام كافة المحاضرات وتجاوز الاختبار النهائي، يمكنك تصدير شهادتك بصيغة PDF وطباعتها مباشرة من حسابك.</div>
+            </details>
+
+            <details class="faq-item" data-aos="fade-up">
+                <summary><span>هل هناك اختبار نهائي؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">نعم، يوجد اختبار نهائي للحصول على الشهادة. الاختبار يغطي محتوى الدورة، ويجب اجتيازه لاستلام الشهادة الموثقة.</div>
+            </details>
+
+            <details class="faq-item" data-aos="fade-up">
+                <summary><span>ماذا يعني "شهادة موثقة"؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">"شهادة موثقة" تعني أنها مسجّلة في نظام المجموعة برقم خاص لا يتكرر، تحمل اسم المتدرب، ويمكن لأي جهة التحقق منها عبر QR Code المرفق أو الرقم الفريد على موقعنا الرسمي.</div>
+            </details>
+
+            <details class="faq-item" data-aos="fade-up">
+                <summary><span>هل يمكنني الدفع بالتقسيط؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">حالياً لا يتوفر الدفع بالتقسيط. الدفع يتم دفعة واحدة عبر بوابات الدفع الآمنة. للاستفسار عن طرق دفع أخرى، تواصل معنا عبر واتساب.</div>
+            </details>
+
+            <details class="faq-item" data-aos="fade-up">
+                <summary><span>هل توجد خصومات للمجموعات؟</span><i class="fas fa-plus"></i></summary>
+                <div class="faq-answer">نعم، خصومات خاصة للمجموعات من 3 أشخاص وأكثر، وللشركات الراغبة في تدريب فرقها. تواصل معنا عبر واتساب للتفاصيل.</div>
             </details>
         </div>
     </div>
@@ -1969,36 +2287,89 @@ footer .container { display: flex; flex-direction: column; gap: 24px; }
     </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ================= الفوتر (احترافي متعدد الأعمدة) ================= -->
 <footer>
     <div class="container">
-        <div class="footer-top">
-            <div class="logo">
-                <h2>مجموعة فاروق للتدريب</h2>
-                <p>شهادات موثقة</p>
+        <div class="footer-grid">
+
+            <!-- العمود 1: البراند -->
+            <div>
+                <div class="footer-brand">
+                    <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP TRAINING">
+                    <div>
+                        <strong>مجموعة فاروق للتدريب</strong>
+                        <small>تابعة لمجموعة فاروق للإستشارات والأعمال</small>
+                    </div>
+                </div>
+                <p style="font-size:.88rem;line-height:1.9;color:rgba(255,255,255,.65);margin-bottom:12px">
+                    نقدّم دورات تدريبية متخصصة في إدارة المطاعم، الماليات، والقيادة —
+                    بشهادات موثّقة وخبرة عملية تمتد لأكثر من 15 عاماً.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.tiktok.com/@faroukazem" target="_blank" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/faroukazem/" target="_blank" aria-label="إنستقرام"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/905550196682" target="_blank" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
-            <div class="footer-social">
-                <a href="https://www.tiktok.com/@faroukazem" target="_blank" aria-label="تيك توك"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/faroukazem/" target="_blank" aria-label="إنستقرام"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank" aria-label="فيسبوك"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/905550196682" target="_blank" aria-label="واتساب"><i class="fab fa-whatsapp"></i></a>
+
+            <!-- العمود 2: روابط سريعة -->
+            <div>
+                <h4>روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="https://www.farouk-grup.com/"><i class="fas fa-chevron-left"></i> المجموعة</a></li>
+                    <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                    <li><a href="Our-store.html"><i class="fas fa-chevron-left"></i> متجرنا</a></li>
+                    <li><a href="verify.html"><i class="fas fa-chevron-left"></i> التحقق من الشهادة</a></li>
+                    <li><a href="inquiries.html"><i class="fas fa-chevron-left"></i> اسألنا</a></li>
+                </ul>
             </div>
+
+            <!-- العمود 3: روابط مهمة -->
+            <div>
+                <h4>روابط مهمة</h4>
+                <ul class="footer-links">
+                    <li><a href="#courses"><i class="fas fa-chevron-left"></i> الدورات التدريبية</a></li>
+                    <li><a href="Restaurant-Course.html"><i class="fas fa-chevron-left"></i> دورة إدارة المطاعم</a></li>
+                    <li><a href="Finance-Course.html"><i class="fas fa-chevron-left"></i> دورة الماليات</a></li>
+                    <li><a href="privacy-policy.html"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+
+            <!-- العمود 4: التواصل -->
+            <div>
+                <h4>تواصل معنا</h4>
+                <ul class="footer-contact">
+                    <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/905550196682" target="_blank">‎+90 555 019 66 82</a></li>
+                    <li><i class="far fa-envelope"></i><a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a></li>
+                    <li><i class="fas fa-location-dot"></i><span>تركيا — إسطنبول</span></li>
+                </ul>
+                <a href="https://wa.me/905550196682" target="_blank" class="btn-footer">
+                    <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+                </a>
+            </div>
+
         </div>
 
-        <div class="footer-mid">
-            <a href="privacy-policy.html">
-                اتفاقية الاستخدام | Legal Agreements | Mesafeli Satış Sözleşmesi
-            </a>
-            <div class="payments">
+        <!-- الشريط السفلي -->
+        <div class="footer-bottom">
+            <div class="payment-row">
+                <span style="margin-left:6px">وسائل الدفع:</span>
                 <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:18px;">
-                <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay" style="height:22px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:20px">
+                <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay">
                 <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:.75rem">
+                    <i class="fas fa-lock" style="color:var(--accent)"></i> SSL آمن
+                </span>
             </div>
-        </div>
-
-        <div class="copyright">
-            V3.2 جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP TRAINING</span>
+            <div>
+                <a href="privacy-policy.html" class="legal-link">اتفاقية الاستخدام · Legal Agreements · Mesafeli Satış Sözleşmesi</a>
+            </div>
+            <div>
+                V3.2 — جميع الحقوق محفوظة © 2026
+                <span style="color:var(--accent);font-weight:700">FAROUK GRUP TRAINING</span>
+            </div>
         </div>
     </div>
 </footer>
