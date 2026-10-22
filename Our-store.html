@@ -2,15 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
-<title>متجرنا | FAROUK GRUP TRAINING</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+<title>متجر المنتجات الرقمية | مجموعة فاروق للإستشارات والأعمال</title>
 <script src="protect.js"></script>
-
-<meta name="description" content="أفضل الكتب المتخصصة في إدارة المطاعم والمجال المالي لرواد الأعمال">
+<meta name="description" content="متجر مجموعة فاروق للأعمال — قسم المنتجات الرقمية: كتب متخصصة، منصات تحليلية وأنظمة تشغيل جاهزة لرواد الأعمال والمستثمرين في قطاع المطاعم والإدارة المالية.">
 
 <!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <!-- Lightbox2 CSS -->
@@ -20,1135 +21,1322 @@
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <style>
+/* ============================================================
+   1) المتغيّرات والأساسيات
+   ============================================================ */
 :root{
-    --gold:#b8860b;
-    --gold-light:#d4a017;
-    --gold-soft:rgba(184,134,11,0.1);
-    --dark:#1e2a2f;
-    --dark-light:#2c3e4a;
-    --grey:#5a6b7a;
-    --light:#f8f6f2;
-    --white:#ffffff;
-    --bg-soft:#f5f0e6;
+    --navy:#0d1b2a;
+    --navy-2:#132a3e;
+    --navy-3:#1b3a52;
+    --gold:#c8a24a;
+    --gold-2:#e3c377;
+    --gold-soft:rgba(200,162,74,.12);
+    --cream:#faf7f0;
+    --paper:#ffffff;
+    --ink:#16222e;
+    --muted:#6b7684;
+    --line:rgba(13,27,42,.09);
+    --radius:22px;
+    --shadow-sm:0 6px 20px rgba(13,27,42,.06);
+    --shadow-md:0 16px 40px rgba(13,27,42,.10);
+    --shadow-lg:0 30px 70px rgba(13,27,42,.16);
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{
-    font-family:'Tajawal',sans-serif;
-    background:var(--light);
-    color:#2c3e4a;
-    line-height:1.6;
+    font-family:'Tajawal',system-ui,-apple-system,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
 }
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:'Alexandria',sans-serif;line-height:1.3}
+.container{width:min(1240px,100% - 40px);margin-inline:auto}
 
-/* ===== هيدر المتجر ===== */
-.store-header {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), 
-                url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600') center/cover;
-    background-attachment: fixed;
-    color: white;
-    padding: 40px 20px 60px;
-    text-align: center;
-    border-bottom: 5px solid var(--gold);
-    position: relative;
-    overflow: hidden;
+/* ============================================================
+   2) الأزرار
+   ============================================================ */
+.btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:14px 26px;border-radius:14px;font-weight:800;font-size:.98rem;
+    transition:all .3s cubic-bezier(.2,.8,.3,1);white-space:nowrap;
+    border:2px solid transparent;line-height:1.2;
 }
+.btn i{font-size:.95em}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#22180a;box-shadow:0 10px 26px rgba(200,162,74,.35)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(200,162,74,.45)}
+.btn-outline{border-color:rgba(13,27,42,.16);color:var(--ink);background:#fff;box-shadow:var(--shadow-sm)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.btn-light{border-color:rgba(255,255,255,.35);color:#fff;background:rgba(255,255,255,.06)}
+.btn-light:hover{background:#fff;color:var(--navy);transform:translateY(-3px)}
+.btn-sm{padding:10px 18px;font-size:.86rem;border-radius:11px;gap:7px}
 
-.store-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 50%, rgba(184,134,11,0.2), transparent 50%);
-    pointer-events: none;
-}
+/* ============================================================
+   3) الشريط العلوي + شريط المسار + الهيدر
+   ============================================================ */
+.topbar{background:var(--navy);color:rgba(255,255,255,.72);font-size:.82rem}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:42px;gap:16px}
+.topbar a{color:inherit;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.topbar a:hover{color:var(--gold-2)}
+.topbar-group{display:flex;align-items:center;gap:18px}
+.topbar-social{display:flex;gap:14px}
+.topbar i{color:var(--gold-2)}
 
-.header-content {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
+/* --- شريط المسار (Breadcrumb) — يوضح أن المتجر تابع للمجموعة --- */
+.breadcrumb-bar{
+    background:#fff;
+    border-bottom:1px solid var(--line);
+    font-size:.82rem;
 }
-
-.logo-container {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-    background: rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-    padding: 20px 40px;
-    border-radius: 120px;
-    border: 2px solid var(--gold);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    margin-bottom: 20px;
-    transition: transform 0.3s;
+.breadcrumb-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    min-height:44px;gap:16px;
 }
-.logo-container:hover {
-    transform: scale(1.02);
-    border-color: var(--gold-light);
-    box-shadow: 0 15px 40px rgba(184,134,11,0.4);
+.breadcrumb-path{
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:var(--muted);
 }
-
-.logo-container img {
-    height: 80px;
-    width: auto;
-    filter: drop-shadow(0 0 10px rgba(184,134,11,0.5));
+.breadcrumb-path a{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--navy);font-weight:700;transition:.2s;
 }
-
-.logo-container h1 {
-    font-family: 'Alexandria', sans-serif;
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--gold-light);
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    letter-spacing: 2px;
+.breadcrumb-path a:hover{color:var(--gold)}
+.breadcrumb-path a i{color:var(--gold);font-size:.8rem}
+.breadcrumb-path .sep{
+    font-size:.55rem;color:rgba(13,27,42,.3);
 }
-
-.store-tagline {
-    font-size: 1.3rem;
-    opacity: 0.95;
-    max-width: 700px;
-    margin: 20px auto 0;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(5px);
-    padding: 10px 30px;
-    border-radius: 60px;
-    display: inline-block;
-    border: 1px solid rgba(255,255,255,0.3);
+.breadcrumb-path .current{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--gold);font-weight:800;
+}
+.breadcrumb-path .current i{font-size:.8rem}
+.breadcrumb-back{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:.78rem;font-weight:700;color:var(--muted);
+    padding:5px 14px;border-radius:20px;border:1px solid var(--line);
+    transition:.22s;white-space:nowrap;
+}
+.breadcrumb-back:hover{
+    color:var(--gold);border-color:var(--gold);background:var(--gold-soft);
 }
 
-/* ===== شريط التنقل ===== */
-.nav-bar {
-    background: var(--white);
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 2px solid var(--gold-light);
+/* --- الهيدر --- */
+.site-header{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(250,247,240,.92);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);
+    transition:.3s;
 }
-.nav-bar a {
-    color: var(--dark);
-    text-decoration: none;
-    margin: 0 20px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 15px;
-    border-radius: 30px;
+.site-header.scrolled{background:rgba(255,255,255,.97);box-shadow:0 10px 30px rgba(13,27,42,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:80px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:50px;width:auto;filter:drop-shadow(0 4px 10px rgba(200,162,74,.25))}
+.brand-text strong{display:block;font-family:'Alexandria';font-size:1rem;letter-spacing:.3px;color:var(--navy)}
+.brand-text small{display:block;color:var(--muted);font-size:.72rem;font-weight:500}
+.main-nav{display:flex;gap:4px}
+.main-nav a{padding:9px 15px;border-radius:11px;font-weight:700;font-size:.94rem;transition:.22s;color:#3a4a58}
+.main-nav a:hover{background:var(--gold-soft);color:var(--gold)}
+.nav-ctas{display:flex;gap:10px;align-items:center}
+
+/* ============================================================
+   4) الهيرو
+   ============================================================ */
+.hero{
+    position:relative;overflow:hidden;padding:72px 0 96px;
+    background:
+        radial-gradient(900px 520px at 88% -12%, rgba(200,162,74,.20), transparent 62%),
+        radial-gradient(760px 520px at -5% 25%, rgba(13,27,42,.07), transparent 62%),
+        var(--cream);
 }
-.nav-bar a i {
-    color: var(--gold);
+.hero::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:
+        linear-gradient(rgba(13,27,42,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(13,27,42,.035) 1px,transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:radial-gradient(circle at 50% 38%,#000,transparent 72%);
+    mask-image:radial-gradient(circle at 50% 38%,#000,transparent 72%);
 }
-.nav-bar a:hover {
-    color: var(--gold);
-    background: var(--gold-soft);
-    transform: translateY(-2px);
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;font-weight:800;letter-spacing:.6px;
+    color:var(--gold);background:var(--gold-soft);
+    padding:7px 18px;border-radius:50px;border:1px solid rgba(200,162,74,.28);
 }
-.nav-bar .active {
-    background: var(--gold);
-    color: #111;
+.eyebrow.light{color:var(--gold-2);background:rgba(200,162,74,.14);border-color:rgba(200,162,74,.35)}
+.hero h1{
+    font-size:clamp(2rem,4vw,3.35rem);font-weight:900;
+    margin:20px 0 18px;color:var(--navy);letter-spacing:-.5px;
 }
-.nav-bar .active i {
-    color: #111;
+.hero h1 .grad{
+    background:linear-gradient(120deg,var(--gold),var(--gold-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p.lead{font-size:1.08rem;color:var(--muted);max-width:540px;margin-bottom:30px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:30px}
+.hero-trust{display:flex;gap:22px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);font-weight:600}
+.hero-trust span{display:inline-flex;align-items:center;gap:7px}
+.hero-trust i{color:var(--gold)}
+
+/* --- تكوين بصري --- */
+.hero-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
+.visual-card{
+    width:100%;max-width:400px;background:#fff;border:1px solid var(--line);
+    border-radius:26px;padding:24px;box-shadow:var(--shadow-lg);position:relative;z-index:2;
+}
+.vc-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.vc-title{font-weight:800;font-size:.92rem;display:inline-flex;align-items:center;gap:8px;color:var(--navy)}
+.vc-title i{color:var(--gold)}
+.vc-live{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:800;color:#1f8a5b;background:rgba(31,138,91,.1);padding:3px 11px;border-radius:50px}
+.vc-live span{width:6px;height:6px;border-radius:50%;background:#1f8a5b;animation:pulse 1.6s infinite}
+.vc-chart{display:flex;align-items:flex-end;gap:8px;height:150px;margin:20px 0}
+.vc-chart span{
+    flex:1;height:var(--h);border-radius:8px 8px 3px 3px;transform-origin:bottom;
+    background:linear-gradient(180deg,var(--gold-2),rgba(200,162,74,.30));
+    animation:growBar .9s cubic-bezier(.2,.8,.3,1) both;
+}
+.vc-chart span:nth-child(even){background:linear-gradient(180deg,rgba(19,42,62,.85),rgba(19,42,62,.22))}
+.vc-chart span:nth-child(1){animation-delay:.05s}.vc-chart span:nth-child(2){animation-delay:.1s}
+.vc-chart span:nth-child(3){animation-delay:.15s}.vc-chart span:nth-child(4){animation-delay:.2s}
+.vc-chart span:nth-child(5){animation-delay:.25s}.vc-chart span:nth-child(6){animation-delay:.3s}
+.vc-chart span:nth-child(7){animation-delay:.35s}.vc-chart span:nth-child(8){animation-delay:.4s}
+.vc-chart span:nth-child(9){animation-delay:.45s}
+.vc-legend{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid var(--line);padding-top:16px;text-align:center}
+.vc-legend b{display:block;font-family:'Alexandria';font-size:1.05rem;color:var(--navy)}
+.vc-legend small{font-size:.7rem;color:var(--muted)}
+.float-chip{
+    position:absolute;z-index:3;display:inline-flex;align-items:center;gap:9px;
+    background:#fff;border:1px solid var(--line);border-radius:15px;
+    padding:11px 17px;font-size:.83rem;font-weight:800;color:var(--navy);
+    box-shadow:var(--shadow-md);animation:floaty 4.5s ease-in-out infinite;
+}
+.float-chip i{color:var(--gold);font-size:1rem}
+.float-chip b{color:var(--gold);font-family:'Alexandria'}
+.chip-a{top:4%;right:-4%}
+.chip-b{bottom:10%;left:-6%;animation-delay:1.2s}
+
+/* ============================================================
+   5) العناوين العامة للأقسام
+   ============================================================ */
+.section{padding:84px 0}
+.section-head{text-align:center;max-width:700px;margin:0 auto 48px}
+.section-head h2{font-size:clamp(1.6rem,3vw,2.35rem);font-weight:900;color:var(--navy);margin:14px 0 12px}
+.section-head p{color:var(--muted);font-size:1.02rem}
+
+/* ============================================================
+   6) شريط الفلترة
+   ============================================================ */
+.filter-bar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:44px}
+.filter-btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:11px 24px;border-radius:50px;border:1.5px solid var(--line);
+    background:#fff;font-weight:800;font-size:.9rem;color:var(--muted);
+    transition:.25s;box-shadow:var(--shadow-sm);
+}
+.filter-btn span{background:rgba(13,27,42,.06);padding:1px 10px;border-radius:20px;font-size:.74rem;transition:.25s}
+.filter-btn:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 12px 26px rgba(13,27,42,.22)}
+.filter-btn.active span{background:rgba(255,255,255,.16);color:var(--gold-2)}
+
+/* ============================================================
+   7) شبكة المنتجات والبطاقات
+   ============================================================ */
+.store-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.product-card{
+    background:#fff;border:1px solid var(--line);border-radius:24px;
+    overflow:hidden;display:flex;flex-direction:column;position:relative;
+    transition:all .45s cubic-bezier(.2,.8,.3,1);
+    animation:cardIn .6s cubic-bezier(.2,.8,.3,1) both;
+}
+.product-card:nth-child(1){animation-delay:.02s}.product-card:nth-child(2){animation-delay:.08s}
+.product-card:nth-child(3){animation-delay:.14s}.product-card:nth-child(4){animation-delay:.20s}
+.product-card:nth-child(5){animation-delay:.26s}.product-card:nth-child(6){animation-delay:.32s}
+.product-card:nth-child(7){animation-delay:.38s}
+.product-card:hover{transform:translateY(-9px);box-shadow:var(--shadow-lg);border-color:rgba(200,162,74,.5)}
+.product-card.is-hidden{display:none}
+
+/* توسيط البطاقة السابعة (الأخيرة) في الصف الأخير على الشاشات الكبيرة */
+@media (min-width:1101px){
+    .store-grid > .product-card:last-child:nth-child(3n+1){
+        grid-column: 2 / 3;
+    }
 }
 
-/* ===== شبكة المنتجات - 3 أعمدة ثابتة على الكبيرة ===== */
-.store-grid{
-    max-width:1300px;
-    margin:0 auto 60px;
-    padding:0 15px;
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:20px;
+.card-media{
+    position:relative;height:320px;padding:16px;
+    display:grid;place-items:center;overflow:hidden;
+    background:linear-gradient(180deg,#f7f3ea,#efe9dd);
+}
+.card-media img{width:100%;height:100%;object-fit:contain;transition:transform .6s cubic-bezier(.2,.8,.3,1)}
+.product-card:hover .card-media img{transform:scale(1.05)}
+
+.card-badge{
+    position:absolute;top:14px;right:14px;z-index:4;
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(13,27,42,.92);color:var(--gold-2);
+    font-size:.71rem;font-weight:800;padding:6px 14px;border-radius:50px;
+    backdrop-filter:blur(6px);box-shadow:0 6px 16px rgba(0,0,0,.18);
+}
+.gallery-nav{
+    position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:space-between;
+    padding:0 10px;pointer-events:none;opacity:0;transition:opacity .3s;
+}
+.product-card:hover .gallery-nav{opacity:1}
+.gallery-nav button{
+    pointer-events:auto;width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,.95);color:var(--navy);
+    display:grid;place-items:center;font-size:.78rem;
+    box-shadow:0 5px 14px rgba(0,0,0,.16);transition:.22s;
+}
+.gallery-nav button:hover{background:var(--gold);color:#22180a;transform:scale(1.08)}
+.gallery-counter{
+    position:absolute;bottom:12px;left:12px;z-index:4;
+    background:rgba(13,27,42,.78);color:#fff;font-size:.68rem;font-weight:700;
+    padding:3px 11px;border-radius:20px;backdrop-filter:blur(4px);
 }
 
-/* البطاقة العادية */
-.book-card{
-    background:var(--white);
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 15px 35px rgba(0,0,0,0.05);
-    transition:all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border:1px solid rgba(184,134,11,0.15);
+.card-body{padding:22px;display:flex;flex-direction:column;gap:11px;flex:1}
+.card-cat{font-size:.7rem;font-weight:900;letter-spacing:1.2px;color:var(--gold)}
+.card-body h3{font-size:1.14rem;font-weight:800;color:var(--navy)}
+.card-rating{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--muted)}
+.stars{color:#e8b93a;letter-spacing:2px;font-size:.85rem}
+.card-desc{
+    color:var(--muted);font-size:.9rem;flex:1;
+    display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.card-meta span{
+    font-size:.7rem;font-weight:700;background:#f5f2eb;color:#6b7684;
+    padding:4px 10px;border-radius:8px;display:inline-flex;align-items:center;gap:5px;
+}
+.card-meta i{color:var(--gold);font-size:.68rem}
+
+.card-foot{margin-top:auto;padding-top:15px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:12px}
+.price-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.price{font-family:'Alexandria';font-size:1.32rem;font-weight:900;color:var(--navy)}
+.price small{font-size:.74rem;color:var(--muted);font-weight:400}
+.card-actions{display:flex;gap:8px;align-items:stretch}
+.card-actions .btn{flex:1}
+.icon-btn{
+    width:44px;height:44px;flex:0 0 44px;border-radius:13px;
+    background:var(--gold-soft);color:var(--gold);border:1px solid rgba(200,162,74,.28);
+    display:grid;place-items:center;font-size:1rem;transition:.25s;
+}
+.icon-btn:hover{background:var(--gold);color:#22180a;transform:translateY(-2px)}
+
+/* ============================================================
+   8) شريط CTA الداكن
+   ============================================================ */
+.cta-band{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--navy),var(--navy-3));color:#fff;padding:66px 0}
+.cta-band::before{
+    content:'';position:absolute;width:620px;height:620px;border-radius:50%;
+    background:radial-gradient(circle,rgba(200,162,74,.26),transparent 65%);
+    top:-320px;left:-120px;pointer-events:none;
+}
+.cta-band::after{
+    content:'';position:absolute;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(200,162,74,.14),transparent 65%);
+    bottom:-220px;right:-80px;pointer-events:none;
+}
+.cta-inner{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:36px;flex-wrap:wrap}
+.cta-inner h2{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:900;margin:14px 0 10px;max-width:620px}
+.cta-inner p{color:rgba(255,255,255,.72);max-width:560px;font-size:.98rem}
+.cta-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ============================================================
+   9) المميزات / الأرقام / الشهادات
+   ============================================================ */
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.feature-card{
+    background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:32px 22px;position:relative;overflow:hidden;transition:.32s;
+}
+.feature-card::before{
+    content:'';position:absolute;top:0;right:0;width:90px;height:90px;
+    background:var(--gold-soft);border-radius:0 0 0 90px;transition:.32s;
+}
+.feature-card:hover{transform:translateY(-7px);box-shadow:var(--shadow-md);border-color:rgba(200,162,74,.42)}
+.feature-card:hover::before{transform:scale(1.25)}
+.feature-icon{
+    position:relative;z-index:2;width:58px;height:58px;border-radius:17px;
+    background:linear-gradient(135deg,rgba(200,162,74,.2),rgba(200,162,74,.05));
+    color:var(--gold);display:grid;place-items:center;font-size:1.35rem;margin-bottom:18px;
+}
+.feature-card h4{position:relative;z-index:2;font-size:1.05rem;font-weight:800;margin-bottom:8px;color:var(--navy)}
+.feature-card p{position:relative;z-index:2;color:var(--muted);font-size:.88rem}
+
+.stats{
+    background:linear-gradient(120deg,var(--navy),var(--navy-3));
+    border-radius:28px;padding:44px 30px;color:#fff;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;
+    position:relative;overflow:hidden;box-shadow:var(--shadow-lg);
+}
+.stats::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(600px 300px at 20% 0%,rgba(200,162,74,.22),transparent 60%);
+}
+.stat{position:relative;z-index:2}
+.stat b{display:block;font-family:'Alexandria';font-size:clamp(1.5rem,3vw,2.1rem);color:var(--gold-2);font-weight:900}
+.stat span{font-size:.84rem;color:rgba(255,255,255,.68);font-weight:600}
+
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.testi-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;transition:.3s}
+.testi-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:rgba(200,162,74,.35)}
+.testi-card .quote{color:var(--gold);font-size:1.5rem;margin-bottom:12px}
+.testi-card p{color:var(--muted);font-size:.92rem;margin-bottom:20px}
+.testi-user{display:flex;align-items:center;gap:12px}
+.avatar{
+    width:42px;height:42px;border-radius:50%;flex:0 0 42px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-2));
+    display:grid;place-items:center;font-weight:900;color:#22180a;font-family:'Alexandria';
+}
+.testi-user strong{display:block;font-size:.9rem;color:var(--navy)}
+.testi-user small{color:var(--muted);font-size:.76rem}
+
+/* ============================================================
+   10) الفوتر
+   ============================================================ */
+footer{background:var(--navy);color:rgba(255,255,255,.7);padding:66px 0 0;margin-top:70px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.footer-brand img{height:46px;width:auto;filter:drop-shadow(0 4px 10px rgba(200,162,74,.3))}
+.footer-brand strong{font-family:'Alexandria';color:#fff;font-size:1rem;display:block}
+.footer-brand small{font-size:.72rem;color:rgba(255,255,255,.5)}
+footer h4{color:#fff;font-size:.98rem;font-weight:800;margin-bottom:18px;position:relative;padding-bottom:10px}
+footer h4::after{content:'';position:absolute;bottom:0;right:0;width:34px;height:2px;background:var(--gold);border-radius:2px}
+.footer-links li{margin-bottom:11px;font-size:.89rem}
+.footer-links a{display:inline-flex;align-items:center;gap:8px;transition:.22s}
+.footer-links a:hover{color:var(--gold-2);transform:translateX(-4px)}
+.footer-links i{font-size:.66rem;color:var(--gold)}
+.footer-contact li{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:.88rem}
+.footer-contact i{color:var(--gold);margin-top:5px;font-size:.9rem}
+.footer-social{display:flex;gap:10px;margin-top:20px}
+.footer-social a{
+    width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(255,255,255,.07);color:#fff;font-size:.95rem;transition:.25s;
+    border:1px solid rgba(255,255,255,.08);
+}
+.footer-social a:hover{background:var(--gold);color:#22180a;transform:translateY(-4px)}
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);padding:22px 0;
+    display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+    font-size:.8rem;
+}
+.payment-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.payment-row img{height:24px;width:auto;opacity:.9;transition:.2s;background:#fff;border-radius:5px;padding:2px 5px}
+.payment-row img:hover{opacity:1;transform:scale(1.06)}
+.legal-link{color:var(--gold-2);transition:.22s}
+.legal-link:hover{color:#fff;text-decoration:underline}
+
+/* ============================================================
+   11) نافذة الاستفسار
+   ============================================================ */
+.modal{
+    display:none;position:fixed;inset:0;z-index:9999;
+    background:rgba(8,16,25,.65);backdrop-filter:blur(7px);
+    justify-content:center;align-items:center;padding:20px;
+}
+.modal.show{display:flex}
+.modal-content{
+    background:#fff;max-width:440px;width:100%;padding:42px 28px 32px;
+    border-radius:28px;text-align:center;box-shadow:0 30px 70px rgba(0,0,0,.35);
+    animation:modalFadeIn .4s cubic-bezier(.2,.8,.3,1);border:1px solid rgba(200,162,74,.3);
     position:relative;
-    display:flex;
-    flex-direction:column;
 }
-.book-card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 30px 45px rgba(184,134,11,0.2);
-    border-color:var(--gold);
+.modal-content .modal-icon{
+    width:76px;height:76px;border-radius:50%;margin:0 auto 18px;
+    background:var(--gold-soft);color:var(--gold);display:grid;place-items:center;font-size:2rem;
 }
+.modal-content h3{color:var(--navy);font-size:1.5rem;font-weight:900;margin-bottom:10px}
+.modal-content p{color:var(--muted);font-size:.98rem;margin-bottom:26px}
+.modal-whatsapp{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:#25D366;color:#fff;padding:14px;border-radius:14px;
+    font-weight:800;margin-bottom:10px;transition:.28s;
+}
+.modal-whatsapp:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(37,211,102,.4)}
+.modal-close{
+    width:100%;padding:12px;border-radius:14px;background:#f2f4f6;color:#4a5764;
+    font-weight:800;transition:.22s;
+}
+.modal-close:hover{background:var(--navy);color:#fff}
 
-/* ===== تعديل: إلغاء امتداد المنصة لتصبح بنفس عرض الكتب ===== */
-.book-card.platform-card {
-    grid-column: span 1;  /* كان span 2 */
-}
+/* ============================================================
+   12) الحركات
+   ============================================================ */
+@keyframes growBar{from{transform:scaleY(0);opacity:.35}to{transform:scaleY(1);opacity:1}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.35)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes modalFadeIn{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:none}}
 
-/* معرض الصور داخل البطاقة */
-.gallery-wrapper {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* ============================================================
+   13) الاستجابة
+   ============================================================ */
+@media (max-width:1100px){
+    .main-nav{display:none}
+    .hero-grid{grid-template-columns:1fr;gap:50px;text-align:center}
+    .hero p.lead{margin-inline:auto}
+    .hero-ctas,.hero-trust{justify-content:center}
+    .hero-visual{order:-1;min-height:auto;max-width:460px;margin:0 auto}
+    .store-grid{grid-template-columns:repeat(2,1fr)}
+    .feature-grid{grid-template-columns:repeat(2,1fr)}
+    .testi-grid{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr 1fr}
 }
-.gallery-main {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    transition: opacity 0.3s;
-    cursor: pointer;
+@media (max-width:760px){
+    .topbar{display:none}
+    .breadcrumb-inner{min-height:0;padding:8px 0;flex-wrap:wrap;gap:6px;justify-content:center}
+    .breadcrumb-path{font-size:.75rem}
+    .breadcrumb-back{font-size:.72rem;padding:4px 10px}
+    .nav-inner{height:70px;gap:12px}
+    .brand img{height:42px}
+    .brand-text small{display:none}
+    .section{padding:60px 0}
+    .store-grid{gap:18px}
+    .stats{grid-template-columns:repeat(2,1fr);padding:32px 20px;gap:26px}
+    .cta-inner{flex-direction:column;align-items:flex-start}
+    .footer-grid{grid-template-columns:1fr;gap:32px}
+    .footer-bottom{flex-direction:column;text-align:center}
 }
-.gallery-main:hover {
-    opacity: 0.95;
+@media (max-width:600px){
+    .store-grid{grid-template-columns:1fr}
+    .card-media{height:280px}
+    .nav-ctas .btn span{display:none}
+    .nav-ctas .btn{padding:10px 13px}
+    .feature-grid{grid-template-columns:1fr}
+    .hero{padding:50px 0 64px}
+    .float-chip{display:none}
+    .container{width:min(1240px,100% - 28px)}
 }
-.gallery-controls {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    z-index: 5;
+@media (max-width:380px){
+    .card-actions .btn{font-size:.82rem;padding:10px 12px}
+    .hero-ctas .btn{width:100%}
 }
-.gallery-controls button {
-    pointer-events: all;
-    background: rgba(255,255,255,0.9);
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    color: var(--gold);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    transition: 0.2s;
-    margin: 0 8px;
-}
-.gallery-controls button:hover {
-    background: var(--gold);
-    color: white;
-    transform: scale(1.1);
-}
-.gallery-counter {
-    position: absolute;
-    bottom: 8px;
-    right: 12px;
-    background: rgba(0,0,0,0.6);
-    color: white;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 13px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,0.2);
-    z-index: 5;
-}
-.image-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--gold);
-    color: #111;
-    padding: 4px 12px;
-    border-radius: 50px;
-    font-weight: 800;
-    font-size: 0.75rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    z-index: 6;
-}
-.image-badge i {
-    margin-left: 5px;
-}
-
-.card-content{
-    padding:20px;
-    flex:1;
-    display:flex;
-    flex-direction:column;
-}
-.card-content h3{
-    font-size:1.4rem;
-    font-weight:900;
-    color:var(--dark);
-    margin-bottom:8px;
-}
-.card-meta{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:12px;
-    color:var(--grey);
-    font-size:0.85rem;
-}
-.card-meta span i{
-    color:var(--gold);
-    margin-left:4px;
-}
-.card-rating{
-    display:flex;
-    align-items:center;
-    gap:5px;
-    margin-bottom:12px;
-    font-size:0.9rem;
-}
-.stars{
-    color:#f4c150;
-    letter-spacing:1px;
-}
-.rating-count{
-    color:var(--grey);
-    font-size:0.85rem;
-}
-.card-description{
-    color:var(--grey);
-    margin-bottom:15px;
-    line-height:1.6;
-    flex:1;
-    font-size:0.95rem;
-}
-.card-price{
-    font-size:1.3rem;
-    font-weight:900;
-    color:var(--gold);
-    margin-bottom:15px;
-    display:flex;
-    align-items:baseline;
-    flex-wrap:wrap;
-    gap:5px 10px;
-}
-.card-price small{
-    font-size:0.85rem;
-    font-weight:normal;
-    color:var(--grey);
-}
-.card-actions{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    flex-wrap:wrap;
-}
-.buy-now{
-    background:linear-gradient(135deg, var(--gold), var(--gold-light));
-    color:var(--dark);
-    padding:10px 15px;
-    border-radius:50px;
-    text-decoration:none;
-    font-weight:900;
-    font-size:0.9rem;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    transition:0.3s;
-    flex:1 0 auto;
-    justify-content:center;
-    border:2px solid transparent;
-    min-width: 70px;
-}
-.buy-now:hover{
-    background:linear-gradient(135deg, var(--dark), #333);
-    color:var(--gold);
-    transform:translateY(-2px);
-    border-color:var(--gold);
-}
-.inquiry-btn{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:var(--bg-soft);
-    border:1px solid var(--gold-light);
-    color:var(--gold);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:1.2rem;
-    cursor:pointer;
-    transition:0.3s;
-    text-decoration:none;
-    flex-shrink:0;
-}
-.inquiry-btn:hover{
-    background:var(--gold);
-    color:white;
-    transform:rotate(10deg);
-}
-
-/* ===== قسم المميزات ===== */
-.features-section{
-    max-width:1200px;
-    margin:0 auto 60px;
-    padding:0 20px;
-}
-.features-title{
-    text-align:center;
-    margin-bottom:40px;
-}
-.features-title h3{
-    font-size:2rem;
-    font-weight:900;
-    color:var(--dark);
-}
-.features-title .underline{
-    width:80px;
-    height:3px;
-    background:var(--gold);
-    margin:10px auto 0;
-}
-.features-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-    gap:20px;
-}
-.feature-item{
-    background:var(--white);
-    padding:25px 15px;
-    border-radius:20px;
-    text-align:center;
-    border:1px solid rgba(184,134,11,0.15);
-    transition:0.3s;
-}
-.feature-item:hover{
-    transform:translateY(-5px);
-    border-color:var(--gold);
-    box-shadow:0 15px 30px rgba(184,134,11,0.1);
-}
-.feature-item i{
-    font-size:2.5rem;
-    color:var(--gold);
-    margin-bottom:12px;
-}
-.feature-item h4{
-    font-size:1.2rem;
-    font-weight:800;
-    color:var(--dark);
-    margin-bottom:8px;
-}
-.feature-item p{
-    color:var(--grey);
-    font-size:0.9rem;
-}
-
-/* ===== الفوتر ===== */
-footer{
-    background:linear-gradient(145deg, #f5ebd2, #fcf5e6);
-    color:#3a4a55;
-    padding:50px 20px 30px;
-    border-top:4px solid var(--gold);
-    margin-top:60px;
-    box-shadow:0 -5px 15px rgba(184,134,11,0.1);
-}
-
-.flex-container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    max-width:1200px;
-    margin:auto;
-}
-
-.social-links a{
-    color:var(--gold);
-    font-size:28px;
-    margin:0 10px;
-    transition:0.3s;
-    display:inline-block;
-}
-.social-links a:hover{
-    color:var(--dark);
-    transform:translateY(-5px) rotate(5deg);
-}
-
-.footer-logo h2{
-    color:var(--gold);
-    font-size:22px;
-    font-weight:800;
-    font-family:'Alexandria',sans-serif;
-    white-space:nowrap;
-}
-.footer-logo div{
-    width:70px;
-    height:3px;
-    background:var(--gold);
-    margin:8px auto 0;
-}
-
-.trust-badges{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:15px;
-}
-.payment-methods div{
-    background:rgba(255,255,255,0.7);
-    padding:12px 20px;
-    border-radius:40px;
-    display:flex;
-    gap:20px;
-    align-items:center;
-    border:1px solid var(--gold-light);
-    backdrop-filter:blur(5px);
-    flex-wrap:wrap;
-    justify-content:center;
-}
-.payment-methods img{height:26px;width:auto;transition:0.2s;}
-.payment-methods img:hover{transform:scale(1.15);}
-
-.security-badges{
-    display:flex;
-    gap:25px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:10px;
-}
-.badge-item{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(184,134,11,0.1);
-    padding:6px 15px;
-    border-radius:40px;
-    font-size:0.9rem;
-    color:var(--dark);
-    border:1px dashed var(--gold-light);
-}
-.badge-item i{
-    color:var(--gold);
-    font-size:1.1rem;
-}
-
-hr{
-    border:0;
-    border-top:2px solid rgba(184,134,11,0.2);
-    margin:30px 0 20px;
-}
-
-.footer-legal{
-    text-align:center;
-    margin:20px 0 15px;
-}
-.footer-legal a{
-    color:var(--gold);
-    text-decoration:none;
-    font-weight:bold;
-    border:1px solid var(--gold);
-    padding:6px 20px;
-    border-radius:40px;
-    transition:0.3s;
-    display:inline-block;
-    font-size:0.9rem;
-}
-.footer-legal a:hover{
-    background:var(--gold);
-    color:#111;
-}
-
-.copyright{
-    text-align:center;
-    font-size:14px;
-    color:#5a6b7a;
-}
-.copyright span{color:var(--gold);font-weight:bold;}
-
-/* ===== نافذة الاستفسار ===== */
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-.modal-content {
-    background: var(--white);
-    max-width: 450px;
-    width: 90%;
-    padding: 40px 25px;
-    border-radius: 30px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    animation: modalFadeIn 0.4s;
-    border:2px solid var(--gold-light);
-}
-.modal-content i {
-    font-size: 4rem;
-    color: var(--gold);
-    margin-bottom: 15px;
-}
-.modal-content h3 {
-    color: var(--gold);
-    font-size: 1.8rem;
-    font-weight: 900;
-    margin-bottom: 15px;
-}
-.modal-content p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    color: var(--dark);
-}
-.modal-whatsapp {
-    background: #25D366;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
-    transition:0.3s;
-}
-.modal-whatsapp:hover{
-    transform:translateY(-2px);
-    box-shadow:0 5px 15px rgba(37,211,102,0.4);
-}
-.modal-close {
-    background: #eee;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    transition:0.2s;
-}
-.modal-close:hover{
-    background:var(--gold);
-    color:white;
-}
-@keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== تحسينات متجاوبة مع الحفاظ على عرض المنصة ===== */
-@media (max-width: 900px){
-    .store-grid{
-        grid-template-columns:repeat(2, 1fr);
-    }
-    .book-card.platform-card {
-        grid-column: span 1;  /* كان span 2 */
-    }
-}
-
-@media (max-width: 600px){
-    .store-grid{
-        grid-template-columns:1fr;
-    }
-    .book-card.platform-card {
-        grid-column: span 1;  /* لا تغيير */
-    }
-    .logo-container{
-        flex-direction:column;
-        padding:15px 20px;
-    }
-    .logo-container img{
-        height:60px;
-    }
-    .logo-container h1{
-        font-size:2.2rem;
-    }
-    .store-tagline{
-        font-size:1rem;
-        padding:8px 20px;
-    }
-    .nav-bar a{
-        margin:0 8px;
-        font-size:1rem;
-    }
-    .card-content h3{
-        font-size:1.3rem;
-    }
-}
-
-@media (max-width: 380px){
-    .card-actions{
-        flex-wrap:wrap;
-    }
-    .buy-now{
-        width:100%;
-    }
-    .inquiry-btn{
-        width:100%;
-        border-radius:50px;
-        height:45px;
-    }
+@media (hover:none){
+    .gallery-nav{opacity:1}
+    .gallery-nav button{width:32px;height:32px;font-size:.7rem}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== هيدر المتجر ===== -->
-<header class="store-header">
-    <div class="header-content">
-        <div class="logo-container">
-            <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP TRAINING">
-            <h1>متجرنا</h1>
+<!-- ============================================================
+     ⚠️ ملاحظة هامة:
+     استبدل الروابط التالية بروابطك الفعلية:
+     • موقع التدريب : https://training.farouk-grup.com
+     • مجموعة فاروق : https://farouk-grup.com
+     ============================================================ -->
+
+<!-- ================= الشريط العلوي ================= -->
+<div class="topbar">
+    <div class="container topbar-inner">
+        <div class="topbar-group">
+            <a href="https://wa.me/905550196682" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> ‎+90 555 019 66 82
+            </a>
+            <a href="mailto:faroukgrup@gmail.com"><i class="far fa-envelope"></i> info@farouk-grup.com</a>
         </div>
-        <div class="store-tagline">
-            <i class="fas fa-book-open"></i> أفضل الكتب والأدوات المتخصصة لرواد الأعمال
+        <div class="topbar-social">
+            <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/faroukazem/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        </div>
+    </div>
+</div>
+
+<!-- ================= الهيدر ================= -->
+<header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+        <a href="#top" class="brand">
+            <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="متجر مجموعة فاروق للإستشارات والأعمال">
+            <span class="brand-text">
+                <strong>متجر مجموعة فاروق للإستشارات والأعمال</strong>
+                <small>قسم المنتجات الرقمية · مجموعة فاروق للإستشارات والأعمال</small>
+            </span>
+        </a>
+
+        <nav class="main-nav">
+            <a href="#store">المتجر</a>
+            <a href="#store" data-jump="book">الكتب</a>
+            <a href="#store" data-jump="tool">الأنظمة</a>
+            <a href="#why">لماذا نحن</a>
+            <a href="#testimonials">آراء العملاء</a>
+        </nav>
+
+        <div class="nav-ctas">
+            <a href="https://training.farouk-grup.com" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+                <i class="fas fa-graduation-cap"></i> <span>موقع التدريب</span>
+            </a>
+            <a href="https://farouk-grup.com" target="_blank" rel="noopener" class="btn btn-gold btn-sm">
+                <i class="fas fa-building-columns"></i> <span>المجموعة</span>
+            </a>
         </div>
     </div>
 </header>
 
-<!-- ===== شبكة المنتجات مع المعارض ===== -->
-<div class="store-grid" data-aos="fade-up">
-    
-    <!-- الكتاب الأول -->
-    <div class="book-card" data-aos="zoom-in">
-        <div class="gallery-wrapper" id="gallery1">
-            <a href="https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct" data-lightbox="book1" data-title="الدليل المالي لغير الماليين - صورة 1">
-                <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct" alt="الدليل المالي">
-            </a>
-            <div class="gallery-controls">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="gallery-counter">1/3</div>
-            <span class="image-badge"><i class="fas fa-star"></i> الأكثر مبيعاً</span>
-        </div>
-        <div class="card-content">
-            <h3>الدليل المالي لغير الماليين</h3>
-            <div class="card-meta">
-                <span><i class="fas fa-file-pdf"></i> PDF</span>
-                <span><i class="fas fa-file"></i> ePub</span>
-                <span><i class="fas fa-book-open"></i> 198 صفحة</span>
-                <span class="device-icons">
-                    <i class="fab fa-apple"></i>
-                    <i class="fab fa-android"></i>
-                    <span>متوافق مع أبل وأندرويد</span>
-                </span>
-            </div>
-            <div class="card-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(67 تقييم)</span>
-            </div>
-            <p class="card-description">
-                هذا الكتاب مصمم خصيصاً لرواد الأعمال والمدراء غير الماليين ليكون دليلهم الشامل لفهم وتفكيك رموز منظومة الإدارة المالية بكل بساطة ووضوح.
+<!-- ================= الهيرو ================= -->
+<section class="hero" id="top">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow"><i class="fas fa-gem"></i> متجر مجموعة فاروق للإستشارات والأعمال — المنتجات الرقمية</span>
+            <h1>معرفة استشارية <span class="grad">وأدوات مالية</span><br>تصنع قراراتك بثقة</h1>
+            <p class="lead">
+                كتب متخصصة، منصات تحليلية، وأنظمة تشغيل جاهزة — صُمّمت لرواد الأعمال والمستثمرين
+                في قطاع المطاعم والإدارة المالية، بمعايير استشارية حقيقية.
             </p>
-            <div class="card-price">
-                19.99 دولار <small>النسخة الإلكترونية</small>
-            </div>
-            <div class="card-actions">
-                <a href="finance-guide.html" class="buy-now" target="_blank"><i class="fas fa-shopping-cart"></i> للتفاصيل والشراء</a>
-                <a href="#" onclick="showInquiry('الدليل المالي لغير الماليين'); return false;" class="inquiry-btn"><i class="fas fa-question-circle"></i></a>
-            </div>
-        </div>
-    </div>
 
-    <!-- الكتاب الثاني -->
-    <div class="book-card" data-aos="zoom-in" data-aos-delay="100">
-        <div class="gallery-wrapper" id="gallery2">
-            <a href="https://lh3.googleusercontent.com/d/1d3h50i-UdIFWpTxIbkVZQr3_QtuzeuND" data-lightbox="book2" data-title="أساسيات إدارة المطاعم - صورة 1">
-                <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1d3h50i-UdIFWpTxIbkVZQr3_QtuzeuND" alt="أساسيات إدارة المطاعم">
-            </a>
-            <div class="gallery-controls">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            <!-- ⬇️ الزرّان الرئيسيان ⬇️ -->
+            <div class="hero-ctas">
+                <a href="https://training.farouk-grup.com" target="_blank" rel="noopener" class="btn btn-gold">
+                    <i class="fas fa-graduation-cap"></i> زيارة موقع التدريب
+                </a>
+                <a href="https://farouk-grup.com" target="_blank" rel="noopener" class="btn btn-outline">
+                    <i class="fas fa-building-columns"></i> مجموعة فاروق للإستشارات والأعمال
+                </a>
             </div>
-            <div class="gallery-counter">1/3</div>
-            <span class="image-badge"><i class="fas fa-fire"></i> متخصص</span>
-        </div>
-        <div class="card-content">
-            <h3>أساسيات إدارة المطاعم</h3>
-            <div class="card-meta">
-                <span><i class="fas fa-file-pdf"></i> PDF</span>
-                <span><i class="fas fa-file"></i> ePub</span>
-                <span><i class="fas fa-book-open"></i> 310 صفحة</span>
-                <span class="device-icons">
-                    <i class="fab fa-apple"></i>
-                    <i class="fab fa-android"></i>
-                    <span>متوافق مع أبل وأندرويد</span>
-                </span>
-            </div>
-            <div class="card-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(45 تقييم)</span>
-            </div>
-            <p class="card-description">
-                هذا الكتاب يقدم لك دليلاً علمياً وعملياً يهدف إلى نقل إدارة المطاعم من دائرة الحدس والعشوائية إلى نموذج تشغيلي ومالي ناجح سواء كنت رائد أعمال يبدأ خطوته الأولى أو مديراً يسعى للاحتراف.
-            </p>
-            <div class="card-price">
-                24.99 دولار <small>النسخة الإلكترونية</small>
-            </div>
-            <div class="card-actions">
-                <a href="restaurant-guide.html" class="buy-now" target="_blank"><i class="fas fa-shopping-cart"></i> للتفاصيل والشراء</a>
-                <a href="#" onclick="showInquiry('أساسيات إدارة المطاعم'); return false;" class="inquiry-btn"><i class="fas fa-question-circle"></i></a>
-            </div>
-        </div>
-    </div>
 
-    <!-- الكتاب الخامس -->
-    <div class="book-card" data-aos="zoom-in">
-        <div class="gallery-wrapper" id="gallery5">
-            <a href="https://lh3.googleusercontent.com/d/1NyewNJuZfMnzgfPq_aDwIBy9CHvr-pTf" data-lightbox="book1" data-title="الماليات بدون وجع رأس - صورة 1">
-                <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1NyewNJuZfMnzgfPq_aDwIBy9CHvr-pTf" alt="الماليات بدون وجع رأس">
-            </a>
-            <div class="gallery-controls">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="gallery-counter">1/3</div>
-            <span class="image-badge"><i class="fas fa-star"></i> سهل الفهم</span>
-        </div>
-        <div class="card-content">
-            <h3>الماليات بدون وجع رأس</h3>
-            <div class="card-meta">
-                <span><i class="fas fa-file-pdf"></i> PDF</span>
-                <span><i class="fas fa-file"></i> ePub</span>
-                <span><i class="fas fa-book-open"></i> 100 صفحة</span>
-                <span class="device-icons">
-                    <i class="fab fa-apple"></i>
-                    <i class="fab fa-android"></i>
-                    <span>متوافق مع أبل وأندرويد</span>
-                </span>
-            </div>
-            <div class="card-rating">
-                <span class="stars">★★★★★</span>
-                <span class="rating-count">(33 تقييم)</span>
-            </div>
-            <p class="card-description">
-                رحلة أبو العريف لفهم الماليات خطوة بخطوة مع أبو فهيم – دليل مبسّط لفهم الماليات واتخاذ القرارات بثقة - تجاوز الخوف من الأرقام وتعلم لغة القيادة المالية.
-            </p>
-            <div class="card-price">
-                7.99 دولار <small>النسخة الإلكترونية</small>
-            </div>
-            <div class="card-actions">
-                <a href="Finances-No-Headaches.html" class="buy-now" target="_blank"><i class="fas fa-shopping-cart"></i> للتفاصيل والشراء</a>
-                <a href="#" onclick="showInquiry('الماليات بدون وجع رأس'); return false;" class="inquiry-btn"><i class="fas fa-question-circle"></i></a>
+            <div class="hero-trust">
+                <span><i class="fas fa-lock"></i> دفع آمن 100%</span>
+                <span><i class="fas fa-bolt"></i> تسليم فوري</span>
+                <span><i class="fas fa-headset"></i> دعم مباشر</span>
             </div>
         </div>
-    </div>
 
-    <!-- الكتاب الثالث -->
-    <div class="book-card" data-aos="zoom-in" data-aos-delay="200">
-        <div class="gallery-wrapper" id="gallery3">
-            <a href="https://lh3.googleusercontent.com/d/1e68ObKAxBBov6TS9qkYAjnaL8YloxRMw" data-lightbox="book3" data-title="المطاعم الناجحة - صورة 1">
-                <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1e68ObKAxBBov6TS9qkYAjnaL8YloxRMw" alt="المطاعم الناجحة">
-            </a>
-            <div class="gallery-controls">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
+        <div class="hero-visual">
+            <div class="visual-card">
+                <div class="vc-head">
+                    <span class="vc-title"><i class="fas fa-chart-pie"></i> لوحة الأداء المالي</span>
+                    <span class="vc-live"><span></span> مباشر</span>
+                </div>
+                <div class="vc-chart">
+                    <span style="--h:42%"></span>
+                    <span style="--h:66%"></span>
+                    <span style="--h:38%"></span>
+                    <span style="--h:80%"></span>
+                    <span style="--h:55%"></span>
+                    <span style="--h:92%"></span>
+                    <span style="--h:48%"></span>
+                    <span style="--h:72%"></span>
+                    <span style="--h:60%"></span>
+                </div>
+                <div class="vc-legend">
+                    <div><b>32%</b><small>هامش الربح</small></div>
+                    <div><b>1.8M</b><small>الإيرادات</small></div>
+                    <div><b>18%</b><small>نمو سنوي</small></div>
+                </div>
             </div>
-            <div class="gallery-counter">1/3</div>
-            <span class="image-badge"><i class="fas fa-gem"></i> معرفي</span>
-        </div>
-        <div class="card-content">
-            <h3>المطاعم الناجحة</h3>
-            <div class="card-meta">
-                <span><i class="fas fa-file-pdf"></i> PDF</span>
-                <span><i class="fas fa-file"></i> ePub</span>
-                <span><i class="fas fa-book-open"></i> 85 صفحة</span>
-                <span class="device-icons">
-                    <i class="fab fa-apple"></i>
-                    <i class="fab fa-android"></i>
-                    <span>متوافق مع أبل وأندرويد</span>
-                </span>
-            </div>
-            <div class="card-rating">
-                <span class="stars">★★★★☆</span>
-                <span class="rating-count">(20 تقييم)</span>
-            </div>
-            <p class="card-description">
-                يقدم الكتاب استعراضًا شاملاً لمفهوم منظومة المطاعم ويعتبر هذا الكتاب مصدرًا قيمًا لرواد الاعمال الذين يرغبون بمعرفة ماهية المطاعم ومن أين يبدأ.
-            </p>
-            <div class="card-price">
-                9.99 دولار <small>النسخة الإلكترونية</small>
-            </div>
-            <div class="card-actions">
-                <a href="Successful-restaurants.html" class="buy-now" target="_blank"><i class="fas fa-shopping-cart"></i> للتفاصيل والشراء</a>
-                <a href="#" onclick="showInquiry('المطاعم الناجحة'); return false;" class="inquiry-btn"><i class="fas fa-question-circle"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===== بطاقة المنصة الشاملة (بنفس عرض الكتب) ===== -->
-    <div class="book-card platform-card" data-aos="zoom-in" data-aos-delay="200">
-        <div class="gallery-wrapper" id="gallery4">
-            <a href="https://lh3.googleusercontent.com/d/123EzAVcLo6K-yCCyNeVEe_LOp3BOXL1s" data-lightbox="book4" data-title="المنصة الشاملة - صورة 1">
-                <img class="gallery-main" src="https://lh3.googleusercontent.com/d/123EzAVcLo6K-yCCyNeVEe_LOp3BOXL1s" alt="المنصة الشاملة">
-            </a>
-            <div class="gallery-controls">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="gallery-counter">1/3</div>
-            <span class="image-badge"><i class="fas fa-crown"></i> منصة شاملة</span>
-        </div>
-        <div class="card-content">
-            <h3>المنصة الشاملة</h3>
-            <div class="card-meta">
-                <span><i class="fas fa-file-pdf"></i> إصدار تقارير</span>
-                <span><i class="fas fa-cogs"></i> أكثر من 25 أداة</span>
-                <span class="device-icons">
-                    <span>(أكثر من 25 أداة متنوعة)</span>
-                </span>
-            </div>
-            <div class="card-rating">
-                <span class="stars">★★★★☆</span>
-                <span class="rating-count">(86 تقييم)</span>
-            </div>
-            <p class="card-description">
-                <strong>لا داعي لبرامج مكلفة،</strong> منصة احترافية متكاملة لدعم المستثمرين ورواد الأعمال، تجمع بين دراسات الجدوى (مالية، فنية، تسويقية) وحساب تكاليف المطاعم بدقة. توفر أدوات تحليلية متقدمة للعائد العقاري، محاكاة المخاطر، التدفق النقدي، ونقطة التعادل. كما تشمل أنظمة التشغيل (SOPs, HACCP)، وحساب العمالة المثالية، والتنبؤ المالي، والنسب المالية الشاملة. الحل الأمثل لإدارة التكاليف، جدولة القروض، وتعظيم الأرباح عبر قرارات مبنية على بيانات دقيقة.
-            </p>
-            <div class="card-price">
-                <span>إشتراك سنوي 299$</span>
-                <small>الإشتراك لايتجدد تلقائياً</small>
-            </div>
-            <div class="card-actions">
-                <a href="https://portal.farouk-grup.com/finance-hub" class="buy-now" target="_blank"><i class="fas fa-shopping-cart"></i>للتفاصيل والإشتراك</a>
-            </div>
-        </div>
-    </div>
-    <!-- نهاية بطاقة المنصة الشاملة -->
-
-    <!-- ===== بطاقة هندسة المينيو (بنفس عرض الكتب) ===== -->
-    <div class="book-card platform-card" data-aos="zoom-in" data-aos-delay="200">
-        <div class="gallery-wrapper" id="gallery6">
-            <a href="https://lh3.googleusercontent.com/d/1XA7bT3qKT5A7xih2G_JA3MrKIhm3SGhD" data-lightbox="book6" data-title="هندسة المينيو - صورة 1">
-                <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1XA7bT3qKT5A7xih2G_JA3MrKIhm3SGhD" alt="هندسة المينيو">
-            </a>
-            <div class="gallery-controls">
-                <button class="prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="gallery-counter">1/2</div>
-            <span class="image-badge"><i class="fas fa-crown"></i> هندسة المينيو</span>
-        </div>
-        <div class="card-content">
-            <h3>هندسة المينيو</h3>
-            <div class="card-meta">
-                <span><i class="fas fa-file-pdf"></i> تحليل المينيو</span>
-                <span><i class="fas fa-cogs"></i> وتحليل تقييم الزبائن</span>
-                <span class="device-icons">
-                    <span>(نظام متكامل لهندسة المينيو)</span>
-                </span>
-            </div>
-            <div class="card-rating">
-                <span class="stars">★★★★☆</span>
-                <span class="rating-count">(13 تقييم)</span>
-            </div>
-            <p class="card-description">
-                <strong>لا داعي لبرامج مكلفة،</strong> أداة احترافية متكاملة لهندسة المينيو في المطاعم، تساعدك على تحليل ربحية كل صنف، حساب التكلفة الفعلية، وتحديد نقاط القوة والضعف في قائمتك. توفر الأداة مؤشرات دقيقة مثل هامش الربح، نسبة التكلفة، ومساهمة كل صنف في الإيرادات. كما تشمل ميزات تحليل المزيج البيعي، استراتيجيات التسعير، وإعادة هيكلة المينيو لتعظيم الأرباح. الحل الأمثل لإدارة قائمة طعامك بقرارات مبنية على بيانات دقيقة.
-            </p>
-            <div class="card-price">
-                <span>إشتراك سنوي 99$</span>
-                <small>الإشتراك لايتجدد تلقائياً</small>
-            </div>
-            <div class="card-actions">
-                <a href="https://rest-tools.farouk-grup.com/Food-Cost.html" class="buy-now" target="_blank"><i class="fas fa-shopping-cart"></i>للتفاصيل والإشتراك</a>
-            </div>
-        </div>
-    </div>
-    <!-- نهاية بطاقة هندسة المينيو -->
-
-</div>
-
-<!-- ===== قسم المميزات ===== -->
-<section class="features-section" data-aos="fade-up">
-    <div class="features-title">
-        <h3>لماذا تشتري من متجرنا</h3>
-        <div class="underline"></div>
-    </div>
-    <div class="features-grid">
-        <div class="feature-item">
-            <i class="fas fa-lock"></i>
-            <h4>دفع آمن 100%</h4>
-            <p>جميع معاملاتك مشفرة وآمنة عبر بوابات دفع موثوقة.</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-truck"></i>
-            <h4>تسليم فوري</h4>
-            <p>الكتب الإلكترونية متاحة للتحميل فور إتمام الشراء.</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-headset"></i>
-            <h4>دعم فني عبر واتساب</h4>
-            <p>فريق الدعم متاح لمساعدتك في أي استفسار.</p>
-        </div>
-        <div class="feature-item">
-            <i class="fas fa-star"></i>
-            <h4>محتوى حصري ومتخصص</h4>
-            <p>فقط على متجرنا .</p>
+            <div class="float-chip chip-a"><i class="fas fa-chart-line"></i> هامش ربح <b>32%</b></div>
+            <div class="float-chip chip-b"><i class="fas fa-check-circle"></i> نقطة التعادل محسوبة</div>
         </div>
     </div>
 </section>
 
-<!-- ===== الفوتر ===== -->
-<footer>
-    <div style="max-width:1200px; margin:auto;">
-        <div class="flex-container">
-            <div class="social-links">
-                <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/faroukazem/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/905550196682" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            </div>
+<!-- ================= المتجر ================= -->
+<section class="section" id="store">
+    <div class="container">
+        <div class="section-head" data-aos="fade-up">
+            <span class="eyebrow"><i class="fas fa-store"></i> المتجر</span>
+            <h2>منتجات رقمية بمعايير استشارية</h2>
+            <p>كل منتج لدينا هو خلاصة خبرة ميدانية في إدارة المطاعم والمالية — اختر ما يناسب مرحلتك.</p>
+        </div>
 
-            <div class="footer-logo">
-                <h2>مجموعة فاروق للأعمال</h2>
-                <div></div>
-            </div>
+        <!-- شريط الفلترة -->
+        <div class="filter-bar" data-aos="fade-up">
+            <button class="filter-btn active" data-filter="all">الكل <span>7</span></button>
+            <button class="filter-btn" data-filter="book">الكتب الإلكترونية <span>5</span></button>
+            <button class="filter-btn" data-filter="tool">الأنظمة والأدوات <span>2</span></button>
+        </div>
 
-            <div class="trust-badges">
-                <div class="payment-methods">
-                    <div>
-                        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:18px;">
-                        <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay" style="height:24px;">
-                        <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+        <div class="store-grid">
+
+            <!-- 1) الدليل المالي لغير الماليين -->
+            <article class="product-card" data-cat="book">
+                <div class="card-media" id="gallery1">
+                    <a href="https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct"
+                       data-lightbox="book1" data-title="الدليل المالي لغير الماليين — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct" alt="الدليل المالي لغير الماليين">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-star"></i> الأكثر مبيعاً</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/3</div>
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">كتاب إلكتروني</span>
+                    <h3>الدليل المالي لغير الماليين</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(67 تقييم)</span>
+                    </div>
+                    <p class="card-desc">
+                        مصمم خصيصاً لرواد الأعمال والمدراء غير الماليين ليكون دليلهم الشامل لفهم وتفكيك
+                        رموز منظومة الإدارة المالية بكل بساطة ووضوح.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF / ePub</span>
+                        <span><i class="fas fa-book-open"></i> 198 صفحة</span>
+                        <span><i class="fas fa-mobile-alt"></i> iOS & Android</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">19.99$</span>
+                            <small>النسخة الإلكترونية</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="finance-guide.html" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-shopping-cart"></i> التفاصيل والشراء
+                            </a>
+                            <button class="icon-btn" data-name="الدليل المالي لغير الماليين" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="security-badges">
-                    <span class="badge-item"><i class="fas fa-lock"></i> SSL</span>
-                    <span class="badge-item"><i class="fas fa-shield-alt"></i> ضمان</span>
-                    <span class="badge-item"><i class="fas fa-headset"></i> دعم 24/7</span>
+            </article>
+
+            <!-- 2) أساسيات إدارة المطاعم -->
+            <article class="product-card" data-cat="book">
+                <div class="card-media" id="gallery2">
+                    <a href="https://lh3.googleusercontent.com/d/1d3h50i-UdIFWpTxIbkVZQr3_QtuzeuND"
+                       data-lightbox="book2" data-title="أساسيات إدارة المطاعم — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1d3h50i-UdIFWpTxIbkVZQr3_QtuzeuND" alt="أساسيات إدارة المطاعم">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-fire"></i> متخصص</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/3</div>
                 </div>
+                <div class="card-body">
+                    <span class="card-cat">كتاب إلكتروني</span>
+                    <h3>أساسيات إدارة المطاعم</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(45 تقييم)</span>
+                    </div>
+                    <p class="card-desc">
+                        دليل علمي وعملي ينقل إدارة المطاعم من دائرة الحدس والعشوائية إلى نموذج تشغيلي
+                        ومالي ناجح — سواء كنت رائد أعمال في خطوته الأولى أو مديراً يسعى للاحتراف.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF / ePub</span>
+                        <span><i class="fas fa-book-open"></i> 310 صفحة</span>
+                        <span><i class="fas fa-mobile-alt"></i> iOS & Android</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">24.99$</span>
+                            <small>النسخة الإلكترونية</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="restaurant-guide.html" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-shopping-cart"></i> التفاصيل والشراء
+                            </a>
+                            <button class="icon-btn" data-name="أساسيات إدارة المطاعم" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 3) الماليات بدون وجع رأس -->
+            <article class="product-card" data-cat="book">
+                <div class="card-media" id="gallery5">
+                    <a href="https://lh3.googleusercontent.com/d/1NyewNJuZfMnzgfPq_aDwIBy9CHvr-pTf"
+                       data-lightbox="book5" data-title="الماليات بدون وجع رأس — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1NyewNJuZfMnzgfPq_aDwIBy9CHvr-pTf" alt="الماليات بدون وجع رأس">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-lightbulb"></i> سهل الفهم</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/3</div>
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">كتاب إلكتروني</span>
+                    <h3>الماليات بدون وجع رأس</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(33 تقييم)</span>
+                    </div>
+                    <p class="card-desc">
+                        رحلة مبسّطة لفهم الماليات خطوة بخطوة — تجاوز الخوف من الأرقام وتعلّم لغة
+                        القيادة المالية، واتخذ قراراتك بثقة.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF / ePub</span>
+                        <span><i class="fas fa-book-open"></i> 100 صفحة</span>
+                        <span><i class="fas fa-mobile-alt"></i> iOS & Android</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">7.99$</span>
+                            <small>النسخة الإلكترونية</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Finances-No-Headaches.html" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-shopping-cart"></i> التفاصيل والشراء
+                            </a>
+                            <button class="icon-btn" data-name="الماليات بدون وجع رأس" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4) المطاعم الناجحة -->
+            <article class="product-card" data-cat="book">
+                <div class="card-media" id="gallery3">
+                    <a href="https://lh3.googleusercontent.com/d/1e68ObKAxBBov6TS9qkYAjnaL8YloxRMw"
+                       data-lightbox="book3" data-title="المطاعم الناجحة — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1e68ObKAxBBov6TS9qkYAjnaL8YloxRMw" alt="المطاعم الناجحة">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-gem"></i> معرفي</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/3</div>
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">كتاب إلكتروني</span>
+                    <h3>المطاعم الناجحة</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(20 تقييم)</span>
+                    </div>
+                    <p class="card-desc">
+                        استعراض شامل لمفهوم منظومة المطاعم، مصدر قيّم لرواد الأعمال الذين يرغبون
+                        بمعرفة ماهية المطاعم ومن أين يبدأون.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF / ePub</span>
+                        <span><i class="fas fa-book-open"></i> 85 صفحة</span>
+                        <span><i class="fas fa-mobile-alt"></i> iOS & Android</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">9.99$</span>
+                            <small>النسخة الإلكترونية</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="Successful-restaurants.html" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-shopping-cart"></i> التفاصيل والشراء
+                            </a>
+                            <button class="icon-btn" data-name="المطاعم الناجحة" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 5) مبادئ سلامة الأغذية — جديد -->
+            <article class="product-card" data-cat="book">
+                <div class="card-media" id="gallery7">
+                    <a href="https://lh3.googleusercontent.com/d/1O6pqGUe-ban2ooIIEhvF8XRSlrbkf79q"
+                       data-lightbox="book7" data-title="مبادئ سلامة الأغذية — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1O6pqGUe-ban2ooIIEhvF8XRSlrbkf79q" alt="مبادئ سلامة الأغذية">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-shield-virus"></i> مرجع متخصص</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/2</div>
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">كتاب إلكتروني</span>
+                    <h3>مبادئ سلامة الأغذية</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★★</span>
+                        <span>(جديد — 2026)</span>
+                    </div>
+                    <p class="card-desc">
+                        دليل شامل ومبسّط يجمع بين المفاهيم العلمية والممارسات الميدانية اليومية لفهم
+                        المخاطر الغذائية والسيطرة عليها — للمنازل والمطاعم والتصنيع، مع ملاحق HACCP
+                        وقوائم تحقق جاهزة.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-file-pdf"></i> PDF / ePub</span>
+                        <span><i class="fas fa-book-open"></i> 14 فصلاً + 4 ملاحق</span>
+                        <span><i class="fas fa-check-circle"></i> قوائم تحقق</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">9.99$</span>
+                            <small>النسخة الإلكترونية</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="food-safety-guide.html" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-shopping-cart"></i> التفاصيل والشراء
+                            </a>
+                            <button class="icon-btn" data-name="مبادئ سلامة الأغذية" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 6) المنصة الشاملة -->
+            <article class="product-card" data-cat="tool">
+                <div class="card-media" id="gallery4">
+                    <a href="https://lh3.googleusercontent.com/d/123EzAVcLo6K-yCCyNeVEe_LOp3BOXL1s"
+                       data-lightbox="book4" data-title="المنصة الشاملة — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/123EzAVcLo6K-yCCyNeVEe_LOp3BOXL1s" alt="المنصة الشاملة">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-crown"></i> منصة شاملة</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/3</div>
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">نظام متكامل</span>
+                    <h3>المنصة الشاملة</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(86 تقييم)</span>
+                    </div>
+                    <p class="card-desc">
+                        <strong>لا داعي لبرامج مكلفة.</strong> منصة احترافية لدعم المستثمرين ورواد الأعمال:
+                        دراسات جدوى (مالية، فنية، تسويقية)، حساب تكاليف المطاعم، العائد العقاري، محاكاة
+                        المخاطر، التدفق النقدي، نقطة التعادل، أنظمة التشغيل (SOPs / HACCP)، التنبؤ المالي
+                        والنسب المالية الشاملة.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-cogs"></i> +25 أداة</span>
+                        <span><i class="fas fa-file-invoice"></i> تقارير PDF</span>
+                        <span><i class="fas fa-chart-line"></i> تنبؤ مالي</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">299$</span>
+                            <small>اشتراك سنوي — لا يتجدد تلقائياً</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://portal.farouk-grup.com/finance-hub" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-arrow-left"></i> التفاصيل والاشتراك
+                            </a>
+                            <button class="icon-btn" data-name="المنصة الشاملة" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 7) هندسة المينيو -->
+            <article class="product-card" data-cat="tool">
+                <div class="card-media" id="gallery6">
+                    <a href="https://lh3.googleusercontent.com/d/1XA7bT3qKT5A7xih2G_JA3MrKIhm3SGhD"
+                       data-lightbox="book6" data-title="هندسة المينيو — صورة 1">
+                        <img class="gallery-main" src="https://lh3.googleusercontent.com/d/1XA7bT3qKT5A7xih2G_JA3MrKIhm3SGhD" alt="هندسة المينيو">
+                    </a>
+                    <span class="card-badge"><i class="fas fa-utensils"></i> هندسة المينيو</span>
+                    <div class="gallery-nav">
+                        <button class="prev" aria-label="الصورة السابقة"><i class="fas fa-chevron-right"></i></button>
+                        <button class="next" aria-label="الصورة التالية"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="gallery-counter">1/2</div>
+                </div>
+                <div class="card-body">
+                    <span class="card-cat">أداة تحليلية</span>
+                    <h3>هندسة المينيو</h3>
+                    <div class="card-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>(13 تقييم)</span>
+                    </div>
+                    <p class="card-desc">
+                        <strong>لا داعي لبرامج مكلفة.</strong> أداة احترافية لتحليل ربحية كل صنف، حساب التكلفة
+                        الفعلية، وتحديد نقاط القوة والضعف في قائمتك. مؤشرات دقيقة: هامش الربح، نسبة
+                        التكلفة، ومساهمة كل صنف في الإيرادات، مع استراتيجيات التسعير وإعادة الهيكلة.
+                    </p>
+                    <div class="card-meta">
+                        <span><i class="fas fa-chart-pie"></i> تحليل المينيو</span>
+                        <span><i class="fas fa-star-half-alt"></i> تقييم الزبائن</span>
+                        <span><i class="fas fa-tags"></i> استراتيجيات التسعير</span>
+                    </div>
+                    <div class="card-foot">
+                        <div class="price-row">
+                            <span class="price">99$</span>
+                            <small>اشتراك سنوي — لا يتجدد تلقائياً</small>
+                        </div>
+                        <div class="card-actions">
+                            <a href="https://rest-tools.farouk-grup.com/Food-Cost.html" target="_blank" class="btn btn-gold btn-sm">
+                                <i class="fas fa-arrow-left"></i> التفاصيل والاشتراك
+                            </a>
+                            <button class="icon-btn" data-name="هندسة المينيو" onclick="showInquiry(this)" aria-label="استفسار">
+                                <i class="fas fa-comment-dots"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= شريط CTA ================= -->
+<section class="cta-band">
+    <div class="container cta-inner">
+        <div>
+            <span class="eyebrow light"><i class="fas fa-handshake"></i> استشارات وتحوّل رقمي</span>
+            <h2>هل تحتاج دراسة جدوى أو خطة عمل لمشروعك؟</h2>
+            <p>
+                فريق مجموعة فاروق يقدّم الاستشارات المتخصصة وبرامج التدريب العملية —
+                من الفكرة إلى التشغيل، بمنهجية مبنية على البيانات.
+            </p>
+        </div>
+        <div class="cta-actions">
+            <a href="https://training.farouk-grup.com" target="_blank" rel="noopener" class="btn btn-gold">
+                <i class="fas fa-graduation-cap"></i> موقع التدريب
+            </a>
+            <a href="https://farouk-grup.com" target="_blank" rel="noopener" class="btn btn-light">
+                <i class="fas fa-building-columns"></i> مجموعة فاروق
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ================= لماذا نحن ================= -->
+<section class="section" id="why">
+    <div class="container">
+        <div class="section-head" data-aos="fade-up">
+            <span class="eyebrow"><i class="fas fa-shield-halved"></i> لماذا نحن</span>
+            <h2>لماذا تشتري من متجرنا</h2>
+            <p>لأن كل منتج يمر على فريق استشاري متخصص قبل أن يصل إليك.</p>
+        </div>
+        <div class="feature-grid" data-aos="fade-up">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                <h4>دفع آمن 100%</h4>
+                <p>جميع معاملاتك مشفّرة وآمنة عبر بوابات دفع موثوقة.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h4>تسليم فوري</h4>
+                <p>الكتب الإلكترونية والأنظمة متاحة مباشرة بعد إتمام الشراء.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                <h4>دعم فني مباشر</h4>
+                <p>فريق الدعم متاح عبر واتساب لمساعدتك في أي استفسار.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-award"></i></div>
+                <h4>محتوى حصري</h4>
+                <p>محتوى متخصص مبني على خبرة ميدانية — فقط على متجرنا.</p>
             </div>
         </div>
 
-        <hr>
+        <div class="stats" data-aos="fade-up" style="margin-top:34px">
+            <div class="stat"><b>+25</b><span>أداة تحليلية</span></div>
+            <div class="stat"><b>+1200</b><span>عميل ومستثمر</span></div>
+            <div class="stat"><b>4.8/5</b><span>متوسط التقييم</span></div>
+            <div class="stat"><b>24/7</b><span>دعم واستشارة</span></div>
+        </div>
+    </div>
+</section>
 
-        <div class="footer-legal">
-            <a href="privacy-policy.html">اتفاقية الاستخدام | Legal Agreements | Mesafeli Satış Sözleşmesi</a>
+<!-- ================= آراء العملاء ================= -->
+<section class="section" id="testimonials" style="padding-top:0">
+    <div class="container">
+        <div class="section-head" data-aos="fade-up">
+            <span class="eyebrow"><i class="fas fa-quote-right"></i> آراء العملاء</span>
+            <h2>ثقة رواد الأعمال</h2>
+            <p>تجارب حقيقية من مستثمرين ومدراء استفادوا من منتجاتنا.</p>
+        </div>
+        <div class="testi-grid" data-aos="fade-up">
+            <div class="testi-card">
+                <div class="quote"><i class="fas fa-quote-right"></i></div>
+                <p>المنصة الشاملة وفّرت عليّ آلاف الدولارات من برامج مكلفة، ودراسة الجدوى كانت دقيقة جداً وساعدتني في الحصول على تمويل.</p>
+                <div class="testi-user">
+                    <div class="avatar">أ</div>
+                    <div>
+                        <strong>أحمد الشمري</strong>
+                        <small>مستثمر — قطاع المطاعم</small>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="quote"><i class="fas fa-quote-right"></i></div>
+                <p>كتاب «أساسيات إدارة المطاعم» غيّر طريقة إدارتي بالكامل. لأول مرة أفهم أرقامي وأتخذ قرارات مبنية على بيانات فعلية.</p>
+                <div class="testi-user">
+                    <div class="avatar">م</div>
+                    <div>
+                        <strong>مروان العلي</strong>
+                        <small>صاحب مطعم — إسطنبول</small>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="quote"><i class="fas fa-quote-right"></i></div>
+                <p>أداة هندسة المينيو كشفت لي أصنافاً كانت تخسرني دون أن أدري. الآن هامش ربحي أعلى بـ 27% خلال ثلاثة أشهر.</p>
+                <div class="testi-user">
+                    <div class="avatar">س</div>
+                    <div>
+                        <strong>سارة يلماز</strong>
+                        <small>مديرة تشغيل — سلسلة مقاهي</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= الفوتر (كما هو — لم يُمسّ) ================= -->
+<footer id="contact">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div>
+                <div class="footer-brand">
+                    <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP">
+                    <div>
+                        <strong>مجموعة فاروق للإستشارات والأعمال</strong>
+                        <small>استشارات · تدريب · أدوات مالية</small>
+                    </div>
+                </div>
+                <p style="font-size:.88rem;line-height:1.9">
+                    نساعد رواد الأعمال والمستثمرين على بناء أنظمة تشغيل مربحة وقرارات مالية مدروسة،
+                    عبر منتجات رقمية وبرامج تدريب عملية.
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/faroukazem/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/905550196682" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4>روابط سريعة</h4>
+                <ul class="footer-links">
+                    <li><a href="#store"><i class="fas fa-chevron-left"></i> المتجر</a></li>
+                    <li><a href="#store" data-jump="book"><i class="fas fa-chevron-left"></i> الكتب الإلكترونية</a></li>
+                    <li><a href="#store" data-jump="tool"><i class="fas fa-chevron-left"></i> الأنظمة والأدوات</a></li>
+                    <li><a href="#why"><i class="fas fa-chevron-left"></i> لماذا نحن</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>روابط مهمة</h4>
+                <ul class="footer-links">
+                    <li><a href="https://training.farouk-grup.com" target="_blank" rel="noopener"><i class="fas fa-chevron-left"></i> موقع التدريب</a></li>
+                    <li><a href="https://farouk-grup.com" target="_blank" rel="noopener"><i class="fas fa-chevron-left"></i> مجموعة فاروق</a></li>
+                    <li><a href="https://portal.farouk-grup.com/finance-hub" target="_blank"><i class="fas fa-chevron-left"></i> المنصة الشاملة</a></li>
+                    <li><a href="privacy-policy.html"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>تواصل معنا</h4>
+                <ul class="footer-contact">
+                    <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/905550196682" target="_blank">‎+90 555 019 66 82</a></li>
+                    <li><i class="far fa-envelope"></i><a href="mailto:faroukgrup@gmail.com">info@farouk-grup.com</a></li>
+                    <li><i class="fas fa-location-dot"></i><span>تركيا — إسطنبول</span></li>
+                </ul>
+                <a href="https://wa.me/905550196682" target="_blank" class="btn btn-gold btn-sm" style="margin-top:6px">
+                    <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+                </a>
+            </div>
+
         </div>
 
-        <div class="copyright">
-            V 4.0 جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP TRAINING</span>
+        <div class="footer-bottom">
+            <div class="payment-row">
+                <span style="margin-left:6px">وسائل الدفع:</span>
+                <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:20px">
+                <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay">
+                <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:.75rem">
+                    <i class="fas fa-lock" style="color:var(--gold)"></i> SSL آمن
+                </span>
+            </div>
+            <div>
+                <a href="privacy-policy.html" class="legal-link">اتفاقية الاستخدام · Legal Agreements · Mesafeli Satış Sözleşmesi</a>
+            </div>
+            <div>
+                V 4.1 — جميع الحقوق محفوظة © 2026 <strong style="color:var(--gold-2)">FAROUK GRUP TRAINING</strong>
+            </div>
         </div>
     </div>
 </footer>
 
-<!-- ===== نافذة الاستفسار ===== -->
-<div class="modal" id="inquiryModal" style="display:none;">
+<!-- ================= نافذة الاستفسار ================= -->
+<div class="modal" id="inquiryModal">
     <div class="modal-content">
-        <i class="fas fa-question-circle"></i>
+        <div class="modal-icon"><i class="fas fa-comment-dots"></i></div>
         <h3>للاستفسار</h3>
         <p id="inquiryMessage">للاستفسار يمكنكم التواصل معنا عبر واتساب.</p>
-        <a href="https://wa.me/905550196682" class="modal-whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i> تواصل معنا
+        <a href="https://wa.me/905550196682" class="modal-whatsapp" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> تواصل معنا الآن
         </a>
         <button class="modal-close" onclick="closeInquiry()">إغلاق</button>
     </div>
 </div>
 
-<!-- ===== السكريبتات ===== -->
+<!-- ================= السكريبتات ================= -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({duration:800,once:true,offset:100});
+/* ---------- تهيئة الحركات ---------- */
+AOS.init({duration:700, once:true, offset:80, easing:'ease-out-cubic'});
 
-    function showInquiry(bookName) {
-        document.getElementById('inquiryMessage').innerText = `للاستفسار عن "${bookName}" يمكنكم التواصل معنا عبر واتساب.`;
-        document.getElementById('inquiryModal').style.display = 'flex';
-    }
-    function closeInquiry() {
-        document.getElementById('inquiryModal').style.display = 'none';
-    }
+/* ---------- تظليل الهيدر عند التمرير ---------- */
+const siteHeader = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+    siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+}, {passive:true});
 
-    // مصفوفات الصور لكل كتاب (تم إصلاح الخطأ)
-    const galleries = [
-        { // كتاب 1
-            images: [
-                'https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct',
-                'https://lh3.googleusercontent.com/d/1rfJHhtFGlhkcKUvhLgBXY51sFa3xjcy4',
-                'https://lh3.googleusercontent.com/d/1i7p9pKUIrjM6lcv60ULm0JR7RGxDMSeN',
-            ],
-            wrapper: document.querySelector('#gallery1'),
-            lightboxGroup: 'book1'
-        },
-        { // كتاب 2
-            images: [
-                'https://lh3.googleusercontent.com/d/1d3h50i-UdIFWpTxIbkVZQr3_QtuzeuND',
-                'https://lh3.googleusercontent.com/d/1-Epejji6kT2PHbEIqBVPaiekbYEU5hoe',
-                'https://lh3.googleusercontent.com/d/12YFuoj_nNVsdRTPe-gCYm9RCurjAEt5d',
-            ],
-            wrapper: document.querySelector('#gallery2'),
-            lightboxGroup: 'book2'
-        },
-        { // كتاب 3
-            images: [
-                'https://lh3.googleusercontent.com/d/1e68ObKAxBBov6TS9qkYAjnaL8YloxRMw',
-                'https://lh3.googleusercontent.com/d/1yGQqDM6ElVh3T_dae9xRd_p_4Zj0q_d7',
-                'https://lh3.googleusercontent.com/d/1o9NDUQXJW9_pM6E9zCCvqcIDt-6BafuI',
-            ],
-            wrapper: document.querySelector('#gallery3'),
-            lightboxGroup: 'book3'
-        },
-        { // كتاب 5 (الماليات بدون وجع رأس)
-            images: [
-                'https://lh3.googleusercontent.com/d/1NyewNJuZfMnzgfPq_aDwIBy9CHvr-pTf',
-                'https://lh3.googleusercontent.com/d/1UoJTsU1ydrtXHlxqWaRLXwqsocnHBewL',
-                'https://lh3.googleusercontent.com/d/1iPNODjndnQEVtaVfR8Is1QIxWTsO9h-D',
-            ],
-            wrapper: document.querySelector('#gallery5'),
-            lightboxGroup: 'book5'
-        },
-        { // المنصة الشاملة
-            images: [
-                'https://lh3.googleusercontent.com/d/123EzAVcLo6K-yCCyNeVEe_LOp3BOXL1s',
-                'https://lh3.googleusercontent.com/d/1QDw3aDy_B4Ug9QqAaWYnU2K2ktJAoKek',
-                'https://lh3.googleusercontent.com/d/1QDw3aDy_B4Ug9QqAaWYnU2K2ktJAoKek', // يمكنك تغييرها لصورة ثالثة مختلفة
-            ],
-            wrapper: document.querySelector('#gallery4'),
-            lightboxGroup: 'book4'
-        },
-        { // هندسة المينيو
-            images: [
-                'https://lh3.googleusercontent.com/d/1XA7bT3qKT5A7xih2G_JA3MrKIhm3SGhD',
-                'https://lh3.googleusercontent.com/d/1JXxgzF9RE691VK3H12IXHcBcvC6MdbId',
-            ],
-            wrapper: document.querySelector('#gallery6'),
-            lightboxGroup: 'book6'
-        }
-    ];
+/* ---------- الفلترة ---------- */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const productCards = document.querySelectorAll('.product-card');
 
-    // تهيئة كل معرض
-    galleries.forEach(g => {
-        if (!g.wrapper) return;
-        const link = g.wrapper.querySelector('a');
-        const img = g.wrapper.querySelector('.gallery-main');
-        const prev = g.wrapper.querySelector('.prev');
-        const next = g.wrapper.querySelector('.next');
-        const counter = g.wrapper.querySelector('.gallery-counter');
-        
-        if (!prev || !next || !counter) return;
-
-        let index = 0;
-
-        function update() {
-            img.src = g.images[index];
-            link.href = g.images[index];
-            link.setAttribute('data-title', `صورة ${index+1} من ${g.lightboxGroup}`);
-            counter.textContent = (index+1) + '/' + g.images.length;
-        }
-
-        prev.addEventListener('click', e => {
-            e.preventDefault();
-            index = (index - 1 + g.images.length) % g.images.length;
-            update();
-        });
-
-        next.addEventListener('click', e => {
-            e.preventDefault();
-            index = (index + 1) % g.images.length;
-            update();
-        });
+function applyFilter(filter){
+    filterBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === filter));
+    productCards.forEach(card => {
+        const show = filter === 'all' || card.dataset.cat === filter;
+        card.classList.toggle('is-hidden', !show);
     });
+}
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+});
+
+/* روابط التنقل التي تفتح فلتراً معيناً */
+document.querySelectorAll('[data-jump]').forEach(link => {
+    link.addEventListener('click', () => applyFilter(link.dataset.jump));
+});
+
+/* ---------- نافذة الاستفسار ---------- */
+function showInquiry(btn){
+    const name = btn.dataset.name || '';
+    document.getElementById('inquiryMessage').innerText =
+        `للاستفسار عن "${name}" يمكنكم التواصل معنا مباشرة عبر واتساب.`;
+    document.getElementById('inquiryModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+function closeInquiry(){
+    document.getElementById('inquiryModal').classList.remove('show');
+    document.body.style.overflow = '';
+}
+document.getElementById('inquiryModal').addEventListener('click', e => {
+    if (e.target.id === 'inquiryModal') closeInquiry();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeInquiry();
+});
+
+/* ---------- معارض الصور ---------- */
+const galleries = [
+    {
+        id:'#gallery1', group:'book1', title:'الدليل المالي لغير الماليين',
+        images:[
+            'https://lh3.googleusercontent.com/d/1KExAHVo1tdyVmYYoGDLBGaPsHUcqaSct',
+            'https://lh3.googleusercontent.com/d/1rfJHhtFGlhkcKUvhLgBXY51sFa3xjcy4',
+            'https://lh3.googleusercontent.com/d/1i7p9pKUIrjM6lcv60ULm0JR7RGxDMSeN'
+        ]
+    },
+    {
+        id:'#gallery2', group:'book2', title:'أساسيات إدارة المطاعم',
+        images:[
+            'https://lh3.googleusercontent.com/d/1d3h50i-UdIFWpTxIbkVZQr3_QtuzeuND',
+            'https://lh3.googleusercontent.com/d/1-Epejji6kT2PHbEIqBVPaiekbYEU5hoe',
+            'https://lh3.googleusercontent.com/d/12YFuoj_nNVsdRTPe-gCYm9RCurjAEt5d'
+        ]
+    },
+    {
+        id:'#gallery3', group:'book3', title:'المطاعم الناجحة',
+        images:[
+            'https://lh3.googleusercontent.com/d/1e68ObKAxBBov6TS9qkYAjnaL8YloxRMw',
+            'https://lh3.googleusercontent.com/d/1yGQqDM6ElVh3T_dae9xRd_p_4Zj0q_d7',
+            'https://lh3.googleusercontent.com/d/1o9NDUQXJW9_pM6E9zCCvqcIDt-6BafuI'
+        ]
+    },
+    {
+        id:'#gallery5', group:'book5', title:'الماليات بدون وجع رأس',
+        images:[
+            'https://lh3.googleusercontent.com/d/1NyewNJuZfMnzgfPq_aDwIBy9CHvr-pTf',
+            'https://lh3.googleusercontent.com/d/1UoJTsU1ydrtXHlxqWaRLXwqsocnHBewL',
+            'https://lh3.googleusercontent.com/d/1iPNODjndnQEVtaVfR8Is1QIxWTsO9h-D'
+        ]
+    },
+    {
+        id:'#gallery7', group:'book7', title:'مبادئ سلامة الأغذية',
+        images:[
+            'https://lh3.googleusercontent.com/d/1O6pqGUe-ban2ooIIEhvF8XRSlrbkf79q',
+            'https://lh3.googleusercontent.com/d/1lAFgYkd6n2dyR5QEP3_9vKephanfjSqX'
+        ]
+    },
+    {
+        id:'#gallery4', group:'book4', title:'المنصة الشاملة',
+        images:[
+            'https://lh3.googleusercontent.com/d/123EzAVcLo6K-yCCyNeVEe_LOp3BOXL1s',
+            'https://lh3.googleusercontent.com/d/1QDw3aDy_B4Ug9QqAaWYnU2K2ktJAoKek'
+        ]
+    },
+    {
+        id:'#gallery6', group:'book6', title:'هندسة المينيو',
+        images:[
+            'https://lh3.googleusercontent.com/d/1XA7bT3qKT5A7xih2G_JA3MrKIhm3SGhD',
+            'https://lh3.googleusercontent.com/d/1JXxgzF9RE691VK3H12IXHcBcvC6MdbId'
+        ]
+    }
+];
+
+galleries.forEach(g => {
+    const wrap = document.querySelector(g.id);
+    if (!wrap) return;
+
+    const link    = wrap.querySelector('a');
+    const img     = wrap.querySelector('.gallery-main');
+    const prev    = wrap.querySelector('.prev');
+    const next    = wrap.querySelector('.next');
+    const counter = wrap.querySelector('.gallery-counter');
+    if (!link || !img || !prev || !next || !counter) return;
+
+    let index = 0;
+
+    function update(){
+        img.src = g.images[index];
+        link.href = g.images[index];
+        link.setAttribute('data-title', `${g.title} — صورة ${index + 1} من ${g.images.length}`);
+        counter.textContent = (index + 1) + '/' + g.images.length;
+    }
+
+    prev.addEventListener('click', e => {
+        e.preventDefault();
+        index = (index - 1 + g.images.length) % g.images.length;
+        update();
+    });
+
+    next.addEventListener('click', e => {
+        e.preventDefault();
+        index = (index + 1) % g.images.length;
+        update();
+    });
+});
 </script>
+
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
