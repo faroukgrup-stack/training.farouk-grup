@@ -2,522 +2,1637 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes">
-<title>الاتفاقيات القانونية | Legal Agreements - FAROUK GRUP TRAINING</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+<title>سياسة الخصوصية والاتفاقيات القانونية | مجموعة فاروق للأعمال</title>
 <script src="protect.js"></script>
+<meta name="description" content="سياسة الخصوصية، اتفاقية الاستخدام، وعقد البيع عن بُعد — Faroukgrup Gıda Ve Ticaret Limited Şirketi.">
 
 <!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- AOS Library -->
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
 <style>
+/* ============================================================
+   المتغيّرات (نفس نظام المتجر)
+   ============================================================ */
 :root{
-    --gold:#b8860b;
-    --gold-light:#d4a017;
-    --gold-soft:rgba(184,134,11,0.1);
-    --dark:#1e2a2f;
-    --dark-light:#2c3e4a;
-    --grey:#5a6b7a;
-    --light:#f8f6f2;
-    --white:#ffffff;
-    --bg-soft:#f5f0e6;
+    --navy:#0d1b2a;
+    --navy-2:#132a3e;
+    --navy-3:#1b3a52;
+    --gold:#c8a24a;
+    --gold-2:#e3c377;
+    --gold-soft:rgba(200,162,74,.12);
+    --cream:#faf7f0;
+    --paper:#ffffff;
+    --ink:#16222e;
+    --muted:#6b7684;
+    --line:rgba(13,27,42,.09);
+    --shadow-sm:0 6px 20px rgba(13,27,42,.06);
+    --shadow-md:0 16px 40px rgba(13,27,42,.10);
+    --shadow-lg:0 30px 70px rgba(13,27,42,.16);
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:120px}
 body{
-    font-family:'Tajawal',sans-serif;
-    background:var(--light);
-    color:#2c3e4a;
-    line-height:1.6;
+    font-family:'Tajawal',system-ui,-apple-system,sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
 }
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:'Alexandria',sans-serif;line-height:1.35}
+.container{width:min(1200px,100% - 40px);margin-inline:auto}
 
-/* ===== الهيدر المتكامل مع خلفية ===== */
-.hero-header{
-    background:linear-gradient(rgba(20,30,40,0.7), rgba(20,30,40,0.5)),
-                url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600') center/cover;
-    background-attachment:fixed;
-    color:white;
-    padding:30px 20px 20px;
-    border-bottom:4px solid var(--gold);
-    position:relative;
+/* ============================================================
+   الأزرار
+   ============================================================ */
+.btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    padding:12px 24px;border-radius:13px;font-weight:800;font-size:.94rem;
+    transition:all .3s cubic-bezier(.2,.8,.3,1);white-space:nowrap;
+    border:2px solid transparent;line-height:1.2;
 }
-.hero-header::before{
-    content:'';
-    position:absolute;
-    top:0; left:0; width:100%; height:100%;
-    background:radial-gradient(circle at 30% 50%, rgba(184,134,11,0.2), transparent 60%);
-    animation:pulseGlow 4s infinite alternate;
-    pointer-events:none;
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#22180a;box-shadow:0 10px 24px rgba(200,162,74,.35)}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(200,162,74,.45)}
+.btn-outline{border-color:rgba(13,27,42,.16);color:var(--ink);background:#fff;box-shadow:var(--shadow-sm)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-3px)}
+.btn-sm{padding:9px 17px;font-size:.84rem;border-radius:10px;gap:7px}
+
+/* ============================================================
+   الشريط العلوي
+   ============================================================ */
+.topbar{background:var(--navy);color:rgba(255,255,255,.72);font-size:.82rem}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:42px;gap:16px}
+.topbar a{color:inherit;transition:.2s;display:inline-flex;align-items:center;gap:6px}
+.topbar a:hover{color:var(--gold-2)}
+.topbar-group{display:flex;align-items:center;gap:18px}
+.topbar-social{display:flex;gap:14px}
+.topbar i{color:var(--gold-2)}
+
+/* ============================================================
+   شريط المسار (Breadcrumb)
+   ============================================================ */
+.breadcrumb-bar{background:#fff;border-bottom:1px solid var(--line);font-size:.82rem}
+.breadcrumb-inner{display:flex;align-items:center;justify-content:space-between;min-height:44px;gap:16px}
+.breadcrumb-path{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:var(--muted)}
+.breadcrumb-path a{display:inline-flex;align-items:center;gap:6px;color:var(--navy);font-weight:700;transition:.2s}
+.breadcrumb-path a:hover{color:var(--gold)}
+.breadcrumb-path a i{color:var(--gold);font-size:.8rem}
+.breadcrumb-path .sep{font-size:.55rem;color:rgba(13,27,42,.3)}
+.breadcrumb-path .current{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-weight:800}
+.breadcrumb-path .current i{font-size:.8rem}
+.breadcrumb-back{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:.78rem;font-weight:700;color:var(--muted);
+    padding:5px 14px;border-radius:20px;border:1px solid var(--line);transition:.22s;white-space:nowrap;
 }
-@keyframes pulseGlow{
-    0%{opacity:0.3;}
-    100%{opacity:0.8;}
+.breadcrumb-back:hover{color:var(--gold);border-color:var(--gold);background:var(--gold-soft)}
+
+/* ============================================================
+   الهيدر
+   ============================================================ */
+.site-header{
+    position:sticky;top:0;z-index:1000;
+    background:rgba(250,247,240,.92);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--line);transition:.3s;
+}
+.site-header.scrolled{background:rgba(255,255,255,.97);box-shadow:0 10px 30px rgba(13,27,42,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:48px;width:auto;filter:drop-shadow(0 4px 10px rgba(200,162,74,.25))}
+.brand-text strong{display:block;font-family:'Alexandria';font-size:.98rem;letter-spacing:.3px;color:var(--navy)}
+.brand-text small{display:block;color:var(--muted);font-size:.72rem;font-weight:500}
+.main-nav{display:flex;gap:4px}
+.main-nav a{padding:9px 14px;border-radius:11px;font-weight:700;font-size:.9rem;transition:.22s;color:#3a4a58}
+.main-nav a:hover{background:var(--gold-soft);color:var(--gold)}
+.nav-ctas{display:flex;gap:9px;align-items:center}
+
+/* ============================================================
+   الهيرو الصفحة
+   ============================================================ */
+.legal-hero{
+    position:relative;overflow:hidden;
+    padding:56px 0 44px;
+    background:
+        radial-gradient(800px 460px at 85% -20%, rgba(200,162,74,.18), transparent 62%),
+        radial-gradient(700px 460px at -8% 30%, rgba(13,27,42,.06), transparent 62%),
+        var(--cream);
+    border-bottom:1px solid var(--line);
+}
+.legal-hero::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:
+        linear-gradient(rgba(13,27,42,.03) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(13,27,42,.03) 1px,transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:radial-gradient(circle at 40% 40%,#000,transparent 72%);
+    mask-image:radial-gradient(circle at 40% 40%,#000,transparent 72%);
+}
+.legal-hero-inner{position:relative;z-index:2;max-width:780px}
+.eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.76rem;font-weight:800;letter-spacing:.6px;
+    color:var(--gold);background:var(--gold-soft);
+    padding:7px 17px;border-radius:50px;border:1px solid rgba(200,162,74,.28);
+}
+.legal-hero h1{
+    font-size:clamp(1.75rem,3.4vw,2.65rem);font-weight:900;color:var(--navy);
+    margin:16px 0 12px;letter-spacing:-.4px;
+}
+.legal-hero h1 .grad{
+    background:linear-gradient(120deg,var(--gold),var(--gold-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.legal-hero p{color:var(--muted);font-size:1rem;max-width:600px}
+.hero-meta{
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:22px;
+    font-size:.82rem;color:var(--muted);font-weight:600;
+}
+.hero-meta span{display:inline-flex;align-items:center;gap:6px}
+.hero-meta span i{color:var(--gold)}
+.hero-meta .print-btn{
+    margin-inline-start:auto;
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 15px;border-radius:10px;border:1px solid var(--line);
+    background:#fff;font-weight:800;font-size:.78rem;color:var(--navy);
+    transition:.22s;
+}
+.hero-meta .print-btn:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-soft)}
+
+/* ============================================================
+   شريط اختيار اللغة (Sticky)
+   ============================================================ */
+.lang-bar{
+    position:sticky;top:76px;z-index:900;
+    background:rgba(255,255,255,.97);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:12px 0;
+}
+.lang-switcher{
+    display:flex;gap:6px;align-items:center;flex-wrap:wrap;
+}
+.lang-switcher .label{
+    font-size:.8rem;color:var(--muted);font-weight:700;margin-inline-end:8px;
+}
+.lang-switcher button{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:7px 16px;border-radius:9px;
+    font-weight:800;font-size:.83rem;color:var(--muted);
+    border:1px solid var(--line);background:#fff;transition:.22s;
+}
+.lang-switcher button:hover{border-color:var(--gold);color:var(--gold)}
+.lang-switcher button.active{
+    background:var(--navy);color:#fff;border-color:var(--navy);
+    box-shadow:0 8px 18px rgba(13,27,42,.18);
+}
+.lang-switcher button .flag{font-size:1rem;line-height:1}
+
+/* ============================================================
+   التخطيط الرئيسي (TOC + محتوى)
+   ============================================================ */
+.legal-layout{
+    display:grid;grid-template-columns:280px 1fr;gap:44px;
+    padding:56px 0 90px;
+    align-items:start;
 }
 
-.header-top{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:15px;
-    margin-bottom:20px;
-    position:relative;
-    z-index:2;
+/* --- الفهرس --- */
+.toc{
+    position:sticky;top:150px;
+    background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:24px 22px;box-shadow:var(--shadow-sm);
 }
+.toc-head{
+    display:flex;align-items:center;gap:9px;margin-bottom:18px;
+    padding-bottom:14px;border-bottom:2px solid var(--gold-soft);
+}
+.toc-head i{color:var(--gold);font-size:1.05rem}
+.toc-head h3{font-size:.98rem;font-weight:900;color:var(--navy);margin:0}
+.toc-list{display:flex;flex-direction:column;gap:2px}
+.toc-list a{
+    display:flex;align-items:center;gap:9px;
+    padding:9px 11px;border-radius:9px;font-size:.86rem;font-weight:700;
+    color:#4a5764;transition:.2s;line-height:1.4;
+}
+.toc-list a:hover{background:var(--gold-soft);color:var(--gold)}
+.toc-list a.active{
+    background:var(--gold-soft);color:var(--gold);
+    border-inline-start:3px solid var(--gold);
+}
+.toc-list a i{font-size:.78rem;color:var(--gold);width:16px;text-align:center;flex:0 0 16px}
+.toc-list .sub{font-size:.8rem;padding-inline-start:38px;color:var(--muted);font-weight:600}
+.toc-list .sub:hover{color:var(--gold)}
 
-.logo-area{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    flex-wrap:nowrap;
-}
-.logo-area img{
-    height:60px;
-    width:auto;
-    filter:drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-}
-.logo-area h1{
-    font-family:'Alexandria',sans-serif;
-    font-size:1.6rem;
-    font-weight:900;
-    color:var(--gold-light);
-    text-shadow:2px 2px 6px rgba(0,0,0,0.5);
-    white-space:nowrap;
-}
-
-/* زر اسألنا مع نبض خفيف */
-.ask-btn{
-    background-color:var(--gold);
-    color:#111;
-    padding:12px 28px;
-    border-radius:50px;
-    font-weight:900;
-    text-decoration:none;
-    font-size:1.2rem;
-    box-shadow:0 8px 18px rgba(0,0,0,0.3);
-    transition:0.3s;
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    border:2px solid transparent;
-    animation: gentlePulse 2s infinite;
-}
-@keyframes gentlePulse {
-    0% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
-    50% { box-shadow: 0 12px 25px rgba(184,134,11,0.6); transform:scale(1.02); }
-    100% { box-shadow: 0 8px 18px rgba(184,134,11,0.3); transform:scale(1); }
-}
-.ask-btn:hover{
-    background-color:var(--gold-light);
-    transform:translateY(-2px) scale(1.02);
-    box-shadow:0 12px 25px rgba(0,0,0,0.4);
-    border-color:white;
-    animation: none;
-}
-
-/* القائمة الأفقية داخل الهيدر */
-.nav-in-header{
-    display:flex;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:12px 20px;
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(8px);
-    padding:12px 25px;
-    border-radius:60px;
-    margin-top:15px;
-    border:1px solid rgba(255,255,255,0.25);
-    position:relative;
-    z-index:2;
-}
-.nav-in-header a{
-    color:white;
-    text-decoration:none;
-    font-weight:700;
-    font-size:1rem;
-    padding:5px 10px;
-    transition:0.3s;
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-}
-.nav-in-header a i{font-size:0.9rem;}
-.nav-in-header a:hover{
-    color:var(--gold-light);
-    transform:translateY(-2px);
-}
-.nav-in-header .active{
-    background:var(--gold);
-    color:#111;
-    border-radius:40px;
-    padding:5px 20px;
-}
-.nav-in-header .active i{color:#111;}
-
-/* ===== عنوان الصفحة (مطوّر) ===== */
-.page-header{
-    text-align:center;
-    margin:50px auto 30px;
-    position:relative;
-    padding:20px;
-    background:linear-gradient(145deg, #fff9f0, #fef5e6);
-    border-radius:60px;
-    max-width:700px;
-    border:2px solid var(--gold-light);
-    box-shadow:0 10px 25px rgba(184,134,11,0.2);
-}
-.page-header h2{
-    color:var(--dark);
-    font-size:36px;
-    font-weight:900;
-    margin-bottom:5px;
-}
-.page-header .underline{
-    width:100px;
-    height:4px;
-    background:var(--gold);
-    margin:10px auto;
-    border-radius:2px;
-}
-.page-header .sub{
-    color:var(--gold);
-    font-size:1.2rem;
-    font-weight:700;
-    letter-spacing:1px;
-}
-
-/* ===== الحاوية الرئيسية ===== */
-.legal-container{
-    max-width:1000px;
-    margin:0 auto 60px;
-    padding:0 20px;
-}
+/* --- المحتوى --- */
+.legal-content{min-width:0}
 
 /* بطاقة معلومات الشركة */
 .company-card{
-    background:linear-gradient(145deg, #fff9f0, #fef5e6);
-    border-radius:30px;
-    padding:30px;
-    margin-bottom:40px;
-    border:1px solid var(--gold-light);
-    text-align:center;
+    background:linear-gradient(135deg,#fff,var(--paper));
+    border:1px solid rgba(200,162,74,.3);
+    border-radius:22px;padding:32px;margin-bottom:32px;
+    box-shadow:var(--shadow-sm);
+    position:relative;overflow:hidden;
 }
-.company-card p{
-    margin:10px 0;
-    font-size:1.1rem;
+.company-card::before{
+    content:'';position:absolute;top:0;right:0;width:120px;height:120px;
+    background:var(--gold-soft);border-radius:0 0 0 120px;pointer-events:none;
 }
-.company-card strong{
-    color:var(--gold);
+.company-card .cc-head{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+    position:relative;z-index:2;
+}
+.company-card .cc-icon{
+    width:52px;height:52px;border-radius:14px;flex:0 0 52px;
+    background:linear-gradient(135deg,var(--gold),var(--gold-2));
+    display:grid;place-items:center;font-size:1.3rem;color:#22180a;
+    box-shadow:0 8px 20px rgba(200,162,74,.35);
+}
+.company-card h2{
+    font-size:1.25rem;color:var(--navy);font-weight:900;
+}
+.company-card h2 small{display:block;font-size:.78rem;font-weight:600;color:var(--muted);margin-top:3px}
+.company-info-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px 26px;
+    position:relative;z-index:2;
+}
+.company-info-grid .ci-item{
+    display:flex;flex-direction:column;gap:2px;
+    padding:10px 0;border-bottom:1px dashed var(--line);
+}
+.company-info-grid .ci-item:last-child,
+.company-info-grid .ci-item:nth-last-child(2){border-bottom:none}
+.company-info-grid .ci-label{
+    font-size:.74rem;font-weight:800;color:var(--muted);
+    text-transform:uppercase;letter-spacing:.6px;
+}
+.company-info-grid .ci-value{
+    font-size:.92rem;font-weight:700;color:var(--navy);
+    word-break:break-word;
+}
+.company-info-grid .ci-value a{color:var(--gold);transition:.2s}
+.company-info-grid .ci-value a:hover{color:var(--navy)}
+
+/* الأقسام القانونية */
+.legal-section{
+    background:#fff;border:1px solid var(--line);border-radius:22px;
+    padding:34px 34px 30px;margin-bottom:26px;
+    box-shadow:var(--shadow-sm);
+    scroll-margin-top:140px;
+}
+.legal-section .sec-head{
+    display:flex;align-items:center;gap:14px;margin-bottom:22px;
+    padding-bottom:18px;border-bottom:2px solid var(--gold-soft);
+}
+.legal-section .sec-icon{
+    width:48px;height:48px;border-radius:13px;flex:0 0 48px;
+    background:var(--gold-soft);color:var(--gold);
+    display:grid;place-items:center;font-size:1.15rem;
+    border:1px solid rgba(200,162,74,.25);
+}
+.legal-section h2{
+    font-size:1.3rem;color:var(--navy);font-weight:900;letter-spacing:-.2px;
+}
+.legal-section h2 small{
+    display:block;font-size:.74rem;font-weight:700;color:var(--gold);
+    margin-top:3px;letter-spacing:.5px;
 }
 
-/* بطاقة القسم */
-.section-card{
-    background:var(--white);
-    border-radius:30px;
-    padding:30px;
-    margin-bottom:40px;
-    box-shadow:0 15px 35px rgba(0,0,0,0.05);
-    border:1px solid rgba(184,134,11,0.15);
-    transition:0.3s;
+/* المحتوى الداخلي */
+.legal-body{color:#3a4a58;font-size:.94rem}
+.legal-body p{margin-bottom:14px}
+.legal-body p:last-child{margin-bottom:0}
+.legal-body ul{margin:0 0 16px 0;padding:0}
+.legal-body ul li{
+    position:relative;padding-inline-start:24px;margin-bottom:9px;
+    font-size:.92rem;line-height:1.75;
 }
-.section-card:hover{
-    transform:translateY(-3px);
-    border-color:var(--gold);
-    box-shadow:0 20px 40px rgba(184,134,11,0.15);
+.legal-body ul li::before{
+    content:'\f00c';font-family:'Font Awesome 6 Free';font-weight:900;
+    position:absolute;inset-inline-start:0;top:2px;
+    color:var(--gold);font-size:.72rem;
 }
-.section-card h3{
-    color:var(--gold);
-    font-size:1.8rem;
-    font-weight:900;
-    margin-bottom:20px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    border-bottom:2px solid var(--gold-soft);
-    padding-bottom:10px;
+.legal-body strong{color:var(--navy);font-weight:800}
+.legal-body a{color:var(--gold);font-weight:700;transition:.2s}
+.legal-body a:hover{color:var(--navy);text-decoration:underline}
+.legal-body .note{
+    background:var(--gold-soft);border-inline-start:3px solid var(--gold);
+    padding:14px 18px;border-radius:10px;margin:16px 0;
+    font-size:.9rem;color:#5a4a20;
 }
-.section-card h3 i{
-    font-size:2rem;
+.legal-body .note i{color:var(--gold);margin-inline-end:7px}
+.legal-body h3{
+    font-size:1.02rem;color:var(--navy);font-weight:800;
+    margin:22px 0 10px;display:flex;align-items:center;gap:9px;
 }
+.legal-body h3::before{
+    content:'';display:inline-block;width:5px;height:16px;
+    background:linear-gradient(180deg,var(--gold),var(--gold-2));
+    border-radius:3px;
+}
+.legal-body h3:first-child{margin-top:0}
 
-/* تبويب اللغات داخل البطاقة */
-.lang-tabs{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
+/* شارة اللغة داخل المحتوى */
+.lang-note{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:.7rem;font-weight:800;color:var(--gold);
+    background:var(--gold-soft);padding:3px 10px;border-radius:20px;
+    margin-bottom:14px;letter-spacing:.4px;
 }
-.lang-item{
-    background:var(--bg-soft);
-    border-radius:20px;
-    padding:20px;
-    border:1px solid var(--gold-light);
-}
-.lang-item h4{
-    color:var(--gold);
-    font-size:1.3rem;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-.lang-item p{
-    font-size:1rem;
-    line-height:1.8;
-    color:var(--grey);
-    text-align:justify;
-}
-.lang-item.tr-en{
-    direction:ltr;
-    text-align:left;
-    font-family:Arial,sans-serif;
-}
-.lang-item.tr-en p{
-    text-align:left;
-}
+.lang-note i{font-size:.7rem}
 
-/* ===== الفوتر المتطور ===== */
-footer{
-    background:linear-gradient(145deg, #f5ebd2, #fcf5e6);
-    color:#3a4a55;
-    padding:50px 20px 30px;
-    border-top:4px solid var(--gold);
-    margin-top:60px;
-    box-shadow:0 -5px 15px rgba(184,134,11,0.1);
+/* قسم التواصل */
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px}
+.contact-item{
+    background:var(--cream);border:1px solid var(--line);border-radius:14px;
+    padding:20px 16px;text-align:center;transition:.25s;
 }
+.contact-item:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.contact-item i{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--gold-soft);color:var(--gold);
+    display:grid;place-items:center;margin:0 auto 12px;font-size:1.1rem;
+}
+.contact-item h4{font-size:.86rem;color:var(--navy);font-weight:800;margin-bottom:5px}
+.contact-item p,
+.contact-item a{font-size:.85rem;color:var(--muted);word-break:break-word}
+.contact-item a:hover{color:var(--gold)}
 
-.flex-container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    max-width:1200px;
-    margin:auto;
+/* ============================================================
+   شريط CTA للتواصل
+   ============================================================ */
+.legal-cta{
+    background:linear-gradient(120deg,var(--navy),var(--navy-3));
+    border-radius:24px;padding:38px 34px;color:#fff;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:26px;flex-wrap:wrap;margin-top:30px;
+    position:relative;overflow:hidden;box-shadow:var(--shadow-lg);
 }
+.legal-cta::before{
+    content:'';position:absolute;width:420px;height:420px;border-radius:50%;
+    background:radial-gradient(circle,rgba(200,162,74,.26),transparent 65%);
+    top:-220px;left:-100px;pointer-events:none;
+}
+.legal-cta > div{position:relative;z-index:2}
+.legal-cta h3{font-size:1.15rem;font-weight:900;margin-bottom:6px}
+.legal-cta p{color:rgba(255,255,255,.72);font-size:.9rem;max-width:480px}
+.legal-cta .btn{position:relative;z-index:2}
 
-.social-links a{
-    color:var(--gold);
-    font-size:28px;
-    margin:0 10px;
-    transition:0.3s;
-    display:inline-block;
+/* ============================================================
+   الفوتر (مطابق للمتجر)
+   ============================================================ */
+footer{background:var(--navy);color:rgba(255,255,255,.7);padding:66px 0 0;margin-top:0}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:40px;padding-bottom:46px}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.footer-brand img{height:46px;width:auto;filter:drop-shadow(0 4px 10px rgba(200,162,74,.3))}
+.footer-brand strong{font-family:'Alexandria';color:#fff;font-size:1rem;display:block}
+.footer-brand small{font-size:.72rem;color:rgba(255,255,255,.5)}
+footer h4{color:#fff;font-size:.98rem;font-weight:800;margin-bottom:18px;position:relative;padding-bottom:10px}
+footer h4::after{content:'';position:absolute;bottom:0;right:0;width:34px;height:2px;background:var(--gold);border-radius:2px}
+.footer-links li{margin-bottom:11px;font-size:.89rem}
+.footer-links a{display:inline-flex;align-items:center;gap:8px;transition:.22s}
+.footer-links a:hover{color:var(--gold-2);transform:translateX(-4px)}
+.footer-links i{font-size:.66rem;color:var(--gold)}
+.footer-contact li{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;font-size:.88rem}
+.footer-contact i{color:var(--gold);margin-top:5px;font-size:.9rem}
+.footer-social{display:flex;gap:10px;margin-top:20px}
+.footer-social a{
+    width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+    background:rgba(255,255,255,.07);color:#fff;font-size:.95rem;transition:.25s;
+    border:1px solid rgba(255,255,255,.08);
 }
-.social-links a:hover{
-    color:var(--dark);
-    transform:translateY(-5px) rotate(5deg);
+.footer-social a:hover{background:var(--gold);color:#22180a;transform:translateY(-4px)}
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);padding:22px 0;
+    display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+    font-size:.8rem;
 }
+.payment-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.payment-row img{height:24px;width:auto;opacity:.9;transition:.2s;background:#fff;border-radius:5px;padding:2px 5px}
+.payment-row img:hover{opacity:1;transform:scale(1.06)}
+.legal-link{color:var(--gold-2);transition:.22s}
+.legal-link:hover{color:#fff;text-decoration:underline}
 
-.footer-logo h2{
-    color:var(--gold);
-    font-size:22px;
-    font-weight:800;
-    font-family:'Alexandria',sans-serif;
-    white-space:nowrap;
-}
-.footer-logo div{
-    width:70px;
-    height:3px;
-    background:var(--gold);
-    margin:8px auto 0;
-}
+/* ============================================================
+   إدارة اللغات (يخفي/يظهر حسب اللغة المختارة)
+   ============================================================ */
+[data-lang]{display:none}
+[data-lang].is-current{display:revert}
+.flag-icon{display:inline-block;width:16px;height:16px;border-radius:3px;vertical-align:-2px;margin-inline-end:2px}
 
-.trust-badges{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:15px;
-}
-.payment-methods div{
-    background:rgba(255,255,255,0.7);
-    padding:12px 20px;
-    border-radius:40px;
-    display:flex;
-    gap:20px;
-    align-items:center;
-    border:1px solid var(--gold-light);
-    backdrop-filter:blur(5px);
-    flex-wrap:wrap;
-    justify-content:center;
-}
-.payment-methods img{height:26px;width:auto;transition:0.2s;}
-.payment-methods img:hover{transform:scale(1.15);}
-
-.security-badges{
-    display:flex;
-    gap:25px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-top:10px;
-}
-.badge-item{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    background:rgba(184,134,11,0.1);
-    padding:6px 15px;
-    border-radius:40px;
-    font-size:0.9rem;
-    color:var(--dark);
-    border:1px dashed var(--gold-light);
-}
-.badge-item i{
-    color:var(--gold);
-    font-size:1.1rem;
-}
-
-hr{
-    border:0;
-    border-top:2px solid rgba(184,134,11,0.2);
-    margin:30px 0 20px;
-}
-
-.footer-legal{
-    text-align:center;
-    margin:20px 0 15px;
-}
-.footer-legal a{
-    color:var(--gold);
-    text-decoration:none;
-    font-weight:bold;
-    border:1px solid var(--gold);
-    padding:6px 20px;
-    border-radius:40px;
-    transition:0.3s;
-    display:inline-block;
-    font-size:0.9rem;
-}
-.footer-legal a:hover{
-    background:var(--gold);
-    color:#111;
-}
-
-.copyright{
-    text-align:center;
-    font-size:14px;
-    color:#5a6b7a;
-}
-.copyright span{color:var(--gold);font-weight:bold;}
-
-/* ===== تجاوب ===== */
-@media (max-width:768px){
-    .header-top{
-        flex-direction:column;
-        align-items:stretch;
+/* ============================================================
+   الاستجابة
+   ============================================================ */
+@media (max-width:1024px){
+    .legal-layout{grid-template-columns:1fr;gap:26px}
+    .toc{position:static;top:auto}
+    .toc-head{margin-bottom:14px}
+    .toc-list{
+        flex-direction:row;flex-wrap:nowrap;overflow-x:auto;
+        gap:6px;padding-bottom:6px;
     }
-    .logo-area{
-        justify-content:center;
+    .toc-list a{
+        white-space:nowrap;background:var(--cream);
+        padding:8px 14px;border-radius:20px;border:1px solid var(--line);
     }
-    .logo-area h1{
-        font-size:1.3rem;
+    .toc-list a.active{background:var(--gold);color:#22180a;border-color:var(--gold)}
+    .toc-list .sub{display:none}
+    .toc-list a i{display:none}
+    .main-nav{display:none}
+}
+@media (max-width:760px){
+    .topbar{display:none}
+    .breadcrumb-inner{min-height:0;padding:8px 0;flex-wrap:wrap;gap:6px;justify-content:center}
+    .breadcrumb-path{font-size:.75rem}
+    .breadcrumb-back{font-size:.72rem;padding:4px 10px}
+    .nav-inner{height:70px;gap:12px}
+    .brand img{height:42px}
+    .brand-text small{display:none}
+    .nav-ctas .btn span{display:none}
+    .nav-ctas .btn{padding:9px 12px}
+    .legal-hero{padding:36px 0 30px}
+    .hero-meta{font-size:.78rem}
+    .hero-meta .print-btn{margin-inline-start:0;width:100%;justify-content:center}
+    .lang-bar{top:70px}
+    .legal-section{padding:24px 20px 22px}
+    .company-card{padding:24px 20px}
+    .company-info-grid{grid-template-columns:1fr;gap:6px}
+    .company-info-grid .ci-item{border-bottom:1px dashed var(--line)}
+    .company-info-grid .ci-item:last-child,
+    .company-info-grid .ci-item:nth-last-child(2){border-bottom:1px dashed var(--line)}
+    .company-info-grid .ci-item:last-child{border-bottom:none}
+    .contact-grid{grid-template-columns:1fr}
+    .legal-cta{padding:26px 22px;flex-direction:column;align-items:flex-start}
+    .footer-grid{grid-template-columns:1fr;gap:32px}
+    .footer-bottom{flex-direction:column;text-align:center}
+}
+@media (max-width:420px){
+    .lang-switcher button{padding:6px 11px;font-size:.78rem}
+    .lang-switcher .label{font-size:.74rem;width:100%;margin-bottom:4px}
+    .legal-hero h1{font-size:1.6rem}
+}
+
+/* ============================================================
+   الطباعة
+   ============================================================ */
+@media print{
+    .topbar,.breadcrumb-bar,.site-header,.lang-bar,.toc,
+    .hero-meta .print-btn,.legal-cta,footer{display:none !important}
+    body{background:#fff;color:#000;line-height:1.6}
+    .legal-hero{padding:0 0 20px;border:none;background:#fff}
+    .legal-hero::after{display:none}
+    .legal-layout{grid-template-columns:1fr;padding:20px 0}
+    .legal-section,.company-card{
+        box-shadow:none;border:1px solid #ccc;page-break-inside:avoid;
+        margin-bottom:14px;
     }
-    .ask-btn{
-        align-self:center;
-        width:fit-content;
-    }
-    .nav-in-header{
-        flex-direction:row;
-        justify-content:center;
-        flex-wrap:wrap;
-        border-radius:40px;
-    }
-    .page-header h2{
-        font-size:28px;
-    }
-    .section-card{
-        padding:20px;
-    }
+    .legal-section h2{color:#000}
+    .legal-body{color:#222}
 }
 </style>
 </head>
 <body>
 
-<!-- ===== عنوان الصفحة المطور ===== -->
-<div class="page-header" data-aos="fade-up">
-    <h2>الاتفاقيات القانونية</h2>
-    <div class="underline"></div>
-    <div class="sub">Legal Agreements</div>
-</div>
+<!-- ============================================================
+     ⚠️ ملاحظة: استبدل الروابط بروابطك الفعلية
+     • المتجر: (هذه الصفحة)
+     • موقع التدريب : https://training.farouk-grup.com
+     • الموقع الرئيسي : https://farouk-grup.com
+     ============================================================ -->
 
-<!-- ===== المحتوى الرئيسي ===== -->
-<div class="legal-container">
-
-    <!-- معلومات الشركة -->
-    <div class="company-card" data-aos="fade-up">
-        <i class="fas fa-building" style="font-size:3rem; color:var(--gold); margin-bottom:15px;"></i>
-        <p><strong>الشركة:</strong> Faroukgrup Gıda Ve Ticaret Limited Şirketi</p>
-        <p><strong>العنوان:</strong> Adnan Kahveci, Kuştepe Cd., 34528 Beylikdüzü / İstanbul</p>
-        <p><strong>الرقم الضريبي:</strong> 3851013756</p>
-        <p><strong>السجل التجاري:</strong> 122484-5</p>
-        <p><strong>البريد الإلكتروني:</strong> faroukgrup@gmail.com</p>
-    </div>
-
-    <!-- قسم عقد البيع عن بعد -->
-    <div class="section-card" data-aos="fade-up">
-        <h3><i class="fas fa-file-signature"></i> عقد البيع عن بعد</h3>
-        <div class="lang-tabs">
-            <div class="lang-item">
-                <h4><i class="fas fa-globe"></i> العربية (AR)</h4>
-                <p>وفقًا لأحكام قانون حماية المستهلك التركي رقم 6502 ولائحة العقود عن بُعد (Mesafeli Sözleşmeler Yönetmeliği)، فإن جميع المنتجات المقدمة عبر هذا الموقع هي منتجات رقمية. وبمجرد إتمام عملية الشراء ومنح الوصول الفوري للمحتوى، يسقط حق المستهلك في الانسحاب أو طلب الاسترداد وفقًا للمادة 15/ğ من اللائحة. يتحمل المستخدم مسؤولية التأكد من ملاءمة الخدمة قبل الشراء، ولا يحق له المطالبة بأي تعويض بعد بدء استخدام المحتوى.</p>
-            </div>
-            <div class="lang-item tr-en">
-                <h4><i class="fas fa-globe"></i> Türkçe (TR)</h4>
-                <p>6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği’nin 15/ğ maddesi uyarınca, dijital içeriklerde cayma hakkı bulunmamaktadır. Ödeme sonrası erişim sağlanan ürünlerde iade yapılmaz.</p>
-            </div>
-            <div class="lang-item tr-en">
-                <h4><i class="fas fa-globe"></i> English (EN)</h4>
-                <p>Pursuant to Article 15/ğ of the Distance Contracts Regulation and Turkish Consumer Protection Law No. 6502, digital products are non-refundable once access is granted. By completing the purchase, the customer waives the right of withdrawal.</p>
-            </div>
+<!-- ================= الشريط العلوي ================= -->
+<div class="topbar">
+    <div class="container topbar-inner">
+        <div class="topbar-group">
+            <a href="https://wa.me/905550196682" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> ‎+90 555 019 66 82
+            </a>
+            <a href="mailto:faroukgrup@gmail.com">
+                <i class="far fa-envelope"></i> faroukgrup@gmail.com
+            </a>
+        </div>
+        <div class="topbar-social">
+            <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/faroukazem/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
     </div>
-
-    <!-- قسم سياسة الخصوصية -->
-    <div class="section-card" data-aos="fade-up" data-aos-delay="100">
-        <h3><i class="fas fa-shield-alt"></i> سياسة الخصوصية</h3>
-        <div class="lang-tabs">
-            <div class="lang-item">
-                <h4><i class="fas fa-globe"></i> العربية (AR)</h4>
-                <p>نلتزم بحماية بيانات المستخدمين وفقًا لقانون حماية البيانات الشخصية التركي رقم 6698 (KVKK). يتم جمع البيانات فقط لغرض تقديم الخدمة، ولا يتم مشاركة البيانات مع أي طرف ثالث باستثناء مزودي خدمات الدفع. تتم جميع عمليات الدفع عبر بوابة iyzico المشفرة، ولا نقوم بتخزين أي معلومات تتعلق ببطاقات الائتمان.</p>
-            </div>
-            <div class="lang-item tr-en">
-                <h4><i class="fas fa-globe"></i> Türkçe (TR)</h4>
-                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında kişisel verileriniz korunmaktadır. Ödeme işlemleri iyzico altyapısı üzerinden güvenli şekilde yapılır ve kart bilgileri sistemlerimizde saklanmaz.</p>
-            </div>
-            <div class="lang-item tr-en">
-                <h4><i class="fas fa-globe"></i> English (EN)</h4>
-                <p>Personal data is processed in compliance with Turkish Data Protection Law No. 6698. Payments are securely handled via iyzico, and no credit card information is stored on our systems.</p>
-            </div>
-        </div>
-    </div>
-
 </div>
 
-<!-- ===== الفوتر المتطور ===== -->
-<footer>
-    <div style="max-width:1200px; margin:auto;">
-        <div class="flex-container">
-            <div class="social-links">
-                <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.instagram.com/faroukazem/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/905550196682" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<!-- ================= شريط المسار ================= -->
+<div class="breadcrumb-bar">
+    <div class="container breadcrumb-inner">
+        <div class="breadcrumb-path">
+            <a href="https://farouk-grup.com" target="_blank" rel="noopener">
+                <i class="fas fa-building-columns"></i>
+                <span data-lang="ar">مجموعة فاروق للأعمال</span>
+                <span data-lang="tr">Farouk Grup</span>
+                <span data-lang="en">Farouk Group</span>
+            </a>
+            <i class="fas fa-chevron-left sep"></i>
+            <a href="index.html">
+                <i class="fas fa-store"></i>
+                <span data-lang="ar">متجر المنتجات الرقمية</span>
+                <span data-lang="tr">Dijital Ürün Mağazası</span>
+                <span data-lang="en">Digital Store</span>
+            </a>
+            <i class="fas fa-chevron-left sep"></i>
+            <span class="current">
+                <i class="fas fa-file-shield"></i>
+                <span data-lang="ar">الاتفاقيات القانونية</span>
+                <span data-lang="tr">Yasal Sözleşmeler</span>
+                <span data-lang="en">Legal Agreements</span>
+            </span>
+        </div>
+        <a href="index.html" class="breadcrumb-back">
+            <i class="fas fa-arrow-left"></i>
+            <span data-lang="ar">العودة للمتجر</span>
+            <span data-lang="tr">Mağazaya Dön</span>
+            <span data-lang="en">Back to store</span>
+        </a>
+    </div>
+</div>
+
+<!-- ================= الهيدر ================= -->
+<header class="site-header" id="siteHeader">
+    <div class="container nav-inner">
+        <a href="index.html" class="brand">
+            <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="متجر مجموعة فاروق">
+            <span class="brand-text">
+                <small data-lang="ar">المركز القانوني · Yasal Merkez ·Legal Center</small>
+            </span>
+        </a>
+    </div>
+</header>
+
+<!-- ================= هيرو الصفحة ================= -->
+<section class="legal-hero">
+    <div class="container legal-hero-inner">
+        <span class="eyebrow">
+            <i class="fas fa-scale-balanced"></i>
+            <span data-lang="ar">المركز القانوني — مجموعة فاروق</span>
+            <span data-lang="tr">Yasal Merkez — Farouk Grup</span>
+            <span data-lang="en">Legal Center — Farouk Group</span>
+        </span>
+        <h1>
+            <span data-lang="ar">سياسة الخصوصية <span class="grad">والاتفاقيات القانونية</span></span>
+            <span data-lang="tr">Gizlilik Politikası <span class="grad">ve Yasal Sözleşmeler</span></span>
+            <span data-lang="en">Privacy Policy <span class="grad">& Legal Agreements</span></span>
+        </h1>
+        <p>
+            <span data-lang="ar">نلتزم بحماية بياناتك وشفافية شروط البيع. توضح هذه الصفحة سياسة الخصوصية، اتفاقية الاستخدام، وعقد البيع عن بُعد — وفقاً للقانون التركي لحماية البيانات (KVKK) وقانون حماية المستهلك.</span>
+            <span data-lang="tr">Verilerinizi korumaya ve satış koşullarımızın şeffaflığına bağlıyız. Bu sayfa; gizlilik politikası, kullanım koşulları ve mesafeli satış sözleşmesini KVKK ve Tüketicinin Korunması Kanunu'na uygun olarak açıklar.</span>
+            <span data-lang="en">We are committed to protecting your data and ensuring transparent sales terms. This page explains our Privacy Policy, Terms of Use, and Distance Sales Contract in accordance with Turkish KVKK and Consumer Protection Law.</span>
+        </p>
+        <div class="hero-meta">
+            <span><i class="fas fa-calendar-check"></i>
+                <span data-lang="ar">آخر تحديث: أكتوبر 2026</span>
+                <span data-lang="tr">Son güncelleme: Ekim 2026</span>
+                <span data-lang="en">Last updated: October 2026</span>
+            </span>
+            <span><i class="fas fa-code-branch"></i>
+                <span data-lang="ar">الإصدار 2.0</span>
+                <span data-lang="tr">Sürüm 2.0</span>
+                <span data-lang="en">Version 2.0</span>
+            </span>
+            <button class="print-btn" onclick="window.print()">
+                <i class="fas fa-print"></i>
+                <span data-lang="ar">طباعة</span>
+                <span data-lang="tr">Yazdır</span>
+                <span data-lang="en">Print</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ================= شريط اختيار اللغة ================= -->
+<div class="lang-bar">
+    <div class="container">
+        <div class="lang-switcher" role="group" aria-label="Language switcher">
+            <span class="label">
+                <span data-lang="ar">اللغة:</span>
+                <span data-lang="tr">Dil:</span>
+                <span data-lang="en">Language:</span>
+            </span>
+            <button type="button" data-setlang="ar" class="active">
+                <span class="flag">🇸🇦</span> العربية
+            </button>
+            <button type="button" data-setlang="tr">
+                <span class="flag">🇹🇷</span> Türkçe
+            </button>
+            <button type="button" data-setlang="en">
+                <span class="flag">🇬🇧</span> English
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= التخطيط الرئيسي ================= -->
+<div class="container legal-layout">
+
+    <!-- ================= الفهرس ================= -->
+    <aside class="toc" id="toc">
+        <div class="toc-head">
+            <i class="fas fa-list-ul"></i>
+            <h3>
+                <span data-lang="ar">فهرس الصفحة</span>
+                <span data-lang="tr">Sayfa İçeriği</span>
+                <span data-lang="en">Page Contents</span>
+            </h3>
+        </div>
+        <nav class="toc-list">
+            <a href="#company-info" class="toc-link">
+                <i class="fas fa-building"></i>
+                <span data-lang="ar">معلومات الشركة</span>
+                <span data-lang="tr">Şirket Bilgileri</span>
+                <span data-lang="en">Company Info</span>
+            </a>
+            <a href="#privacy" class="toc-link">
+                <i class="fas fa-shield-halved"></i>
+                <span data-lang="ar">سياسة الخصوصية</span>
+                <span data-lang="tr">Gizlilik Politikası</span>
+                <span data-lang="en">Privacy Policy</span>
+            </a>
+            <a href="#privacy-data" class="toc-link sub">
+                <span data-lang="ar">البيانات التي نجمعها</span>
+                <span data-lang="tr">Topladığımız Veriler</span>
+                <span data-lang="en">Data We Collect</span>
+            </a>
+            <a href="#privacy-usage" class="toc-link sub">
+                <span data-lang="ar">كيف نستخدم البيانات</span>
+                <span data-lang="tr">Verilerin Kullanımı</span>
+                <span data-lang="en">How We Use Data</span>
+            </a>
+            <a href="#privacy-sharing" class="toc-link sub">
+                <span data-lang="ar">مشاركة البيانات</span>
+                <span data-lang="tr">Veri Paylaşımı</span>
+                <span data-lang="en">Data Sharing</span>
+            </a>
+            <a href="#privacy-cookies" class="toc-link sub">
+                <span data-lang="ar">ملفات تعريف الارتباط</span>
+                <span data-lang="tr">Çerezler</span>
+                <span data-lang="en">Cookies</span>
+            </a>
+            <a href="#privacy-security" class="toc-link sub">
+                <span data-lang="ar">أمان البيانات</span>
+                <span data-lang="tr">Veri Güvenliği</span>
+                <span data-lang="en">Security</span>
+            </a>
+            <a href="#privacy-rights" class="toc-link sub">
+                <span data-lang="ar">حقوقك (KVKK)</span>
+                <span data-lang="tr">Haklarınız (KVKK)</span>
+                <span data-lang="en">Your Rights (KVKK)</span>
+            </a>
+            <a href="#terms" class="toc-link">
+                <i class="fas fa-file-contract"></i>
+                <span data-lang="ar">اتفاقية الاستخدام</span>
+                <span data-lang="tr">Kullanım Koşulları</span>
+                <span data-lang="en">Terms of Use</span>
+            </a>
+            <a href="#distance-sales" class="toc-link">
+                <i class="fas fa-file-signature"></i>
+                <span data-lang="ar">عقد البيع عن بُعد</span>
+                <span data-lang="tr">Mesafeli Satış Sözleşmesi</span>
+                <span data-lang="en">Distance Sales Contract</span>
+            </a>
+            <a href="#contact" class="toc-link">
+                <i class="fas fa-headset"></i>
+                <span data-lang="ar">تواصل معنا</span>
+                <span data-lang="tr">Bize Ulaşın</span>
+                <span data-lang="en">Contact Us</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- ================= المحتوى ================= -->
+    <main class="legal-content">
+
+        <!-- ========= معلومات الشركة ========= -->
+        <div class="company-card" id="company-info">
+            <div class="cc-head">
+                <div class="cc-icon"><i class="fas fa-building"></i></div>
+                <h2>
+                    <span data-lang="ar">معلومات الشركة المالكة للمتجر</span>
+                    <span data-lang="tr">Mağaza Sahibi Şirket Bilgileri</span>
+                    <span data-lang="en">Store Owner Company Information</span>
+                    <small>
+                        <span data-lang="ar">وفقاً للمادة 3 من قانون التجارة التركي ولائحة التجارة الإلكترونية</span>
+                        <span data-lang="tr">Türk Ticaret Kanunu ve E-Ticaret Yönetmeliği uyarınca</span>
+                        <span data-lang="en">Pursuant to Turkish Commercial Code and E-Commerce Regulation</span>
+                    </small>
+                </h2>
+            </div>
+            <div class="company-info-grid">
+                <div class="ci-item">
+                    <span class="ci-label" data-lang="ar">الاسم التجاري</span>
+                    <span class="ci-label" data-lang="tr">Ticari Unvan</span>
+                    <span class="ci-label" data-lang="en">Trade Name</span>
+                    <span class="ci-value">Faroukgrup Gıda Ve Ticaret Limited Şirketi</span>
+                </div>
+                <div class="ci-item">
+                    <span class="ci-label" data-lang="ar">العنوان</span>
+                    <span class="ci-label" data-lang="tr">Adres</span>
+                    <span class="ci-label" data-lang="en">Address</span>
+                    <span class="ci-value">Adnan Kahveci, Kuştepe Cd., 34528 Beylikdüzü / İstanbul, Türkiye</span>
+                </div>
+                <div class="ci-item">
+                    <span class="ci-label" data-lang="ar">الرقم الضريبي</span>
+                    <span class="ci-label" data-lang="tr">Vergi No</span>
+                    <span class="ci-label" data-lang="en">Tax No</span>
+                    <span class="ci-value">3851013756</span>
+                </div>
+                <div class="ci-item">
+                    <span class="ci-label" data-lang="ar">السجل التجاري</span>
+                    <span class="ci-label" data-lang="tr">Ticaret Sicil No</span>
+                    <span class="ci-label" data-lang="en">Trade Registry No</span>
+                    <span class="ci-value">122484-5</span>
+                </div>
+                <div class="ci-item">
+                    <span class="ci-label" data-lang="ar">البريد الإلكتروني</span>
+                    <span class="ci-label" data-lang="tr">E-posta</span>
+                    <span class="ci-label" data-lang="en">Email</span>
+                    <span class="ci-value"><a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a></span>
+                </div>
+                <div class="ci-item">
+                    <span class="ci-label" data-lang="ar">الهاتف / واتساب</span>
+                    <span class="ci-label" data-lang="tr">Telefon / WhatsApp</span>
+                    <span class="ci-label" data-lang="en">Phone / WhatsApp</span>
+                    <span class="ci-value"><a href="https://wa.me/905550196682" target="_blank" rel="noopener">+90 555 019 66 82</a></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= سياسة الخصوصية ========= -->
+        <section class="legal-section" id="privacy">
+            <div class="sec-head">
+                <div class="sec-icon"><i class="fas fa-shield-halved"></i></div>
+                <h2>
+                    <span data-lang="ar">سياسة الخصوصية</span>
+                    <span data-lang="tr">Gizlilik Politikası</span>
+                    <span data-lang="en">Privacy Policy</span>
+                    <small>
+                        <span data-lang="ar">وفقاً لقانون حماية البيانات الشخصية التركي رقم 6698 (KVKK)</span>
+                        <span data-lang="tr">6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK)</span>
+                        <span data-lang="en">Turkish Personal Data Protection Law No. 6698 (KVKK)</span>
+                    </small>
+                </h2>
             </div>
 
-            
-        <div class="copyright">
-            جميع الحقوق محفوظة © 2026 <span>FAROUK GRUP TRAINING</span>
+            <div class="legal-body">
+
+                <!-- اللغة العربية -->
+                <div data-lang="ar">
+                    <span class="lang-note"><i class="fas fa-globe"></i> العربية</span>
+
+                    <h3 id="privacy-data">البيانات التي نجمعها</h3>
+                    <p>نجمع الحد الأدنى من البيانات اللازمة لتقديم الخدمة، وهي:</p>
+                    <ul>
+                        <li><strong>بيانات الهوية والتواصل:</strong> الاسم، البريد الإلكتروني، رقم الهاتف (اختياري).</li>
+                        <li><strong>بيانات الطلب:</strong> المنتجات المشتراة، تاريخ الشراء، حالة الطلب.</li>
+                        <li><strong>بيانات الدفع:</strong> تُعالج عبر بوابة دفع معتمدة (iyzico / PayTR) ولا نخزّن أرقام البطاقات على خوادمنا.</li>
+                        <li><strong>البيانات التقنية:</strong> عنوان IP، نوع المتصفح، نظام التشغيل، الصفحات التي تزورها ومدة الزيارة.</li>
+                        <li><strong>ملفات تعريف الارتباط:</strong> كما هو موضح في القسم المخصص أدناه.</li>
+                    </ul>
+
+                    <h3 id="privacy-usage">كيف نستخدم بياناتك</h3>
+                    <ul>
+                        <li>تنفيذ طلباتك وإرسال روابط التحميل والوصول إلى الأنظمة.</li>
+                        <li>تقديم الدعم الفني والرد على استفساراتك.</li>
+                        <li>تحسين تجربة المستخدم وتطوير خدماتنا.</li>
+                        <li>إرسال تحديثات أو عروض ترويجية <strong>فقط بموافقتك الصريحة</strong>، مع إمكانية إلغاء الاشتراك في أي وقت.</li>
+                        <li>الامتثال للالتزامات القانونية (السجلات الضريبية والمحاسبية).</li>
+                    </ul>
+
+                    <div class="note">
+                        <i class="fas fa-circle-info"></i>
+                        <strong>الأساس القانوني:</strong> نعالج بياناتك وفقاً للمادة 5 من قانون KVKK، استناداً إلى تنفيذ العقد، الموافقة الصريحة، والمصلحة المشروعة، والامتثال للالتزامات القانونية.
+                    </div>
+
+                    <h3 id="privacy-sharing">مشاركة البيانات مع أطراف ثالثة</h3>
+                    <p>لا نبيع أو نتاجر ببياناتك الشخصية لأي غرض. نشاركها فقط مع:</p>
+                    <ul>
+                        <li><strong>مزودي خدمات الدفع</strong> (iyzico، PayTR) لإتمام المعاملات بشكل آمن.</li>
+                        <li><strong>مزودي خدمات البريد الإلكتروني</strong> لإرسال روابط التحميل والإشعارات.</li>
+                        <li><strong>السلطات المختصة</strong> عند وجود طلب قانوني رسمي.</li>
+                    </ul>
+                    <p>جميع الأطراف الثالثة ملزمة بموجب اتفاقيات سرية ولا يحق لها استخدام بياناتك لأغراض أخرى.</p>
+
+                    <h3 id="privacy-cookies">ملفات تعريف الارتباط (Cookies)</h3>
+                    <p>يستخدم الموقع نوعين من ملفات تعريف الارتباط:</p>
+                    <ul>
+                        <li><strong>ضرورية:</strong> لتشغيل الموقع بشكل صحيح (الجلسة، سلة الشراء).</li>
+                        <li><strong>تحليلية:</strong> لفهم سلوك الزوار وتحسين الأداء (Google Analytics، Tawk.to).</li>
+                    </ul>
+                    <p>يمكنك تعطيل ملفات تعريف الارتباط من إعدادات متصفحك، مع العلم أن ذلك قد يؤثر على بعض وظائف الموقع.</p>
+
+                    <h3 id="privacy-security">أمان البيانات</h3>
+                    <ul>
+                        <li>نستخدم بروتوكول <strong>SSL/TLS</strong> لتشفير جميع الاتصالات.</li>
+                        <li>جميع المدفوعات تمر عبر بوابات دفع معتمدة <strong>PCI-DSS</strong>.</li>
+                        <li>لا نخزّن أرقام بطاقات الائتمان أو بيانات CVV على خوادمنا.</li>
+                        <li>نحدّ من الوصول إلى البيانات الشخصية لموظفين مخوّلين فقط.</li>
+                    </ul>
+
+                    <h3>مدة الاحتفاظ بالبيانات</h3>
+                    <p>نحتفظ ببياناتك طالما كان حسابك نشطاً أو حسب ما تقتضيه الالتزامات القانونية. في تركيا، تُحفظ السجلات التجارية والضريبية لمدة <strong>10 سنوات</strong> كحد أدنى. بعد انتهاء المدة، تُحذف البيانات أو تُجعل مجهولة الهوية.</p>
+
+                    <h3 id="privacy-rights">حقوقك بموجب قانون KVKK</h3>
+                    <p>وفقاً للمادة 11 من قانون KVKK، يحق لك:</p>
+                    <ul>
+                        <li>معرفة ما إذا كانت بياناتك الشخصية تُعالج أم لا.</li>
+                        <li>طلب معلومات عن البيانات المعالجة والغرض منها.</li>
+                        <li>طلب تصحيح البيانات غير الكاملة أو غير الدقيقة.</li>
+                        <li>طلب حذف أو إتلاف بياناتك ضمن الشروط القانونية.</li>
+                        <li>الاعتراض على معالجة بياناتك لأغراض معينة.</li>
+                        <li>طلب نقل بياناتك إلى مزود خدمة آخر (حق قابلية النقل).</li>
+                    </ul>
+                    <p>لممارسة أي من هذه الحقوق، يمكنك التواصل معنا عبر البريد <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a>، وسنرد خلال <strong>30 يوماً</strong> كحد أقصى.</p>
+                </div>
+
+                <!-- Türkçe -->
+                <div data-lang="tr">
+                    <span class="lang-note"><i class="fas fa-globe"></i> Türkçe</span>
+
+                    <h3>Topladığımız Veriler</h3>
+                    <p>Hizmet sunmak için gerekli olan asgari verileri topluyoruz:</p>
+                    <ul>
+                        <li><strong>Kimlik ve iletişim bilgileri:</strong> Ad, e-posta, telefon numarası (isteğe bağlı).</li>
+                        <li><strong>Sipariş bilgileri:</strong> Satın alınan ürünler, satın alma tarihi, sipariş durumu.</li>
+                        <li><strong>Ödeme bilgileri:</strong> Yetkili ödeme kuruluşları (iyzico / PayTR) üzerinden işlenir; kart bilgileri sunucularımızda saklanmaz.</li>
+                        <li><strong>Teknik veriler:</strong> IP adresi, tarayıcı türü, işletim sistemi, ziyaret edilen sayfalar ve ziyaret süresi.</li>
+                        <li><strong>Çerezler:</strong> Aşağıdaki ilgili bölümde açıklanmıştır.</li>
+                    </ul>
+
+                    <h3>Verilerinizi Nasıl Kullanıyoruz</h3>
+                    <ul>
+                        <li>Siparişlerinizi işleme almak, indirme ve erişim linklerini göndermek.</li>
+                        <li>Teknik destek sunmak ve sorularınıza yanıt vermek.</li>
+                        <li>Kullanıcı deneyimini iyileştirmek ve hizmetlerimizi geliştirmek.</li>
+                        <li>Güncelleme veya promosyon göndermek — <strong>yalnızca açık onayınızla</strong> ve her zaman abonelikten çıkma hakkınızla.</li>
+                        <li>Yasal yükümlülükleri yerine getirmek (vergi ve muhasebe kayıtları).</li>
+                    </ul>
+
+                    <div class="note">
+                        <i class="fas fa-circle-info"></i>
+                        <strong>Hukuki dayanak:</strong> KVKK m.5 uyarınca verileriniz; sözleşmenin ifası, açık rıza, meşru menfaat ve yasal yükümlülüklere uyum temelinde işlenir.
+                    </div>
+
+                    <h3>Üçüncü Taraflarla Veri Paylaşımı</h3>
+                    <p>Kişisel verilerinizi hiçbir ticari amaçla satmıyor veya paylaşmıyoruz. Yalnızca şu taraflarla paylaşıyoruz:</p>
+                    <ul>
+                        <li><strong>Ödeme hizmeti sağlayıcıları</strong> (iyzico, PayTR) — güvenli işlem için.</li>
+                        <li><strong>E-posta hizmet sağlayıcıları</strong> — indirme linkleri ve bildirimler için.</li>
+                        <li><strong>Yetkili makamlar</strong> — resmi talepte bulunulması hâlinde.</li>
+                    </ul>
+                    <p>Tüm üçüncü taraflar gizlilik sözleşmeleri ile bağlıdır ve verilerinizi başka amaçlarla kullanamaz.</p>
+
+                    <h3>Çerezler (Cookies)</h3>
+                    <p>Sitemiz iki tür çerez kullanır:</p>
+                    <ul>
+                        <li><strong>Zorunlu çerezler:</strong> Sitenin doğru çalışması için (oturum, sepet).</li>
+                        <li><strong>Analitik çerezler:</strong> Ziyaretçi davranışını anlamak ve performansı iyileştirmek için (Google Analytics, Tawk.to).</li>
+                    </ul>
+                    <p>Tarayıcı ayarlarınızdan çerezleri devre dışı bırakabilirsiniz; ancak bu, sitenin bazı işlevlerini etkileyebilir.</p>
+
+                    <h3>Veri Güvenliği</h3>
+                    <ul>
+                        <li>Tüm iletişimler <strong>SSL/TLS</strong> ile şifrelenir.</li>
+                        <li>Tüm ödemeler <strong>PCI-DSS</strong> sertifikalı ödeme kuruluşları üzerinden yapılır.</li>
+                        <li>Kredi kartı numaraları veya CVV bilgileri sunucularımızda saklanmaz.</li>
+                        <li>Kişisel verilere erişim yalnızca yetkili personelle sınırlıdır.</li>
+                    </ul>
+
+                    <h3>Veri Saklama Süresi</h3>
+                    <p>Verileriniz, hesabınız aktif olduğu süre boyunca veya yasal yükümlülükler gerektirdiği müddetçe saklanır. Türkiye'de ticari ve vergi kayıtları en az <strong>10 yıl</strong> saklanır. Bu sürenin sonunda veriler silinir veya anonim hâle getirilir.</p>
+
+                    <h3>KVKK Kapsamındaki Haklarınız</h3>
+                    <p>KVKK m.11 uyarınca hakkınız vardır:</p>
+                    <ul>
+                        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme.</li>
+                        <li>İşlenen veriler ve amaçları hakkında bilgi talep etme.</li>
+                        <li>Eksik veya yanlış verilerin düzeltilmesini talep etme.</li>
+                        <li>Yasal koşullar çerçevesinde silinmesini veya yok edilmesini talep etme.</li>
+                        <li>Belirli amaçlarla işlenmesine itiraz etme.</li>
+                        <li>Verilerinizin başka bir sağlayıcıya aktarılmasını talep etme (taşınabilirlik hakkı).</li>
+                    </ul>
+                    <p>Bu haklardan herhangi birini kullanmak için <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a> adresine başvurabilirsiniz; en geç <strong>30 gün</strong> içinde yanıt verilecektir.</p>
+                </div>
+
+                <!-- English -->
+                <div data-lang="en">
+                    <span class="lang-note"><i class="fas fa-globe"></i> English</span>
+
+                    <h3>Data We Collect</h3>
+                    <p>We collect the minimum data necessary to provide the service:</p>
+                    <ul>
+                        <li><strong>Identity & contact data:</strong> Name, email address, phone number (optional).</li>
+                        <li><strong>Order data:</strong> Products purchased, purchase date, order status.</li>
+                        <li><strong>Payment data:</strong> Processed through an authorized payment gateway (iyzico / PayTR); card numbers are never stored on our servers.</li>
+                        <li><strong>Technical data:</strong> IP address, browser type, operating system, pages visited and visit duration.</li>
+                        <li><strong>Cookies:</strong> As described in the dedicated section below.</li>
+                    </ul>
+
+                    <h3>How We Use Your Data</h3>
+                    <ul>
+                        <li>Processing your orders and sending download / access links.</li>
+                        <li>Providing technical support and responding to inquiries.</li>
+                        <li>Improving user experience and developing our services.</li>
+                        <li>Sending updates or promotions — <strong>only with your explicit consent</strong> and always with the right to unsubscribe.</li>
+                        <li>Complying with legal obligations (tax and accounting records).</li>
+                    </ul>
+
+                    <div class="note">
+                        <i class="fas fa-circle-info"></i>
+                        <strong>Legal basis:</strong> Under Article 5 of KVKK, we process your data based on contract performance, explicit consent, legitimate interest, and compliance with legal obligations.
+                    </div>
+
+                    <h3>Data Sharing with Third Parties</h3>
+                    <p>We do not sell or trade your personal data for any purpose. We only share it with:</p>
+                    <ul>
+                        <li><strong>Payment service providers</strong> (iyzico, PayTR) for secure transactions.</li>
+                        <li><strong>Email service providers</strong> to deliver download links and notifications.</li>
+                        <li><strong>Competent authorities</strong> upon official legal request.</li>
+                    </ul>
+                    <p>All third parties are bound by confidentiality agreements and may not use your data for other purposes.</p>
+
+                    <h3>Cookies</h3>
+                    <p>The site uses two types of cookies:</p>
+                    <ul>
+                        <li><strong>Essential:</strong> Required for the site to function correctly (session, cart).</li>
+                        <li><strong>Analytical:</strong> To understand visitor behavior and improve performance (Google Analytics, Tawk.to).</li>
+                    </ul>
+                    <p>You can disable cookies from your browser settings, though this may affect some site functionality.</p>
+
+                    <h3>Data Security</h3>
+                    <ul>
+                        <li>All communications use <strong>SSL/TLS</strong> encryption.</li>
+                        <li>All payments go through <strong>PCI-DSS</strong> certified gateways.</li>
+                        <li>Credit card numbers or CVV data are never stored on our servers.</li>
+                        <li>Access to personal data is restricted to authorized personnel only.</li>
+                    </ul>
+
+                    <h3>Data Retention</h3>
+                    <p>We retain your data for as long as your account is active or as required by legal obligations. In Turkey, commercial and tax records are kept for at least <strong>10 years</strong>. After that period, data is deleted or anonymized.</p>
+
+                    <h3>Your Rights under KVKK</h3>
+                    <p>Under Article 11 of KVKK, you have the right to:</p>
+                    <ul>
+                        <li>Learn whether your personal data is being processed.</li>
+                        <li>Request information about the processed data and its purpose.</li>
+                        <li>Request correction of incomplete or inaccurate data.</li>
+                        <li>Request deletion or destruction of your data within legal conditions.</li>
+                        <li>Object to the processing of your data for specific purposes.</li>
+                        <li>Request portability of your data to another provider.</li>
+                    </ul>
+                    <p>To exercise any of these rights, contact us at <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a>; we will respond within <strong>30 days</strong> at the latest.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========= اتفاقية الاستخدام ========= -->
+        <section class="legal-section" id="terms">
+            <div class="sec-head">
+                <div class="sec-icon"><i class="fas fa-file-contract"></i></div>
+                <h2>
+                    <span data-lang="ar">اتفاقية الاستخدام</span>
+                    <span data-lang="tr">Kullanım Koşulları</span>
+                    <span data-lang="en">Terms of Use</span>
+                    <small>
+                        <span data-lang="ar">شروط استخدام الموقع والمنتجات الرقمية</span>
+                        <span data-lang="tr">Site ve dijital ürün kullanım şartları</span>
+                        <span data-lang="en">Website and digital product usage terms</span>
+                    </small>
+                </h2>
+            </div>
+
+            <div class="legal-body">
+
+                <!-- العربية -->
+                <div data-lang="ar">
+                    <span class="lang-note"><i class="fas fa-globe"></i> العربية</span>
+
+                    <h3>قبول الشروط</h3>
+                    <p>باستخدامك لهذا الموقع أو شراء أي منتج، فإنك تقر بأنك قرأت هذه الاتفاقية ووافقت على جميع شروطها. إذا لم توافق، يُرجى عدم استخدام الموقع أو المنتجات.</p>
+
+                    <h3>الملكية الفكرية</h3>
+                    <p>جميع الكتب الإلكترونية، الأنظمة التحليلية، التصاميم، الشعارات، والعلامات التجارية المعروضة على الموقع مملوكة لشركة <strong>Faroukgrup Gıda Ve Ticaret Limited Şirketi</strong> أو مرخّصة لها، ومحمية بموجب قوانين حقوق النشر التركية والدولية.</p>
+                    <ul>
+                        <li>يُمنع نسخ أو إعادة نشر أو بيع أو توزيع أو تعديل أي محتوى دون إذن كتابي مسبق.</li>
+                        <li>يُمنع استخدام المحتوى لأغراض تجارية دون ترخيص.</li>
+                        <li>جميع الحقوق غير الممنوحة صراحةً محفوظة للشركة.</li>
+                    </ul>
+
+                    <h3>طبيعة المنتجات الرقمية</h3>
+                    <ul>
+                        <li>المنتجات المعروضة هي <strong>كتب إلكترونية (PDF / ePub)</strong> و<strong>اشتراكات في أنظمة تحليلية</strong>.</li>
+                        <li>الوصول شخصي وغير قابل للتحويل أو المشاركة.</li>
+                        <li>المشاركة أو إعادة البيع تؤدي إلى <strong>إلغاء الترخيص دون استرداد</strong> وقد يعرّضك للمساءلة القانونية.</li>
+                        <li>الأسعار معروضة بالدولار الأمريكي (USD) وقد تخضع للتحويل حسب سياسة بوابة الدفع.</li>
+                    </ul>
+
+                    <h3>الاستخدام المسموح</h3>
+                    <ul>
+                        <li>استخدام المنتجات للأغراض الشخصية أو المهنية المشروعة فقط.</li>
+                        <li>يُمنع استخدام المنتجات لأي غرض غير قانوني أو مخالف للآداب العامة.</li>
+                        <li>يُمنع محاولة الوصول غير المصرّح به إلى أنظمة الموقع أو خوادمه.</li>
+                    </ul>
+
+                    <h3>حدود المسؤولية</h3>
+                    <div class="note">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        المنتجات ذات طابع <strong>تعليمي واستشاري</strong>، ولا تُعد ضماناً لتحقيق نتائج مالية محددة. القرارات التجارية التي تتخذها بناءً على المحتوى هي مسؤوليتك الشخصية، ولا نتحمل أي مسؤولية عن أي خسائر مباشرة أو غير مباشرة ناتجة عن استخدام المنتجات.
+                    </div>
+
+                    <h3>الروابط الخارجية</h3>
+                    <p>قد يحتوي الموقع على روابط لمواقع خارجية. لا نتحمل مسؤولية محتوى أو سياسات تلك المواقع، واستخدامها يكون على مسؤوليتك الخاصة.</p>
+
+                    <h3>التعديلات</h3>
+                    <p>نحتفظ بالحق في تعديل هذه الاتفاقية في أي وقت. تسري التعديلات فور نشرها على الموقع، ويُعد استمرارك في استخدام الموقع موافقةً ضمنية عليها. ننصح بمراجعة هذه الصفحة دورياً.</p>
+
+                    <h3>القانون المطبّق</h3>
+                    <p>تخضع هذه الاتفاقية لأحكام القانون التركي، وتختص محاكم إسطنبول بأي نزاع ينشأ عنها.</p>
+                </div>
+
+                <!-- Türkçe -->
+                <div data-lang="tr">
+                    <span class="lang-note"><i class="fas fa-globe"></i> Türkçe</span>
+
+                    <h3>Koşulların Kabulü</h3>
+                    <p>Bu siteyi kullanarak veya herhangi bir ürün satın alarak, bu sözleşmeyi okuduğunuzu ve tüm koşullarını kabul ettiğinizi beyan edersiniz. Koşulları kabul etmiyorsanız lütfen siteyi veya ürünleri kullanmayınız.</p>
+
+                    <h3>Fikri Mülkiyet</h3>
+                    <p>Sitede gösterilen tüm e-kitaplar, analitik sistemler, tasarımlar, logolar ve ticari markalar <strong>Faroukgrup Gıda Ve Ticaret Limited Şirketi</strong>'ne aittir veya lisanslıdır ve Türk ve uluslararası telif hakları yasalarıyla korunmaktadır.</p>
+                    <ul>
+                        <li>Yazılı izin olmaksızın içeriğin kopyalanması, yeniden yayınlanması, satılması, dağıtılması veya değiştirilmesi yasaktır.</li>
+                        <li>Lisans olmaksızın ticari amaçla kullanım yasaktır.</li>
+                        <li>Açıkça verilmeyen tüm haklar şirkete aittir.</li>
+                    </ul>
+
+                    <h3>Dijital Ürünlerin Niteliği</h3>
+                    <ul>
+                        <li>Sunulan ürünler <strong>e-kitaplar (PDF / ePub)</strong> ve <strong>analitik sistem abonelikleridir</strong>.</li>
+                        <li>Erişim kişiseldir, devredilemez ve paylaşılamaz.</li>
+                        <li>Paylaşım veya yeniden satış, <strong>lisansın iade olmaksızın iptaline</strong> yol açar ve yasal sorumluluk doğurabilir.</li>
+                        <li>Fiyatlar ABD Doları (USD) cinsindendir ve ödeme sağlayıcısının döviz politikasına tabi olabilir.</li>
+                    </ul>
+
+                    <h3>İzin Verilen Kullanım</h3>
+                    <ul>
+                        <li>Ürünler yalnızca kişisel veya meşru mesleki amaçlarla kullanılabilir.</li>
+                        <li>Yasadışı veya genel ahlaka aykırı amaçlarla kullanım yasaktır.</li>
+                        <li>Siteye veya sunucularına yetkisiz erişim girişimleri yasaktır.</li>
+                    </ul>
+
+                    <h3>Sorumluluk Sınırları</h3>
+                    <div class="note">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        Ürünler <strong>eğitim ve danışmanlık</strong> niteliğindedir ve belirli finansal sonuçların garantisi değildir. İçeriğe dayanarak aldığınız ticari kararlar size aittir; doğrudan veya dolaylı zararlardan sorumlu değiliz.
+                    </div>
+
+                    <h3>Dış Bağlantılar</h3>
+                    <p>Site, harici sitelere bağlantılar içerebilir. Bu sitelerin içeriğinden veya politikalarından sorumlu değiliz; kullanım kendi sorumluluğunuzdadır.</p>
+
+                    <h3>Değişiklikler</h3>
+                    <p>Bu sözleşmeyi her zaman değiştirme hakkımız saklıdır. Değişiklikler sitede yayınlandığı anda yürürlüğe girer ve siteyi kullanmaya devam etmeniz kabul sayılır. Bu sayfayı düzenli olarak incelemenizi öneririz.</p>
+
+                    <h3>Uygulanacak Hukuk</h3>
+                    <p>Bu sözleşme Türk hukukuna tabidir ve doğacak anlaşmazlıklarda İstanbul mahkemeleri yetkilidir.</p>
+                </div>
+
+                <!-- English -->
+                <div data-lang="en">
+                    <span class="lang-note"><i class="fas fa-globe"></i> English</span>
+
+                    <h3>Acceptance of Terms</h3>
+                    <p>By using this website or purchasing any product, you confirm that you have read this agreement and agree to all its terms. If you do not agree, please do not use the website or products.</p>
+
+                    <h3>Intellectual Property</h3>
+                    <p>All e-books, analytical systems, designs, logos, and trademarks displayed on the site are owned by or licensed to <strong>Faroukgrup Gıda Ve Ticaret Limited Şirketi</strong> and are protected under Turkish and international copyright laws.</p>
+                    <ul>
+                        <li>Copying, republishing, selling, distributing, or modifying any content without prior written permission is prohibited.</li>
+                        <li>Commercial use without a license is prohibited.</li>
+                        <li>All rights not expressly granted are reserved by the company.</li>
+                    </ul>
+
+                    <h3>Nature of Digital Products</h3>
+                    <ul>
+                        <li>Products are <strong>e-books (PDF / ePub)</strong> and <strong>analytical system subscriptions</strong>.</li>
+                        <li>Access is personal, non-transferable, and non-shareable.</li>
+                        <li>Sharing or reselling results in <strong>license cancellation without refund</strong> and may expose you to legal liability.</li>
+                        <li>Prices are listed in US Dollars (USD) and may be subject to conversion based on the payment gateway policy.</li>
+                    </ul>
+
+                    <h3>Permitted Use</h3>
+                    <ul>
+                        <li>Products may be used for personal or legitimate professional purposes only.</li>
+                        <li>Use for illegal purposes or contrary to public morality is prohibited.</li>
+                        <li>Unauthorized access attempts to the site or its servers are prohibited.</li>
+                    </ul>
+
+                    <h3>Limitation of Liability</h3>
+                    <div class="note">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        Products are of an <strong>educational and consulting nature</strong> and do not guarantee specific financial outcomes. Any business decisions you make based on the content are your sole responsibility; we are not liable for any direct or indirect losses arising from the use of the products.
+                    </div>
+
+                    <h3>External Links</h3>
+                    <p>The site may contain links to external websites. We are not responsible for the content or policies of those sites, and use is at your own risk.</p>
+
+                    <h3>Modifications</h3>
+                    <p>We reserve the right to modify this agreement at any time. Changes take effect once published on the site, and your continued use constitutes acceptance. We recommend reviewing this page periodically.</p>
+
+                    <h3>Governing Law</h3>
+                    <p>This agreement is governed by Turkish law, and the courts of Istanbul have jurisdiction over any dispute arising from it.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========= عقد البيع عن بُعد ========= -->
+        <section class="legal-section" id="distance-sales">
+            <div class="sec-head">
+                <div class="sec-icon"><i class="fas fa-file-signature"></i></div>
+                <h2>
+                    <span data-lang="ar">عقد البيع عن بُعد</span>
+                    <span data-lang="tr">Mesafeli Satış Sözleşmesi</span>
+                    <span data-lang="en">Distance Sales Contract</span>
+                    <small>
+                        <span data-lang="ar">وفقاً للمادة 15/ğ من لائحة العقود عن بُعد التركية</span>
+                        <span data-lang="tr">Mesafeli Sözleşmeler Yönetmeliği m.15/ğ uyarınca</span>
+                        <span data-lang="en">Pursuant to Article 15/ğ of Turkish Distance Contracts Regulation</span>
+                    </small>
+                </h2>
+            </div>
+
+            <div class="legal-body">
+
+                <!-- العربية -->
+                <div data-lang="ar">
+                    <span class="lang-note"><i class="fas fa-globe"></i> العربية</span>
+
+                    <h3>الأطراف</h3>
+                    <p><strong>البائع:</strong> Faroukgrup Gıda Ve Ticaret Limited Şirketi — العنوان: Adnan Kahveci, Kuştepe Cd., 34528 Beylikdüzü / İstanbul — الرقم الضريبي: 3851013756 — البريد: <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a>.</p>
+                    <p><strong>المشتري:</strong> أي شخص طبيعي أو اعتباري يقوم بشراء منتج أو خدمة عبر الموقع الإلكتروني.</p>
+
+                    <h3>وصف المنتج</h3>
+                    <p>يُوصف كل منتج في صفحته الخاصة (النوع، المحتوى، السعر). تحتفظ الشركة بحق تعديل الأسعار في أي وقت قبل إتمام الطلب، ولا تسري التعديلات على الطلبات المكتملة.</p>
+
+                    <h3>السعر والدفع</h3>
+                    <ul>
+                        <li>الأسعار معروضة بالدولار الأمريكي (USD) وتشمل ضريبة القيمة المضافة حيث ينطبق.</li>
+                        <li>الدفع يتم عبر بوابات معتمدة (iyzico، PayTR، بطاقات ائتمان، PayPal).</li>
+                        <li>لن يُفعّل الوصول إلى المنتج إلا بعد تأكيد الدفع من قِبل بوابة الدفع.</li>
+                    </ul>
+
+                    <h3>التسليم</h3>
+                    <ul>
+                        <li>المنتجات الرقمية تُسلَّم <strong>فوراً</strong> بعد تأكيد الدفع.</li>
+                        <li>يُرسل رابط التحميل / الوصول إلى البريد الإلكتروني المسجّل في الطلب.</li>
+                        <li>مدة التسليم القصوى: <strong>24 ساعة</strong> من تأكيد الدفع (في حال وجود عطل تقني).</li>
+                    </ul>
+
+                    <h3>حق الانسحاب (Cayma Hakkı)</h3>
+                    <div class="note">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        وفقاً للمادة <strong>15/ğ</strong> من لائحة العقود عن بُعد التركية (Mesafeli Sözleşmeler Yönetmeliği)، لا يوجد حق انسحاب للمنتجات الرقمية التي يتم تسليمها فوراً. بإتمام الشراء، يقر المشتري صراحةً بتنازله عن حق الانسحاب وعدم المطالبة باسترداد المبلغ بعد الوصول إلى المحتوى.
+                    </div>
+                    <p>يُرجى التأكد من ملاءمة المنتج قبل الشراء. يمكنك طرح أي استفسار مسبق عبر واتساب أو البريد الإلكتروني.</p>
+
+                    <h3>سياسة الاسترداد</h3>
+                    <ul>
+                        <li>لا يُسمح بالاسترداد بعد تسليم المنتج الرقمي والوصول إليه.</li>
+                        <li>في حال وجود خلل تقني يمنع الوصول إلى المنتج، يُرجى التواصل معنا خلال <strong>7 أيام</strong> من الشراء لحل المشكلة أو استرداد المبلغ.</li>
+                        <li>أي محاولة إساءة استخدام أو مشاركة المنتج تُلغي الحق في الاسترداد.</li>
+                    </ul>
+
+                    <h3>حل النزاعات</h3>
+                    <p>في حال وجود نزاع، يمكن للمشتري اللجوء إلى:</p>
+                    <ul>
+                        <li><strong>لجان التحكيم للمستهلك</strong> (Tüketici Hakem Heyetleri) في مكان إقامته.</li>
+                        <li><strong>محاكم المستهلك المختصة</strong> (Tüketici Mahkemeleri) في إسطنبول.</li>
+                    </ul>
+                    <p>يُشجَّع المشتري على التواصل معنا أولاً لحل أي خلاف ودياً.</p>
+
+                    <h3>القانون المطبّق</h3>
+                    <p>يخضع هذا العقد لأحكام القانون التركي، وتختص محاكم إسطنبول بأي نزاع ينشأ عنه.</p>
+                </div>
+
+                <!-- Türkçe -->
+                <div data-lang="tr">
+                    <span class="lang-note"><i class="fas fa-globe"></i> Türkçe</span>
+
+                    <h3>Taraflar</h3>
+                    <p><strong>Satıcı:</strong> Faroukgrup Gıda Ve Ticaret Limited Şirketi — Adres: Adnan Kahveci, Kuştepe Cd., 34528 Beylikdüzü / İstanbul — Vergi No: 3851013756 — E-posta: <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a>.</p>
+                    <p><strong>Alıcı:</strong> Web sitesi üzerinden ürün veya hizmet satın alan gerçek veya tüzel kişi.</p>
+
+                    <h3>Ürün Tanımı</h3>
+                    <p>Her ürün kendi sayfasında tanımlanmıştır (tür, içerik, fiyat). Şirket, sipariş tamamlanmadan önce fiyatları değiştirme hakkını saklı tutar; değişiklikler tamamlanmış siparişlere uygulanmaz.</p>
+
+                    <h3>Fiyat ve Ödeme</h3>
+                    <ul>
+                        <li>Fiyatlar ABD Doları (USD) cinsindendir ve geçerli olduğu durumlarda KDV dahildir.</li>
+                        <li>Ödemeler yetkili ödeme kuruluşları (iyzico, PayTR, kredi kartı, PayPal) üzerinden yapılır.</li>
+                        <li>Ürün erişimi, ödeme sağlayıcısı tarafından onaylanmadan aktif edilmez.</li>
+                    </ul>
+
+                    <h3>Teslimat</h3>
+                    <ul>
+                        <li>Dijital ürünler, ödeme onayının ardından <strong>derhal</strong> teslim edilir.</li>
+                        <li>İndirme / erişim linki, siparişte kayıtlı e-posta adresine gönderilir.</li>
+                        <li>Azami teslimat süresi: ödeme onayından itibaren <strong>24 saat</strong> (teknik arıza durumunda).</li>
+                    </ul>
+
+                    <h3>Cayma Hakkı</h3>
+                    <div class="note">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        Mesafeli Sözleşmeler Yönetmeliği'nin <strong>15/ğ</strong> maddesi uyarınca, anında ifa edilen dijital içeriklerde cayma hakkı bulunmamaktadır. Satın almayı tamamlayan alıcı, içeriğe erişildikten sonra cayma ve iade talep etme hakkından açıkça feragat ettiğini kabul eder.
+                    </div>
+                    <p>Lütfen satın almadan önce ürünün size uygunluğundan emin olun. Önceden WhatsApp veya e-posta ile sorularınızı iletebilirsiniz.</p>
+
+                    <h3>İade Politikası</h3>
+                    <ul>
+                        <li>Dijital ürün teslim edildikten ve erişim sağlandıktan sonra iade yapılmaz.</li>
+                        <li>Ürüne erişimi engelleyen teknik bir sorun varsa, satın alma tarihinden itibaren <strong>7 gün</strong> içinde bizimle iletişime geçin; sorun çözülecek veya ücret iade edilecektir.</li>
+                        <li>Ürünün kötüye kullanımı veya paylaşımı iade hakkını ortadan kaldırır.</li>
+                    </ul>
+
+                    <h3>Uyuşmazlık Çözümü</h3>
+                    <p>Uyuşmazlık hâlinde alıcı şu mercilere başvurabilir:</p>
+                    <ul>
+                        <li><strong>Tüketici Hakem Heyetleri</strong> — ikamet ettiği yerde.</li>
+                        <li><strong>Tüketici Mahkemeleri</strong> — İstanbul.</li>
+                    </ul>
+                    <p>Alıcının öncelikle bizimle iletişime geçerek dostane çözüm araması tavsiye edilir.</p>
+
+                    <h3>Uygulanacak Hukuk</h3>
+                    <p>Bu sözleşme Türk hukukuna tabidir ve doğacak anlaşmazlıklarda İstanbul mahkemeleri yetkilidir.</p>
+                </div>
+
+                <!-- English -->
+                <div data-lang="en">
+                    <span class="lang-note"><i class="fas fa-globe"></i> English</span>
+
+                    <h3>Parties</h3>
+                    <p><strong>Seller:</strong> Faroukgrup Gıda Ve Ticaret Limited Şirketi — Address: Adnan Kahveci, Kuştepe Cd., 34528 Beylikdüzü / İstanbul — Tax No: 3851013756 — Email: <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a>.</p>
+                    <p><strong>Buyer:</strong> Any natural or legal person purchasing a product or service through the website.</p>
+
+                    <h3>Product Description</h3>
+                    <p>Each product is described on its own page (type, content, price). The company reserves the right to modify prices at any time before the order is completed; changes do not apply to completed orders.</p>
+
+                    <h3>Price and Payment</h3>
+                    <ul>
+                        <li>Prices are listed in US Dollars (USD) and include VAT where applicable.</li>
+                        <li>Payments are made through authorized gateways (iyzico, PayTR, credit card, PayPal).</li>
+                        <li>Access to the product is activated only after payment confirmation by the gateway.</li>
+                    </ul>
+
+                    <h3>Delivery</h3>
+                    <ul>
+                        <li>Digital products are delivered <strong>immediately</strong> after payment confirmation.</li>
+                        <li>The download / access link is sent to the email address registered in the order.</li>
+                        <li>Maximum delivery time: <strong>24 hours</strong> from payment confirmation (in case of technical failure).</li>
+                    </ul>
+
+                    <h3>Right of Withdrawal (Cayma Hakkı)</h3>
+                    <div class="note">
+                        <i class="fas fa-triangle-exclamation"></i>
+                        Under Article <strong>15/ğ</strong> of the Turkish Distance Contracts Regulation (Mesafeli Sözleşmeler Yönetmeliği), there is no right of withdrawal for digital products that are performed immediately. By completing the purchase, the Buyer expressly waives the right of withdrawal and refund after accessing the content.
+                    </div>
+                    <p>Please make sure the product suits you before purchasing. You may ask any question in advance via WhatsApp or email.</p>
+
+                    <h3>Refund Policy</h3>
+                    <ul>
+                        <li>No refunds are permitted after the digital product has been delivered and accessed.</li>
+                        <li>If a technical issue prevents access, contact us within <strong>7 days</strong> of purchase to resolve it or receive a refund.</li>
+                        <li>Any misuse or sharing of the product voids the refund right.</li>
+                    </ul>
+
+                    <h3>Dispute Resolution</h3>
+                    <p>In case of a dispute, the Buyer may apply to:</p>
+                    <ul>
+                        <li><strong>Consumer Arbitration Committees</strong> (Tüketici Hakem Heyetleri) in their place of residence.</li>
+                        <li><strong>Competent Consumer Courts</strong> (Tüketici Mahkemeleri) in Istanbul.</li>
+                    </ul>
+                    <p>The Buyer is encouraged to contact us first to resolve any disagreement amicably.</p>
+
+                    <h3>Governing Law</h3>
+                    <p>This contract is governed by Turkish law, and the courts of Istanbul have jurisdiction over any dispute arising from it.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========= التواصل ========= -->
+        <section class="legal-section" id="contact">
+            <div class="sec-head">
+                <div class="sec-icon"><i class="fas fa-headset"></i></div>
+                <h2>
+                    <span data-lang="ar">تواصل معنا</span>
+                    <span data-lang="tr">Bize Ulaşın</span>
+                    <span data-lang="en">Contact Us</span>
+                    <small>
+                        <span data-lang="ar">فريق الدعم جاهز لمساعدتك</span>
+                        <span data-lang="tr">Destek ekibimiz size yardımcı olmaya hazır</span>
+                        <span data-lang="en">Our support team is ready to help</span>
+                    </small>
+                </h2>
+            </div>
+
+            <div class="legal-body">
+                <p>
+                    <span data-lang="ar">لأي استفسار يخص سياسة الخصوصية أو الشروط القانونية أو طلباتك، يمكنك التواصل معنا عبر:</span>
+                    <span data-lang="tr">Gizlilik politikası, yasal koşullar veya siparişlerinizle ilgili her türlü soru için bizimle iletişime geçebilirsiniz:</span>
+                    <span data-lang="en">For any questions about the privacy policy, legal terms, or your orders, contact us via:</span>
+                </p>
+
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4 data-lang="ar">واتساب</h4>
+                        <h4 data-lang="tr">WhatsApp</h4>
+                        <h4 data-lang="en">WhatsApp</h4>
+                        <a href="https://wa.me/905550196682" target="_blank" rel="noopener">+90 555 019 66 82</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="far fa-envelope"></i>
+                        <h4 data-lang="ar">البريد الإلكتروني</h4>
+                        <h4 data-lang="tr">E-posta</h4>
+                        <h4 data-lang="en">Email</h4>
+                        <a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-location-dot"></i>
+                        <h4 data-lang="ar">العنوان</h4>
+                        <h4 data-lang="tr">Adres</h4>
+                        <h4 data-lang="en">Address</h4>
+                        <p>Beylikdüzü / İstanbul, Türkiye</p>
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top:22px">
+                    <i class="fas fa-clock"></i>
+                    <span data-lang="ar"><strong>ساعات الرد:</strong> خلال 24 ساعة عمل من استلام استفسارك (الأحد — الخميس).</span>
+                    <span data-lang="tr"><strong>Yanıt süresi:</strong> Talebinizin alınmasından itibaren 24 iş saati içinde (Pazar — Perşembe).</span>
+                    <span data-lang="en"><strong>Response time:</strong> Within 24 business hours of receiving your inquiry (Sunday — Thursday).</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========= شريط CTA ========= -->
+        <div class="legal-cta">
+            <div>
+                <h3>
+                    <span data-lang="ar">هل لديك سؤال قبل الشراء؟</span>
+                    <span data-lang="tr">Satın almadan önce bir sorunuz mu var?</span>
+                    <span data-lang="en">Have a question before purchasing?</span>
+                </h3>
+                <p>
+                    <span data-lang="ar">فريقنا الاستشاري جاهز للإجابة على استفساراتك حول المنتجات والاشتراكات.</span>
+                    <span data-lang="tr">Danışmanlık ekibimiz ürünler ve aboneliklerle ilgili sorularınızı yanıtlamaya hazır.</span>
+                    <span data-lang="en">Our consulting team is ready to answer your questions about products and subscriptions.</span>
+                </p>
+            </div>
+            <a href="https://wa.me/905550196682" target="_blank" rel="noopener" class="btn btn-gold">
+                <i class="fab fa-whatsapp"></i>
+                <span data-lang="ar">تواصل عبر واتساب</span>
+                <span data-lang="tr">WhatsApp ile İletişim</span>
+                <span data-lang="en">Contact via WhatsApp</span>
+            </a>
+        </div>
+
+    </main>
+</div>
+
+<!-- ================= الفوتر ================= -->
+<footer id="footer">
+    <div class="container">
+        <div class="footer-grid">
+
+            <div>
+                <div class="footer-brand">
+                    <img src="https://lh3.googleusercontent.com/d/1e6u-DPTinDJl_Q9wW3QvGgzFbXO_2sXa" alt="FAROUK GRUP">
+                    <div>
+                        <strong data-lang="ar">مجموعة فاروق للإستشارات والأعمال</strong>
+                        <small data-lang="ar">استشارات · تدريب · أدوات مالية</small>
+                        <small data-lang="tr">Danışmanlık · Eğitim · Finansal Araçlar</small>
+                        <small data-lang="en">Consulting · Training · Financial Tools</small>
+                    </div>
+                </div>
+                <p style="font-size:.88rem;line-height:1.9">
+                    <span data-lang="ar">نساعد رواد الأعمال والمستثمرين على بناء أنظمة تشغيل مربحة وقرارات مالية مدروسة، عبر منتجات رقمية وبرامج تدريب عملية.</span>
+                    <span data-lang="tr">Girişimcilerin ve yatırımcıların kârlı işletme sistemleri ve bilinçli finansal kararlar almasına yardımcı oluyoruz.</span>
+                    <span data-lang="en">We help entrepreneurs and investors build profitable operating systems and informed financial decisions through digital products and practical training programs.</span>
+                </p>
+                <div class="footer-social">
+                    <a href="https://www.tiktok.com/@faroukazem?_r=1&_t=ZS-91Kw2RZUQHX" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/faroukazem/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100091571594026" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/905550196682" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div>
+                <h4 data-lang="ar">روابط سريعة</h4>
+                <h4 data-lang="tr">Hızlı Bağlantılar</h4>
+                <h4 data-lang="en">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">المتجر</span>
+                        <span data-lang="tr">Mağaza</span>
+                        <span data-lang="en">Store</span>
+                    </a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">الكتب الإلكترونية</span>
+                        <span data-lang="tr">E-kitaplar</span>
+                        <span data-lang="en">E-books</span>
+                    </a></li>
+                    <li><a href="index.html"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">الأنظمة والأدوات</span>
+                        <span data-lang="tr">Sistemler ve Araçlar</span>
+                        <span data-lang="en">Systems & Tools</span>
+                    </a></li>
+                    <li><a href="#privacy"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">سياسة الخصوصية</span>
+                        <span data-lang="tr">Gizlilik Politikası</span>
+                        <span data-lang="en">Privacy Policy</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 data-lang="ar">روابط مهمة</h4>
+                <h4 data-lang="tr">Önemli Bağlantılar</h4>
+                <h4 data-lang="en">Important Links</h4>
+                <ul class="footer-links">
+                    <li><a href="https://training.farouk-grup.com" target="_blank" rel="noopener"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">موقع التدريب</span>
+                        <span data-lang="tr">Eğitim Sitesi</span>
+                        <span data-lang="en">Training Site</span>
+                    </a></li>
+                    <li><a href="https://farouk-grup.com" target="_blank" rel="noopener"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">مجموعة فاروق</span>
+                        <span data-lang="tr">Farouk Grup</span>
+                        <span data-lang="en">Farouk Group</span>
+                    </a></li>
+                    <li><a href="https://portal.farouk-grup.com/finance-hub" target="_blank"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">المنصة الشاملة</span>
+                        <span data-lang="tr">Finans Platformu</span>
+                        <span data-lang="en">Finance Platform</span>
+                    </a></li>
+                    <li><a href="#terms"><i class="fas fa-chevron-left"></i>
+                        <span data-lang="ar">اتفاقية الاستخدام</span>
+                        <span data-lang="tr">Kullanım Koşulları</span>
+                        <span data-lang="en">Terms of Use</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 data-lang="ar">تواصل معنا</h4>
+                <h4 data-lang="tr">Bize Ulaşın</h4>
+                <h4 data-lang="en">Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fab fa-whatsapp"></i><a href="https://wa.me/905550196682" target="_blank">‎+90 555 019 66 82</a></li>
+                    <li><i class="far fa-envelope"></i><a href="mailto:faroukgrup@gmail.com">faroukgrup@gmail.com</a></li>
+                    <li><i class="fas fa-location-dot"></i>
+                        <span data-lang="ar">تركيا — إسطنبول</span>
+                        <span data-lang="tr">Türkiye — İstanbul</span>
+                        <span data-lang="en">Türkiye — Istanbul</span>
+                    </li>
+                </ul>
+                <a href="https://wa.me/905550196682" target="_blank" class="btn btn-gold btn-sm" style="margin-top:6px">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-lang="ar">تواصل عبر واتساب</span>
+                    <span data-lang="tr">WhatsApp</span>
+                    <span data-lang="en">WhatsApp</span>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="payment-row">
+                <span style="margin-left:6px">
+                    <span data-lang="ar">وسائل الدفع:</span>
+                    <span data-lang="tr">Ödeme Yöntemleri:</span>
+                    <span data-lang="en">Payment Methods:</span>
+                </span>
+                <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" style="height:20px">
+                <img src="https://img.icons8.com/color/48/000000/apple-pay.png" alt="Apple Pay">
+                <img src="https://img.icons8.com/color/48/000000/paypal.png" alt="PayPal">
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:.75rem">
+                    <i class="fas fa-lock" style="color:var(--gold)"></i> SSL
+                </span>
+            </div>
+            <div>
+                <a href="privacy-policy.html" class="legal-link">
+                    <span data-lang="ar">سياسة الخصوصية · اتفاقية الاستخدام · عقد البيع عن بُعد</span>
+                    <span data-lang="tr">Gizlilik Politikası · Kullanım Koşulları · Mesafeli Satış Sözleşmesi</span>
+                    <span data-lang="en">Privacy Policy · Terms of Use · Distance Sales Contract</span>
+                </a>
+            </div>
+            <div>
+                V 2.0 — 
+                <span data-lang="ar">جميع الحقوق محفوظة © 2026</span>
+                <span data-lang="tr">Tüm hakları saklıdır © 2026</span>
+                <span data-lang="en">All rights reserved © 2026</span>
+                <strong style="color:var(--gold-2)">FAROUK GRUP TRAINING</strong>
+            </div>
         </div>
     </div>
 </footer>
 
-<!-- ===== السكريبتات ===== -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<!-- ================= السكريبتات ================= -->
 <script>
-    AOS.init({duration:800,once:true,offset:100});
+(function(){
+    'use strict';
+
+    /* ---------- إدارة اللغات ---------- */
+    const SUPPORTED = ['ar','tr','en'];
+    const htmlEl = document.documentElement;
+
+    function setLang(lang){
+        if(!SUPPORTED.includes(lang)) lang = 'ar';
+        htmlEl.lang = lang;
+        htmlEl.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+        document.querySelectorAll('[data-lang]').forEach(el => {
+            el.classList.toggle('is-current', el.dataset.lang === lang);
+        });
+
+        document.querySelectorAll('[data-setlang]').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.setlang === lang);
+        });
+
+        try { localStorage.setItem('faroukLegalLang', lang); } catch(e){}
+    }
+
+    document.querySelectorAll('[data-setlang]').forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.dataset.setlang));
+    });
+
+    /* اللغة الافتراضية: المحفوظة أو العربية */
+    let initial = 'ar';
+    try {
+        const saved = localStorage.getItem('faroukLegalLang');
+        if(saved && SUPPORTED.includes(saved)) initial = saved;
+    } catch(e){}
+    setLang(initial);
+
+    /* ---------- تظليل الهيدر عند التمرير ---------- */
+    const header = document.getElementById('siteHeader');
+    window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+
+    /* ---------- Scroll spy للفهرس ---------- */
+    const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+    const targets = tocLinks
+        .map(link => document.querySelector(link.getAttribute('href')))
+        .filter(Boolean);
+
+    if('IntersectionObserver' in window && targets.length){
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting){
+                    const id = '#' + entry.target.id;
+                    tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+                }
+            });
+        }, {
+            rootMargin: '-140px 0px -55% 0px',
+            threshold: 0
+        });
+        targets.forEach(t => obs.observe(t));
+    }
+
+    /* ---------- تمرير سلس لروابط الفهرس ---------- */
+    tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            const target = document.querySelector(href);
+            if(target){
+                e.preventDefault();
+                const offset = 130;
+                const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({top, behavior:'smooth'});
+            }
+        });
+    });
+
+})();
 </script>
 
 </body>
