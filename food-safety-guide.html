@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتاب مبادئ سلامة الأغذية | فاروق العظم</title>
+    <meta name="description" content="دليل شامل ومبسط يجمع بين المفاهيم العلمية والممارسات الميدانية اليومية لفهم المخاطر الغذائية والسيطرة عليها - للمنازل، المطاعم، والتصنيع.">
+    <!-- الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-red: #9b1c1c; /* لون أحمر داكن يتناسب مع الكتاب */
+            --primary-red-light: #c0392b;
+            --secondary-navy: #112233; /* الكحلي من الغلاف */
+            --accent-gold: #d4af37; /* الذهبي */
+            --bg-light: #fdfbf7;
+            --text-dark: #2c2c2c;
+            --text-muted: #5a5a5a;
+            --shadow-sm: 0 10px 30px rgba(0,0,0,0.06);
+            --shadow-lg: 0 20px 50px rgba(155,28,28,0.15);
+            --border-light: rgba(155,28,28,0.15);
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* العناوين */
+        .section-title {
+            font-size: 2rem; font-weight: 900; text-align: center; margin-bottom: 50px;
+            color: var(--secondary-navy); position: relative;
+        }
+        .section-title:after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background: var(--primary-red); margin: 15px auto 0; border-radius: 3px;
+        }
+
+        /* هيدر */
+        .landing-header {
+            text-align: center; padding: 25px 20px; background: #fff;
+            border-bottom: 2px solid var(--primary-red);
+        }
+        .landing-header .logo-container {
+            display: inline-flex; align-items: center; justify-content: center; gap: 15px;
+            background: var(--secondary-navy); padding: 10px 30px; border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(17,34,51,0.2);
+        }
+        .landing-header h1 {
+            font-family: 'Cairo', sans-serif; font-size: 1.5rem; font-weight: 900;
+            color: var(--accent-gold); letter-spacing: 1px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 70px 0; background: linear-gradient(135deg, #fdfbf7 0%, #f4ece6 100%);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .hero-grid { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .hero-content { flex: 1; min-width: 300px; }
+        .hero-badge {
+            display: inline-block; background: var(--primary-red); color: #fff;
+            padding: 6px 20px; border-radius: 30px; font-weight: 700; font-size: 0.9rem;
+            margin-bottom: 20px; letter-spacing: 1px; box-shadow: 0 4px 10px rgba(155,28,28,0.3);
+        }
+        .hero-content h2 {
+            font-size: 2.8rem; font-weight: 900; line-height: 1.3; color: var(--secondary-navy);
+            margin-bottom: 20px;
+        }
+        .hero-content h2 span { color: var(--primary-red); }
+        .hero-content p {
+            font-size: 1.15rem; color: var(--text-muted); margin-bottom: 30px;
+        }
+        .hero-image { flex: 0.8; min-width: 280px; text-align: center; }
+        .hero-image img {
+            max-width: 100%; height: auto; border-radius: 12px;
+            box-shadow: 20px 20px 40px rgba(0,0,0,0.15); border: 5px solid #fff;
+            transform: rotate(-2deg); transition: transform 0.3s;
+        }
+        .hero-image img:hover { transform: rotate(0deg) scale(1.02); }
+        
+        /* أزرار */
+        .btn-primary {
+            background: var(--primary-red); border: none; border-radius: 50px;
+            padding: 16px 40px; font-size: 1.2rem; font-weight: 700;
+            color: #fff; cursor: pointer; transition: 0.3s;
+            display: inline-flex; align-items: center; gap: 10px;
+            box-shadow: 0 8px 20px rgba(155,28,28,0.3);
+            font-family: 'Tajawal', sans-serif;
+        }
+        .btn-primary:hover {
+            background: var(--primary-red-light); transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(155,28,28,0.4);
+        }
+        .trust-badges { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; font-size: 0.9rem; color: var(--text-muted); }
+        .trust-badges span { display: flex; align-items: center; gap: 8px; }
+        .trust-badges i { color: var(--primary-red); }
+
+        /* المشكلة */
+        .problem-section { padding: 80px 0; background: #fff; }
+        .problem-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+            gap: 25px; margin-top: 30px;
+        }
+        .problem-card {
+            background: #fafbfa; padding: 30px; border-radius: 20px;
+            border: 1px solid var(--border-light); transition: 0.3s;
+            border-top: 4px solid var(--primary-red);
+        }
+        .problem-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-5px); }
+        .problem-card i { font-size: 2.2rem; color: var(--primary-red); margin-bottom: 15px; }
+        .problem-card h4 { font-size: 1.3rem; margin-bottom: 12px; color: var(--secondary-navy); }
+
+        /* ماذا ستتعلم */
+        .benefits-section { padding: 80px 0; background: #f9f6f3; }
+        .benefits-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 30px; margin-top: 30px;
+        }
+        .benefit-card {
+            background: #fff; padding: 35px 25px; border-radius: 20px;
+            box-shadow: var(--shadow-sm); transition: 0.3s; text-align: center;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+        .benefit-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+        .benefit-icon {
+            width: 70px; height: 70px; background: rgba(155,28,28,0.08);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 2rem; color: var(--primary-red);
+        }
+        .benefit-card h4 { font-size: 1.3rem; margin-bottom: 15px; color: var(--secondary-navy); }
+        .benefit-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* اقتباس */
+        .quote-section { padding: 70px 0; background: var(--secondary-navy); color: #fff; text-align: center; }
+        .quote-text { font-size: 1.6rem; max-width: 800px; margin: 0 auto; font-style: italic; line-height: 1.8; }
+        .quote-author { margin-top: 20px; color: var(--accent-gold); font-weight: 700; font-size: 1.2rem; }
+
+        /* فصول الكتاب */
+        .toc-section { padding: 80px 0; background: #fff; }
+        .toc-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+            gap: 15px; margin-top: 30px;
+        }
+        .toc-item {
+            background: #fdfbf7; padding: 15px 20px; border-radius: 12px;
+            display: flex; align-items: center; gap: 12px; border: 1px solid var(--border-light);
+            font-weight: 500; transition: 0.2s;
+        }
+        .toc-item:hover { background: #fff; border-color: var(--primary-red); transform: translateX(-5px); }
+        .toc-item i { color: var(--accent-gold); font-size: 1.2rem; }
+
+        /* عن المؤلف */
+        .author-section { padding: 80px 0; background: #f9f6f3; }
+        .author-grid { display: flex; align-items: center; gap: 50px; flex-wrap: wrap; }
+        .author-image { flex: 0.5; min-width: 250px; text-align: center; }
+        .author-image img {
+            max-width: 100%; height: auto; border-radius: 20px;
+            box-shadow: var(--shadow-lg); border: 4px solid #fff;
+        }
+        .author-content { flex: 1; min-width: 300px; }
+        .author-content h4 { font-size: 1.8rem; margin-bottom: 10px; color: var(--secondary-navy); }
+        .author-title { color: var(--primary-red); font-weight: 700; margin-bottom: 20px; }
+        .author-stats { display: flex; gap: 30px; margin: 25px 0; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 900; color: var(--primary-red); }
+
+        /* الأسئلة الشائعة */
+        .faq-section { padding: 80px 0; background: #fff; }
+        .faq-grid { max-width: 800px; margin: 30px auto 0; }
+        .faq-item {
+            background: #fdfbf7; padding: 20px 25px; border-radius: 16px;
+            margin-bottom: 15px; border: 1px solid var(--border-light);
+        }
+        .faq-question {
+            font-weight: 700; font-size: 1.1rem; display: flex; justify-content: space-between;
+            cursor: pointer; color: var(--secondary-navy);
+        }
+        .faq-answer {
+            margin-top: 15px; color: var(--text-muted); display: none; padding-top: 15px;
+            border-top: 1px solid var(--border-light);
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* CTA */
+        .cta-section {
+            padding: 80px 0; background: linear-gradient(135deg, var(--secondary-navy) 0%, #0a1520 100%);
+            color: #fff; text-align: center;
+        }
+        .cta-section h3 { font-size: 2.2rem; margin-bottom: 20px; }
+        .cta-section p { max-width: 600px; margin: 0 auto 30px; opacity: 0.9; }
+
+        /* الفوتر */
+        footer { background: var(--secondary-navy); color: #aaa; padding: 40px 20px; text-align: center; font-size: 0.9rem; }
+        footer span { color: var(--accent-gold); }
+
+        /* نافذة الدفع */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;
+            z-index: 2000; visibility: hidden; opacity: 0; transition: 0.3s;
+        }
+        .modal-overlay.active { visibility: visible; opacity: 1; }
+        .modal-card {
+            background: #fff; padding: 30px; border-radius: 20px;
+            width: 90%; max-width: 850px; max-height: 90vh; position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4); overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 20px; font-size: 30px;
+            cursor: pointer; color: var(--text-muted); transition: 0.3s;
+        }
+        .modal-close:hover { color: var(--primary-red); }
+        .modal-card h2 { text-align: center; margin-bottom: 25px; color: var(--secondary-navy); }
+        #paymentIframe { width: 100%; height: 600px; border: none; border-radius: 12px; background: #f9f9f9; }
+
+        @media (max-width: 768px) {
+            .hero-content h2 { font-size: 2rem; }
+            .hero-image img { transform: none; margin-top: 30px; }
+            .section-title { font-size: 1.7rem; }
+            .author-stats { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- هيدر -->
+<div class="landing-header">
+    <div class="logo-container">
+        <h1>🛡️ مبادئ سلامة الأغذية</h1>
+    </div>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <span class="hero-badge">مراجعة عامة للمبادئ الدولية 2026</span>
+            <h2>غذاء آمن.. <span>لحياة أفضل</span></h2>
+            <p>دليل شامل ومبسّط يجمع بين المفاهيم العلمية والممارسات الميدانية اليومية، ليساعدك على فهم المخاطر الغذائية والسيطرة عليها، وضمان أقصى درجات الوقاية والجودة في كل وجبة تقدمها.</p>
+            <button class="btn-primary" id="openModalBtn"><i class="fas fa-book-open"></i> احصل على نسختك الآن (9.99$)</button>
+            
+            <div class="trust-badges">
+                <span><i class="fas fa-file-pdf"></i> PDF</span>
+                <span><i class="fas fa-file"></i> ePub</span>
+                <span><i class="fas fa-book-open"></i> 14 فصلاً و4 ملاحق</span>
+                <span><i class="fas fa-check-circle"></i> رسوم ومخططات توضيحية</span>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- استبدل الرابط أدناه برابط غلاف الكتاب الحقيقي -->
+            <img src="https://lh3.googleusercontent.com/d/1O6pqGUe-ban2ooIIEhvF8XRSlrbkf79q" alt="غلاف كتاب مبادئ سلامة الأغذية">
+        </div>
+    </div>
+</section>
+
+<!-- المشكلة -->
+<section class="problem-section">
+    <div class="container">
+        <h3 class="section-title">لماذا تحتاج هذا الكتاب؟</h3>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <i class="fas fa-biohazard"></i>
+                <h4>المخاطر البيولوجية والكيميائية</h4>
+                <p>البكتيريا، الفيروسات، الطفيليات، ومتبقيات المبيدات. هل تعرف كيف تتسلل هذه المخاطر إلى طعامك وكيف تمنعها؟</p>
+            </div>
+            <div class="problem-card">
+                <i class="fas fa-temperature-high"></i>
+                <h4>منطقة الخطر الحراري</h4>
+                <p>هل تعرف درجات الحرارة الآمنة للطهي والتبريد؟ الخلل في هذه الدرجات هو السبب الأول للتسمم الغذائي في المنازل والمطاعم.</p>
+            </div>
+            <div class="problem-card">
+                <i class="fas fa-clipboard-list"></i>
+                <h4>تطبيق أنظمة HACCP</h4>
+                <p>هل تدير مطعماً أو مصنعاً؟ التلوث التقاطعي وسوء التخزين قد يكلفك سمعتك ومشروعك. تعلم كيف تطبق المعايير العالمية ببساطة.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- اقتباس -->
+<section class="quote-section">
+    <div class="container">
+        <div class="quote-text">"سلامة الأغذية مسؤولية تبدأ بالمعرفة وتنتهي بالالتزام"</div>
+        <div class="quote-author">– مقدمة الكتاب</div>
+    </div>
+</section>
+
+<!-- ماذا ستتعلم -->
+<section class="benefits-section">
+    <div class="container">
+        <h3 class="section-title">ماذا يقدم لك الكتاب؟</h3>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-utensils"></i></div>
+                <h4>للمنازل والمطاعم</h4>
+                <p>ممارسات عملية يومية لحفظ وتصنيع وتقديم الطعام بأمان، مع قوائم تحقق جاهزة للطباعة.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-industry"></i></div>
+                <h4>للتصنيع والمخابز</h4>
+                <p>ملاحق مخصصة لأنظمة HACCP في المخابز والمطاعم والمصانع، من استلام المواد الخام إلى التغليف.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-chart-pie"></i></div>
+                <h4>رسوم ومخططات</h4>
+                <p>أكثر من مجرد نصوص، الكتاب مليء بالمخططات التوضيحية التي تقرب لك المفاهيم المعقدة بسهولة.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon"><i class="fas fa-shield-virus"></i></div>
+                <h4>الوقاية العملية</h4>
+                <p>كيف تمنع التلوث التقاطعي، تدير مسببات الحساسية، وتتعامل مع حالات الطوارئ والتتبع والسحب.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- فصول الكتاب -->
+<section class="toc-section">
+    <div class="container">
+        <h3 class="section-title">محتويات الكتاب</h3>
+        <div class="toc-grid">
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الأول: الغذاء ومكوناته الأساسية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الثاني: القضايا والتحديات في سلامة الأغذية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الثالث: الأمراض المنقولة بواسطة الغذاء</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الرابع: عدوى أم تسمم؟</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الخامس: الفيروسات والطفيليات</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل السادس: المواد المضافة للأغذية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل السابع والثامن: تقنيات حديثة في سلسلة الغذاء</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل التاسع: التلوث الغذائي (فيزيائي، كيميائي، ميكروبي، تقاطعي)</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل العاشر: فساد الأغذية وعلامات الرفض</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الحادي عشر: الممارسات الصحية والإرشادية</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الثاني عشر: المواد الخام والمطاعم والمنازل</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الثالث عشر: حفظ الأغذية (حرارة، برودة، تجفيف، تعليب)</div>
+            <div class="toc-item"><i class="fas fa-bookmark"></i> الفصل الرابع عشر: تأثير التصنيع على الجودة والسلامة</div>
+            <div class="toc-item" style="background:#fff3f3; border-color:var(--primary-red);"><i class="fas fa-plus-circle" style="color:var(--primary-red)"></i> ملحق 1: أنظمة HACCP (7 مبادئ و21 خطوة)</div>
+            <div class="toc-item" style="background:#fff3f3; border-color:var(--primary-red);"><i class="fas fa-plus-circle" style="color:var(--primary-red)"></i> ملحق 2: نقاط التحكم الحرجة (CCP)</div>
+            <div class="toc-item" style="background:#fff3f3; border-color:var(--primary-red);"><i class="fas fa-plus-circle" style="color:var(--primary-red)"></i> ملحق 3: HACCP في المخابز</div>
+            <div class="toc-item" style="background:#fff3f3; border-color:var(--primary-red);"><i class="fas fa-plus-circle" style="color:var(--primary-red)"></i> ملحق 4: إدارة الحساسية والتتبع في المطاعم</div>
+        </div>
+    </div>
+</section>
+
+<!-- عن المؤلف -->
+<section class="author-section">
+    <div class="container">
+        <h3 class="section-title">عن المؤلف</h3>
+        <div class="author-grid">
+            <div class="author-image">
+                <!-- استبدل الرابط أدناه بصورة المؤلف -->
+                <img src="https://lh3.googleusercontent.com/d/1WPc3zB8JQ_CctYERjApb3EPRLUdMP6Pw=w800-h1000" alt="فاروق العظم">
+            </div>
+            <div class="author-content">
+                <h4>أ / فاروق العظم</h4>
+                <div class="author-title">مستشار تطوير الأعمال والمالية لقطاع الأغذية والمشروبات | خبير الامتياز التجاري وضبط التكاليف</div>
+                <p>خبرة تزيد عن 15 عاماً في تطوير الأنظمة التشغيلية والمالية، متخصص في ضبط التكاليف وتطوير فرق العمل. أسس مجموعة فاروق للأعمال لتقديم الاستشارات التي تدعم رواد الأعمال في بناء مشاريع منظمة وقابلة للنمو، مع التركيز على تطبيق أعلى معايير سلامة الغذاء.</p>
+                <div class="author-stats">
+                    <div class="stat-item"><span class="stat-number">15+</span><p>عام خبرة</p></div>
+                    <div class="stat-item"><span class="stat-number">50+</span><p>مشروع تم إنجازه</p></div>
+                    <div class="stat-item"><span class="stat-number">150+</span><p>شخص تم تدريبهم</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- الأسئلة الشائعة -->
+<section class="faq-section">
+    <div class="container">
+        <h3 class="section-title">أسئلة شائعة</h3>
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question"><span>هل هذا الكتاب مناسب لغير المتخصصين في علوم الأغذية؟</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">نعم، الكتاب صُمم ليكون مبسطاً وشاملاً. يبدأ من الأساسيات ويشرح المفاهيم العلمية بلغة عملية سهلة تناسب أصحاب المنازل، المطاعم، والمصانع على حد سواء.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>هل يحتوي الكتاب على نماذج وقوائم جاهزة؟</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">بالتأكيد. يحتوي الكتاب على ملاحق كاملة تشمل قوائم تحقق يومية جاهزة للطباعة، ونماذج لتطبيق أنظمة HACCP، وإدارة مسببات الحساسية.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span>كيف سأستلم الكتاب بعد الشراء؟</span> <i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">بعد إتمام الدفع بنجاح، سيتم تحويلك لصفحة التحميل مباشرة ويمكنك تنزيل الكتاب بصيغة PDF أو ePub.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h3>لا تترك صحة عملائك وعائلتك للصدفة</h3>
+        <p>امتلك الدليل الشامل الذي يمنحك الأدوات والمعرفة لتقديم غذاء آمن وبناء ثقة لا تتزعزع.</p>
+        <button class="btn-primary" id="openModalBtn2"><i class="fas fa-shopping-cart"></i> احصل على نسختك الآن بـ 9.99$ فقط</button>
+        <p style="margin-top:20px; font-size:0.9rem;"><i class="fas fa-lock"></i> دفع آمن - تحميل فوري</p>
+    </div>
+</section>
+
+<!-- الفوتر -->
+<footer>
+    <div class="container">
+        <p>© 2026 مجموعة فاروق للاستشارات والأعمال. جميع الحقوق محفوظة.</p>
+        <p style="margin-top:10px;"><span>كتاب مبادئ سلامة الأغذية</span> – مراجعة عامة للمبادئ الدولية 2026</p>
+    </div>
+</footer>
+
+<!-- نافذة الدفع -->
+<div class="modal-overlay" id="paymentModal">
+    <div class="modal-card">
+        <span class="modal-close" id="closeModalBtn">&times;</span>
+        <h2><i class="fas fa-lock" style="margin-left:8px; color:var(--primary-red);"></i> إتمام عملية الشراء</h2>
+        <!-- ضع رابط الدفع الخاص بك في الـ src أدناه -->
+        <iframe id="paymentIframe" src="" allow="payment" allowfullscreen></iframe>
+        <p style="text-align:center; margin-top:15px; color:var(--text-muted); font-size:0.9rem;">
+            بعد الدفع بنجاح، ستتلقى رابط تحميل الكتاب على بريدك الإلكتروني.
+        </p>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // رابط الدفع 
+        const PAYMENT_LINK = "https://www.entervia.co/checkout/121"; 
+        
+        const modal = document.getElementById('paymentModal');
+        const iframe = document.getElementById('paymentIframe');
+        const openBtns = document.querySelectorAll('#openModalBtn, #openModalBtn2');
+        const closeBtn = document.getElementById('closeModalBtn');
+
+        function openModal() {
+            iframe.src = PAYMENT_LINK;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // منع التمرير عند فتح النافذة
+        }
+
+        openBtns.forEach(btn => btn.addEventListener('click', openModal));
+
+        function closeModal() {
+            modal.classList.remove('active');
+            iframe.src = ''; // إفراغ الرابط لإيقاف التحميل
+            document.body.style.overflow = 'auto'; // إعادة التمرير
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModal(); });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.closest('.faq-item');
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    if (faq !== item) faq.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    })();
+</script>
+
+</body>
+</html>
