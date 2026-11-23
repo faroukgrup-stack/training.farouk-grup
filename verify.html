@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>التحقق من الشهادة | FAROUK GRUP Training</title>
-    <script src="protect.js"></script>
-
     <meta name="description" content="تحقق من صحة شهادتك التدريبية الصادرة عن FAROUK GRUP بسهولة وأمان.">
     <meta name="robots" content="noindex, follow">
 
@@ -15,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- V8.1: مصدر التحقق الأساسي Supabase + احتياطي سكريبتات Google السابقة -->
     <style>
         :root { --gold: #b8860b; --gold-light: #d4b15a; --dark: #0f0f0f; --white: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -79,20 +78,27 @@
     <script>
         AOS.init({ duration: 700, once: true, offset: 50 });
 
-        const API_URL = 'https://script.google.com/macros/s/AKfycbzp6zJTVVejAiBFSrpydWgR8FHnNKOlHsUMmmeU2OU_Hj6oWgxjH4XTGI1Qs6X4UWwr/exec';
+        // 🔹 المصدر الأساسي: قاعدة شهادات لوحة الإدارة (Supabase)
+        const SUPABASE_URL = (window.FG_CONFIG && window.FG_CONFIG.SUPABASE_URL) || 'https://ckjfhjpjhakoggxqpcxr.supabase.co';
+        const SUPABASE_VERIFY = SUPABASE_URL.replace(/\/$/, '') + '/functions/v1/public-api/cert?action=verify&code=';
+
+        // 🔹 مصادر احتياطية: سكريبتات Google للشهادات القديمة (أضف أي رابط جديد هنا)
+        const API_ENDPOINTS = [
+            'https://script.google.com/macros/s/AKfycbzp6zJTVVejAiBFSrpydWgR8FHnNKOlHsUMmmeU2OU_Hj6oWgxjH4XTGI1Qs6X4UWwr/exec', // الدورة الأولى
+            'https://script.google.com/macros/s/AKfycbylKn0a7VZXTstQ274ZM-zLM_rlDcWryHXme98b7_pXEG_uQjb-n1HJEyfawEJe9fyf6A/exec'  // الدورة الثانية
+        ];
+
         const params = new URLSearchParams(window.location.search);
-        const codeFromUrl = params.get('code');
+        const codeFromUrl = (params.get('code') || '').trim();
         const mainContainer = document.getElementById('mainContainer');
+        const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
         // دالة تنسيق التاريخ
         function formatDate(dateStr) {
             if (!dateStr) return 'غير متوفر';
-            const d = new Date(dateStr);
+            const d = new Date(/^\d{4}-\d{2}-\d{2}$/.test(dateStr) ? dateStr + 'T00:00:00' : dateStr);
             if (isNaN(d.getTime())) return dateStr;
-            const day = d.getDate();
-            const month = d.getMonth() + 1;
-            const year = d.getFullYear();
-            return day + '/' + month + '/' + year;
+            return d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
         }
 
         function showInitialUI() {
@@ -105,12 +111,15 @@
                     <h1 class="verify-title">التحقق من الشهادة</h1>
                     <p class="verify-subtitle">أدخل كود الشهادة للتحقق من صحتها</p>
                     <div class="input-group">
-                        <input type="text" id="manualCode" placeholder="PS-RM-2026-XXX" dir="ltr">
+                        <input type="text" id="manualCode" placeholder="PS-RM-2026-XXX" dir="ltr" autocomplete="off">
                         <button class="btn btn-primary" onclick="startManualVerification()"><i class="fas fa-search"></i> تحقق</button>
                     </div>
                     <div class="divider"></div>
-                    <a href="https://training.farouk-grup.com" class="btn btn-outline"><i class="fas fa-home"></i> العودة للموقع</a>
+                    <a href="https://training.farouk-grup.com" target="_top" class="btn btn-outline"><i class="fas fa-home"></i> العودة للموقع</a>
                 `;
+                const inp = document.getElementById('manualCode');
+                inp.addEventListener('keydown', e => { if (e.key === 'Enter') startManualVerification(); });
+                setTimeout(() => inp.focus(), 300);
             }
         }
 
@@ -130,57 +139,85 @@
             `;
         }
 
-        async function verifyCode(code) {
-            try {
-                const response = await fetch(API_URL + '?code=' + encodeURIComponent(code));
-                const data = await response.json();
-                if (data.status === 'valid') {
-                    showResult('success', code, data.name, data.date);
-                } else {
-                    showResult('error', code);
-                }
-            } catch (error) {
-                showResult('network_error');
-                console.error(error);
-            }
+        async function getJson(url, ms = 12000) {
+            const ctl = new AbortController();
+            const t = setTimeout(() => ctl.abort(), ms);
+            try { const r = await fetch(url, { signal: ctl.signal }); return await r.json(); }
+            finally { clearTimeout(t); }
         }
 
-        function showResult(status, code = '', name = '', date = '') {
+        // 🔹 دالة التحقق الرئيسية – Supabase أولاً ثم جميع سكريبتات Google واحداً تلو الآخر
+        async function verifyCode(code) {
+            let reached = 0;
+            try {
+                const d = await getJson(SUPABASE_VERIFY + encodeURIComponent(code.toUpperCase()));
+                reached++;
+                if (d && d.status === 'valid') {
+                    showResult('success', d.code || code, { name: d.name, nameAr: d.nameAr, date: d.date, course: d.course, courseEn: d.courseEn });
+                    return;
+                }
+            } catch (error) { console.warn('فشل الاتصال بالمصدر الأساسي', error); }
+
+            for (let i = 0; i < API_ENDPOINTS.length; i++) {
+                try {
+                    const data = await getJson(API_ENDPOINTS[i] + '?code=' + encodeURIComponent(code));
+                    reached++;
+                    if (data && data.status === 'valid') {
+                        showResult('success', code, { name: data.name, date: data.date, course: data.course || '' });
+                        return;
+                    }
+                } catch (error) {
+                    console.warn('فشل الاتصال بالمصدر رقم', i + 1, error);
+                }
+            }
+            showResult(reached ? 'error' : 'connection', code);
+        }
+
+        // 🔹 عرض النتيجة
+        function showResult(status, code = '', info = {}) {
             let html = '';
             if (status === 'success') {
+                const names = [info.name, info.nameAr].filter((v, i, a) => v && a.indexOf(v) === i);
                 html = `
                     <div class="icon-wrapper" style="border-color: #2e7d32;"><i class="fas fa-check-circle" style="color: #2e7d32;"></i></div>
                     <h1 class="verify-title" style="color: #2e7d32;">✅ الشهادة صحيحة وسارية</h1>
                     <p style="color:#bcc4d0; margin-bottom:1rem;">تم التحقق بنجاح من هذه الشهادة</p>
                     <div class="result-details">
-                        <p><strong>اسم المتدرب:</strong> ${name || 'غير متوفر'}</p>
-                        <p><strong>تاريخ الإصدار:</strong> ${formatDate(date)}</p>
+                        <p><strong>اسم المتدرب:</strong> ${names.length ? names.map(esc).join(' / ') : 'غير متوفر'}</p>
+                        ${info.course ? `<p><strong>الدورة:</strong> ${esc(info.course)}</p>` : ''}
+                        ${info.courseEn ? `<p dir="ltr" style="color:#8895a7; font-size:0.95rem;">${esc(info.courseEn)}</p>` : ''}
+                        <p><strong>تاريخ الإصدار:</strong> ${esc(formatDate(info.date))}</p>
                     </div>
-                    <div class="result-code">${code}</div>
+                    <div class="result-code">${esc(code)}</div>
                     <p style="color:#8895a7; margin-top:0.8rem;">صادرة عن FAROUK GRUP Training – معتمدة.</p>
                 `;
             } else if (status === 'error') {
                 html = `
                     <div class="icon-wrapper" style="border-color: #b22222;"><i class="fas fa-times-circle" style="color: #b22222;"></i></div>
                     <h1 class="verify-title" style="color: #b22222;">❌ الشهادة غير صالحة</h1>
-                    <p style="color:#bcc4d0; margin-bottom:1rem;">لم نتمكن من العثور على هذا الكود في سجلاتنا</p>
-                    <div class="result-code" style="background: rgba(178,34,34,0.2);">${code}</div>
+                    <p style="color:#bcc4d0; margin-bottom:1rem;">لم نتمكن من العثور على هذا الكود في أي من قواعد بياناتنا</p>
+                    <div class="result-code" style="background: rgba(178,34,34,0.2);">${esc(code)}</div>
                     <p style="color:#8895a7; margin-top:0.8rem;">يرجى التأكد من الكود أو التواصل مع الدعم.</p>
                 `;
             } else {
                 html = `
                     <div class="icon-wrapper" style="border-color: #d4b15a;"><i class="fas fa-exclamation-triangle" style="color: var(--gold-light);"></i></div>
                     <h1 class="verify-title" style="color: var(--gold-light);">⚠️ خطأ في الاتصال</h1>
-                    <p style="color:#bcc4d0; margin-bottom:1rem;">تعذر الوصول إلى قاعدة البيانات، حاول مرة أخرى لاحقاً.</p>
+                    <p style="color:#bcc4d0; margin-bottom:1rem;">تعذر الوصول إلى جميع قواعد البيانات، حاول مرة أخرى لاحقاً.</p>
                 `;
             }
 
             html += `
                 <div class="divider"></div>
-                <button class="btn btn-outline" onclick="location.reload()"><i class="fas fa-redo-alt"></i> تحقق من كود آخر</button>
-                <a href="https://training.farouk-grup.com" class="btn btn-primary" style="margin-right: 10px;"><i class="fas fa-home"></i> الموقع الرئيسي</a>
+                <button class="btn btn-outline" onclick="checkAnother()"><i class="fas fa-redo-alt"></i> تحقق من كود آخر</button>
+                <a href="https://training.farouk-grup.com" target="_top" class="btn btn-primary" style="margin-right: 10px;"><i class="fas fa-home"></i> الموقع الرئيسي</a>
             `;
             mainContainer.innerHTML = html;
+        }
+
+        function checkAnother() {
+            if (codeFromUrl) { location.href = location.pathname; return; }
+            showInitialUI();
         }
 
         showInitialUI();
